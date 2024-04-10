@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\Ark;
 
 use App\AMS\ARK;
-use App\Filament\Resources\ArkResource\Pages;
-use App\Filament\Imports\ArkImporter;
+use App\Filament\Imports\ARKImporter;
+use App\Filament\Resources\Ark\ArkResource\Pages;
 use App\Models\Ark as ArkModel;
 use App\Models\Status;
 use App\Models\Naan;
 use App\Models\Shoulder;
-use App\Rules\ValidNaan;
-use Filament\Actions\ImportAction;
+use App\Rules\ExistingNaan;
+
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
@@ -21,11 +21,10 @@ use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-
-
 
 class ArkResource extends Resource
 {
@@ -36,17 +35,18 @@ class ArkResource extends Resource
 
     public static function form(Form $form): Form
     {
-
         return $form
             ->schema([
                 Select::make('naan')
                     ->label('NAAN')
                     ->options(Naan::all()->pluck('naan','naan'))
-                    ->rules([new ValidNaan()])
+                    ->visible(fn (Get $get): bool => is_null($get('ark')))
+                    ->rules([new ExistingNaan()])
                     ->required(),
                 TextInput::make('ark')
                     ->unique(ignoreRecord: true)
                     ->disabled()
+                    ->visible(fn (Get $get): bool => !is_null($get('ark')))
                     ->label('ARK'),
                 TextInput::make('uri')
                     ->label('URI')
@@ -55,6 +55,7 @@ class ArkResource extends Resource
                 Select::make('status_id')
                     ->label('HTTP-Status')
                     ->options(Status::all()->pluck('label', 'id')),
+                /*
                 Section::make('Metadata')
                     ->schema([
                         Repeater::make('members')
@@ -69,6 +70,7 @@ class ArkResource extends Resource
                             ->required(),
                         ]),
                     ])
+                */
                 
             ])->columns(1);
     }
@@ -79,17 +81,17 @@ class ArkResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('ark')
                 ->searchable()
-                ->sortable(),
-                Tables\Columns\TextColumn::make('reference')
+                ->sortable()
+                ->label('ARK'),
+                Tables\Columns\TextColumn::make('uri')
                 ->searchable()
+                ->label('URI')
                 //
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
             ]);
     }
-
-    
 
     public static function getRelations(): array
     {
@@ -106,4 +108,5 @@ class ArkResource extends Resource
             'create' => Pages\CreateArk::route('/create'),
         ];
     }
+
 }

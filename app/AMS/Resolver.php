@@ -54,7 +54,7 @@ class Resolver {
                 return 'https://n2t.net/ark:'.$naan.'/'.$baseNameAndSuffixes;
             }
 
-            return abort(404, 'errors.notFoundARK');
+            return abort(404, __('errors.notFoundARK'));
     
         }
 

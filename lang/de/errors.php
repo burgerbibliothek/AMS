@@ -15,6 +15,7 @@ return [
 
     'invalidNAAN' => 'Ungültige NAAN',
     'invalidARK' => 'Ungültige ARK',
+    'notFound' => 'Nicht gefunden',
     'notFoundARK' => 'ARK nicht gefunden',
     'ressourceGone' => 'Ressource ist nicht mehr verfügbar',
     'ressourceLegalReasons' => 'Ressource ist aus rechtlichen Gründen nicht verfügbar'

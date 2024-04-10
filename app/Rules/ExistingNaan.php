@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 use App\Models\Naan as NaanModel;
 
-class ValidNaan implements ValidationRule
+class ExistingNaan implements ValidationRule
 {
     /**
      * Run the validation rule.

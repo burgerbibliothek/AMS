@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Filament\Resources\ArkResource\Pages;
+namespace App\Filament\Resources\Ark\ArkResource\Pages;
 
-use App\Filament\Resources\ArkResource;
+use App\Filament\Resources\Ark\ArkResource;
+use App\Filament\Imports\ArkImporter;
 use Filament\Actions;
+use Filament\Actions\ImportAction;
 use Filament\Resources\Pages\ListRecords;
 
 class ListArks extends ListRecords
@@ -13,6 +15,8 @@ class ListArks extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
+            ImportAction::make()
+                ->importer(ArkImporter::class),
             Actions\CreateAction::make(),
         ];
     }

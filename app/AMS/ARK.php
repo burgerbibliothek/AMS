@@ -6,10 +6,10 @@ use App\Models\Naan as NaanModel;
 class ARK {
 
 	/**
-     * Possible digits for ARK generation.
+     * Character repetoire for ARK generation.
      */
 	public const XDIGIT = [
-		'numeric' => '123456789',
+		'numeric' => '0123456789',
 		'alphanumeric' => '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
 		'alphanumeric-vowel' => '0123456789bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ',
 		'alphanumeric-vowel-ell' => '0123456789bcdfghjkmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ',

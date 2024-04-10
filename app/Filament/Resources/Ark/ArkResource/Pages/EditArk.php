@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\Resources\ArkResource\Pages;
+namespace App\Filament\Resources\Ark\ArkResource\Pages;
 
-use App\Filament\Resources\ArkResource;
+use App\Filament\Resources\Ark\ArkResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
