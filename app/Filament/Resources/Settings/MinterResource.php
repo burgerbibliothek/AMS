@@ -5,8 +5,11 @@ namespace App\Filament\Resources\Settings;
 use App\Filament\Resources\Settings\MinterResource\Pages;
 use App\Filament\Resources\Settings\MinterResource\RelationManagers;
 use App\Models\Minter as MinterModel;
-use Filament\Forms;
+use App\Rules\ArkCharacterRepetoire;
 use Filament\Forms\Form;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Checkbox;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -25,17 +28,32 @@ class MinterResource extends Resource
     {
         return $form
             ->schema([
-                //
-            ]);
+            TextInput::make('xdigits')
+                ->label('Character Repetoire')
+                ->helperText('Characters may be letters, digits, or any of these seven characters: =   ~   *   +   @   _   $')
+                ->rules([new ArkCharacterRepetoire()])
+                ->placeholder('0123456789bcdfghjkmnpqrstvwxz')
+                ->required(),
+            TextInput::make('length')
+                ->label('Length')
+                ->helperText('Length should not exceed the number of characters in order to calculate checkdigit.')
+                ->numeric()
+                ->inputMode('decimal')
+                ->minValue(2)
+                ->placeholder('2')
+                ->required(),
+            Checkbox::make('ncda')
+                ->label('Add Noid Check Digit')
+                ->helperText('NCDA (Noid Check Digit Algorithm) is an algorithm used to compute or validate NOID checksum char. It can be used to assert that an ID doesn\'t contains transcription error.')
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('xdigits')
-                ->sortable(),
-                Tables\Columns\TextColumn::make('length')
+                Tables\Columns\TextColumn::make('name')
+                ->label('Name')
                 ->sortable()
             ])
             ->actions([

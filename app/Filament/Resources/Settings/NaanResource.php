@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Settings;
 use App\Filament\Resources\Settings\NaanResource\Pages;
 use App\Filament\Resources\Settings\NaanResource\RelationManagers;
 use App\Models\Naan as NaanModel;
+use App\Models\Minter;
 use App\Rules\UniqueShoulder;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -40,7 +41,14 @@ class NaanResource extends Resource
                             ->required(),
                         TextInput::make('description')
                             ->label('Description')
-                            ->required(),    
+                            ->required(),
+                    ]),
+                Section::make('Minter')
+                    ->schema([
+                        Select::make('minter_id')
+                            ->label('Minter Settings')
+                            ->options(Minter::all()->pluck('name', 'id'))
+                            ->required(),
                     ]),
                 Section::make('Shoulders')
                     ->schema([

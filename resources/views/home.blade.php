@@ -9,7 +9,7 @@
         <title>ARK BBB</title>
     </head>
     <body>
-        <h1><abbr title="Archival Resource Key">ARK</abbr> Resolver</h1>
-        <p>This app resolves ARKs.</P>
+        <h1>ARK Resolver of</h1>
+        <p>This app resolves <abbr title="Archival Resource Keys">ARKs</abbr>.</P>
     </body>
 </html>

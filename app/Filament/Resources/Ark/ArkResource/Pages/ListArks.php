@@ -16,6 +16,7 @@ class ListArks extends ListRecords
     {
         return [
             ImportAction::make()
+                ->label('CSV-Import')
                 ->importer(ArkImporter::class),
             Actions\CreateAction::make(),
         ];

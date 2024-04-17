@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\AMS\Ark;
 use App\AMS\Resolver;
+use App\AMS\Metadata;
 use App\Http\Middleware\Language;
 
 
@@ -21,6 +23,16 @@ use App\Http\Middleware\Language;
 
 Route::get('/', function () {
     return view('home');
+});
+
+Route::get('/test', function () {
+    $test = Metadata::parseKernelMetadata('erc:
+    who:Who
+    what:What
+    when:When
+    where:Where');
+
+    dump($test);
 });
 
 Route::get('/ark:{naan}/{baseNameAndSuffixes}', function (Request $request, string $naan, string $baseNameAndSuffixes) {

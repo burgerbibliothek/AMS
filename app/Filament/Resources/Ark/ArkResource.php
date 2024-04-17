@@ -37,41 +37,49 @@ class ArkResource extends Resource
     {
         return $form
             ->schema([
-                Select::make('naan')
-                    ->label('NAAN')
-                    ->options(Naan::all()->pluck('naan','naan'))
-                    ->visible(fn (Get $get): bool => is_null($get('ark')))
-                    ->rules([new ExistingNaan()])
-                    ->required(),
-                TextInput::make('ark')
-                    ->unique(ignoreRecord: true)
-                    ->disabled()
-                    ->visible(fn (Get $get): bool => !is_null($get('ark')))
-                    ->label('ARK'),
-                TextInput::make('uri')
-                    ->label('URI')
-                    ->activeUrl()
-                    ->required(),
-                Select::make('status_id')
-                    ->label('HTTP-Status')
-                    ->options(Status::all()->pluck('label', 'id')),
-                /*
-                Section::make('Metadata')
+                Section::make('general')
                     ->schema([
-                        Repeater::make('members')
-                        ->schema([
-                            TextInput::make('name')->required(),
-                            Select::make('role')
-                                ->options([
-                                    'member' => 'Member',
-                                    'administrator' => 'Administrator',
-                                    'owner' => 'Owner',
-                                ])
+                        Select::make('naan')
+                            ->label('NAAN')
+                            ->options(Naan::all()->pluck('naan','naan'))
+                            ->visible(fn (Get $get): bool => is_null($get('ark')))
+                            ->rules([new ExistingNaan()])
                             ->required(),
-                        ]),
+                        TextInput::make('ark')
+                            ->unique(ignoreRecord: true)
+                            ->disabled()
+                            ->visible(fn (Get $get): bool => !is_null($get('ark')))
+                            ->label('ARK'),
+                        TextInput::make('uri')
+                            ->label('URI')
+                            ->activeUrl()
+                            ->required(),
+                        Select::make('status_id')
+                            ->label('HTTP-Status')
+                            ->options(Status::all()->pluck('label', 'id')),
+                    ]),
+                Section::make('Kernel Metadata')
+                    ->schema([
+                        TextInput::make('who')
+                            ->label('Who')
+                            ->helperText('A responsible person or party.')
+                            ->required(),
+                        TextInput::make('what')
+                            ->label('What')
+                            ->helperText('A name or other human-oriented identifier.')
+                            ->required(),
+                        TextInput::make('when')
+                            ->label('When')
+                            ->helperText('A date important in the object\'s lifecycle.')
+                            ->required(),
+                        TextInput::make('where')
+                            ->label('Where')
+                            ->helperText('A location or system-oriented identifier.')
+                            ->required(),
+                        TextInput::make('note')
+                            ->label('Note')
+                            ->helperText('A location or system-oriented identifier.'),
                     ])
-                */
-                
             ])->columns(1);
     }
 
@@ -99,6 +107,7 @@ class ArkResource extends Resource
             //
         ];
     }
+
 
     public static function getPages(): array
     {

@@ -2,6 +2,7 @@
 namespace App\AMS;
 use Illuminate\Http\RedirectResponse;
 use App\AMS\NCDA;
+use App\AMS\Validator;
 use App\Models\Ark as ArkModel;
 use App\Models\Naan as NaanModel;
 use App\Models\Status as StatusModel;
@@ -37,9 +38,9 @@ class Resolver {
             return $ark->uri.'/'.$suffixes;
                     
         }else{
-
+            
             // check if NAAN is valid
-            if(preg_match('/[^0123456789bcdfghjkmnpqrstvwxz]/', $naan) > 0){
+            if(!Validator::validNaan($naan)){
                 abort(400, __('errors.invalidNAAN'));
             }
 
