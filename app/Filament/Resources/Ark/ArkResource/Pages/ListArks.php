@@ -11,6 +11,7 @@ use Filament\Resources\Pages\ListRecords;
 class ListArks extends ListRecords
 {
     protected static string $resource = ArkResource::class;
+    protected static ?string $title = 'Archival Resource Keys (ARKs)';
 
     protected function getHeaderActions(): array
     {
@@ -18,7 +19,8 @@ class ListArks extends ListRecords
             ImportAction::make()
                 ->label('CSV-Import')
                 ->importer(ArkImporter::class),
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make()
+                ->label('Create ARK'),
         ];
     }
 }

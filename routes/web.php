@@ -5,7 +5,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\AMS\Ark;
 use App\AMS\Resolver;
-use App\AMS\Metadata;
+use App\AMS\Erc;
 use App\Http\Middleware\Language;
 
 
@@ -26,13 +26,11 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    $test = Metadata::parseKernelMetadata('erc:
-    who:Who
-    what:What
-    when:When
-    where:Where');
-
-    dump($test);
+    $anvl = new Erc(['Homer', 'Simpson', 'Springfield', 1990]);
+    $anvl->story(['Marge', 'Simpson', ['Springfield', 'Illinois'], 'hkjshf khkjs fhkjhsd kjfhkjs hfdlkjfhsdlkjfhkg kjhgds jhfgjhsd gfjh gdsfjh js hdfkjshkjf hsdkjfh dskjhfkjds hf'], 'about');
+    $anvl->story(['Bart', 'Simpson', ['Springfield', 'Illinois'], 'hkjshf khkjs fhkjhsd kjfhkjs hfdlkjfhsdlkjfhkg kjhgds jhfgjhsd gfjh gdsfjh js hdfkjshkjf hsdkjfh dskjhfkjds hf'], 'about');
+    dump($anvl);
+    echo '<pre>'.$anvl->record().'</pre>';
 });
 
 Route::get('/ark:{naan}/{baseNameAndSuffixes}', function (Request $request, string $naan, string $baseNameAndSuffixes) {

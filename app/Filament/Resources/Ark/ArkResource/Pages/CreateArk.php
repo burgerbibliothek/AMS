@@ -2,7 +2,7 @@
 namespace App\Filament\Resources\Ark\ArkResource\Pages;
 
 use App\AMS\Ark;
-use App\AMS\Metadata;
+use App\AMS\Erc;
 use App\Filament\Resources\Ark\ArkResource;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Database\Eloquent\Model;
@@ -13,19 +13,9 @@ class CreateArk extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $data['metadata'] = 'erc:'.chr(0x0A);
-        $data['metadata'] .= "who: ".$data['who'].chr(0x0A);
-        $data['metadata'] .= 'what:'.chr(0x20).$data['what'].chr(0x0A);
-        $data['metadata'] .= 'when:'.chr(0x20).$data['when'].chr(0x0A);
-        $data['metadata'] .= 'where:'.chr(0x20).$data['where'].chr(0x0A);
-        if($data['note']){
-            $data['metadata'] .= 'note:'.$data['note'].chr(0x0A);
-        }
-        $kernel = [$data['who'], $data['what'], $data['when'], $data['where']];
-        Metadata::serizalizeKernelMetadata($kernel);
-
-        $data['metadata'] .= chr(0x0A);
+        $erc = new Erc([$data['who'], $data['what'], $data['when'], $data['where']]);
         
+        $data['metadata'] = $erc->record();
         $data['ark'] = Ark::generate($data['naan']);
 
         unset($data['who']);

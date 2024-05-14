@@ -2,7 +2,8 @@
 
 namespace App\Filament\Resources\Ark\ArkResource\Pages;
 
-use App\AMS\Metadata;
+use App\AMS\Anvl;
+use App\AMS\Erc;
 use App\Filament\Resources\Ark\ArkResource;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
@@ -21,7 +22,7 @@ class EditArk extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        $erc = Metadata::parseKernelMetadata($data['metadata']);
+        $erc = Erc::parseKernelMetadata($data['metadata']);
         $data['who'] = $erc['who'];
         $data['what'] = $erc['what'];
         $data['when'] = $erc['when'];
@@ -34,15 +35,8 @@ class EditArk extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        $data['metadata'] = 'erc:'.chr(0x0A);
-        $data['metadata'] .= 'who:'.$data['who'].chr(0x0A);
-        $data['metadata'] .= 'what:'.$data['what'].chr(0x0A);
-        $data['metadata'] .= 'when:'.$data['when'].chr(0x0A);
-        $data['metadata'] .= 'where:'.$data['where'].chr(0x0A);
-        if($data['note']){
-            $data['metadata'] .= 'note:'.$data['note'].chr(0x0A);
-        }
-        $data['metadata'] .= chr(0x0A);
+        $erc = new Erc([$data['who'], $data['what'], $data['when'], $data['where']]);
+        $data['metadata'] = $erc->record();
         
         unset($data['who']);
         unset($data['what']);

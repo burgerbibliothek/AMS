@@ -58,7 +58,7 @@ class ArkResource extends Resource
                             ->label('HTTP-Status')
                             ->options(Status::all()->pluck('label', 'id')),
                     ]),
-                Section::make('Kernel Metadata')
+                Section::make('Electronic Resource Citation (ERC)')
                     ->schema([
                         TextInput::make('who')
                             ->label('Who')
