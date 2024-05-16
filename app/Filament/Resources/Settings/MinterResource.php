@@ -28,9 +28,13 @@ class MinterResource extends Resource
     {
         return $form
             ->schema([
+            TextInput::make('name')
+                ->label('Name')
+                ->helperText('Name for the Minter.')
+                ->required(),
             TextInput::make('xdigits')
                 ->label('Character Repetoire')
-                ->helperText('Characters may be letters, digits, or any of these seven characters: =   ~   *   +   @   _   $')
+                ->helperText('Characters may be letters, digits, or any of these seven characters: = ~ * + @ _ $. Duplicate characters are removed and the repetoire is saved sorted.')
                 ->rules([new ArkCharacterRepetoire()])
                 ->placeholder('0123456789bcdfghjkmnpqrstvwxz')
                 ->required(),

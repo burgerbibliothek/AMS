@@ -2,7 +2,7 @@
 namespace App\AMS;
 use App\AMS\ARK;
 
-class NCDA {
+class Ncda {
 
 	/**
      * Calculate a checkdigit.
@@ -45,6 +45,6 @@ class NCDA {
 		}
 
 		return true;
-
 	}
+	
 }

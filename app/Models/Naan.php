@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Minter;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Naan extends Model
 {
@@ -15,4 +15,11 @@ class Naan extends Model
             'shoulders' => 'array',
         ];
     }
+
+    public function minter(): HasOne
+    {
+        return $this->hasOne(Minter::class);
+    }
+
+
 }

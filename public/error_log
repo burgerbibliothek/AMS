@@ -121,3 +121,4 @@ Stack trace:
 [18-Apr-2024 12:33:21 UTC] PHP Fatal error:  Access level to App\AMS\Erc::$record must be public (as in class App\AMS\Anvl) in /home/heiraterei/sites/AMS/app/AMS/Erc.php on line 6
 [18-Apr-2024 12:44:28 UTC] PHP Fatal error:  Declaration of App\AMS\Erc::add($test) must be compatible with App\AMS\Anvl::add($name, $value) in /home/heiraterei/sites/AMS/app/AMS/Erc.php on line 13
 [18-Apr-2024 14:51:07 UTC] PHP Fatal error:  Default value for property of type int may not be null. Use the nullable type ?int to allow null default value in /home/heiraterei/sites/AMS/app/AMS/Anvl.php on line 8
+[16-May-2024 11:52:41 UTC] PHP Fatal error:  'break' not in the 'loop' or 'switch' context in /home/heiraterei/sites/AMS/app/Models/Minter.php on line 22

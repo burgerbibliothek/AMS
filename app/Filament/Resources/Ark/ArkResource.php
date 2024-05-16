@@ -41,7 +41,7 @@ class ArkResource extends Resource
                     ->schema([
                         Select::make('naan')
                             ->label('NAAN')
-                            ->options(Naan::all()->pluck('naan','naan'))
+                            ->options(Naan::all()->whereNotNull('minter_settings_id')->pluck('naan','naan'))
                             ->visible(fn (Get $get): bool => is_null($get('ark')))
                             ->rules([new ExistingNaan()])
                             ->required(),

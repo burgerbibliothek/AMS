@@ -16,20 +16,31 @@ class EditArk extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\DeleteAction::make()
+                ->modalHeading('Are you sure?')
+                ->modalDescription('This will delete the ARK permanently and cannot be undone.')
+                ->modalSubmitActionLabel('Yes, delete it'),
         ];
     }
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        $erc = Erc::parseKernelMetadata($data['metadata']);
-        $data['who'] = $erc['who'];
-        $data['what'] = $erc['what'];
-        $data['when'] = $erc['when'];
-        $data['where'] = $erc['where'];
-        if(key_exists('note', $erc)){
-            $data['note'] = $erc['note'];
+        if($data['metadata']){
+            $erc = Erc::parseKernelMetadata($data['metadata']);
+            $data['who'] = $erc['who'];
+            $data['what'] = $erc['what'];
+            $data['when'] = $erc['when'];
+            $data['where'] = $erc['where'];
+            if(key_exists('note', $erc)){
+                $data['note'] = $erc['note'];
+            }
+        }else{
+            $data['who'] = '';
+            $data['what'] = '';
+            $data['when'] = '';
+            $data['where'] = '';
         }
+
         return $data;
     }
 

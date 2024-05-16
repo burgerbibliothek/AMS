@@ -1,7 +1,6 @@
 <?php
 namespace App\AMS;
-use App\AMS\NCDA;
-use App\Models\Minter;
+use App\AMS\Ncda;
 use App\Models\Naan;
 
 class Ark {
@@ -16,7 +15,7 @@ class Ark {
 	public static function generate($naan, $shoulder = null){
 
 		// Retrieve settings
-		$record = Naan::leftJoin('minter_settings', 'minter_settings.id', '=', 'naans.minter_id')->firstWhere('naan', $naan);
+		$record = Naan::leftJoin('minter_settings', 'minter_settings.id', '=', 'naans.minter_settings_id')->firstWhere('naan', $naan);
 		
 		if(!$record){
 			return false;
@@ -50,7 +49,7 @@ class Ark {
 
 		// Calculate the check digit for the ID
 		if ($record->ncda) {
-			$id = $id . NCDA::calc($id, $xdigits);
+			$id = $id . Ncda::calc($id, $xdigits);
 		}
 		
 		return $id;

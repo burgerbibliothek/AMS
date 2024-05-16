@@ -1,7 +1,7 @@
 <?php
 namespace App\AMS;
 use Illuminate\Http\RedirectResponse;
-use App\AMS\NCDA;
+use App\AMS\Ncda;
 use App\AMS\Validator;
 use App\Models\Ark as ArkModel;
 use App\Models\Naan as NaanModel;
@@ -45,7 +45,7 @@ class Resolver {
             }
 
             // check if ARK is valid
-            if(!NCDA::verify($checkZone)){
+            if(!Ncda::verify($checkZone)){
                 abort(400, __('errors.invalidARK'));
             }
 

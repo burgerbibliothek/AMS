@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('ark', 255)->unique();
             $table->text('uri');
             $table->foreignId('status_id')->nullable()->references('id')->on('status');
-            $table->text('metadata');
+            $table->text('metadata')->nullable();
             $table->timestamps();
         });
     }

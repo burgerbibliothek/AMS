@@ -45,7 +45,7 @@ class NaanResource extends Resource
                     ]),
                 Section::make('Minter')
                     ->schema([
-                        Select::make('minter_id')
+                        Select::make('minter_settings_id')
                             ->label('Minter Settings')
                             ->options(Minter::all()->pluck('name', 'id'))
                             ->required(),
