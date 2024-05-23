@@ -64,8 +64,7 @@ class ImportsResource extends Resource
     {
         return [
             'index' => Pages\ListImports::route('/'),
-            //'create' => Pages\CreateImports::route('/create'),
-            //'edit' => Pages\EditImports::route('/{record}/edit'),
+            'view' => Pages\ViewImports::route('/{record}'),
         ];
     }
 }

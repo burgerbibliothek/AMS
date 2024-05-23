@@ -3,28 +3,23 @@
 namespace App\Filament\Resources\Ark;
 
 use App\AMS\ARK;
+use App\Filament\Exports\ArkExporter;
 use App\Filament\Imports\ARKImporter;
 use App\Filament\Resources\Ark\ArkResource\Pages;
 use App\Models\Ark as ArkModel;
 use App\Models\Status;
 use App\Models\Naan;
-use App\Models\Shoulder;
 use App\Rules\ExistingNaan;
-
-use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
-use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Actions\ExportBulkAction;
 
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ArkResource extends Resource
 {
@@ -98,6 +93,10 @@ class ArkResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
+            ])
+            ->bulkActions([
+                ExportBulkAction::make()
+                    ->exporter(ArkExporter::class)
             ]);
     }
 
