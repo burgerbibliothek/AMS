@@ -14,20 +14,16 @@ class EditMinter extends EditRecord
     {
         return [
             Actions\DeleteAction::make()
-                ->modalHeading('Are you sure?')
-                ->modalDescription('You won\'t be able to generate new ARKs for NAANs which have had this setting associated.')
-                ->modalSubmitActionLabel('Yes, delete it'),
+                ->label(__('ams.button_delete'))
+                ->modalHeading(__('ams.minter_resource_dialog_delete_heading'))
+                ->modalDescription(__('ams.minter_resource_dialog_delete_desc'))
+                ->modalSubmitActionLabel(__('ams.minter_resource_dialog_delete_submit')),
         ];
     }
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        $xdigits = str_split($data['xdigits']);
-        sort($xdigits);
-        $xdigits = array_unique($xdigits);
-        
-        $data['xdigits'] = implode('', $xdigits);
-                
+        $data['xdigits'] = MinterResource::arkCharacterRepetoire($data['xdigits']);        
         return $data;
     }
 }

@@ -5,10 +5,10 @@ use App\AMS\Anvl;
 
 class Erc extends Anvl{
 
-    /*
-    ** arr $elements example:
-    ** ['Gibbon, Edward','The Decline and Fall of the Roman Empire', '1781', 'http://www.ccel.org/g/gibbon/decline/']
-    */
+    /**
+     * arr $elements example:
+     * ['Gibbon, Edward','The Decline and Fall of the Roman Empire', '1781', 'http://www.ccel.org/g/gibbon/decline/']
+     */
     function __construct(array $elements, $linelength = 72)
     {
         $this->add('erc','');
@@ -16,12 +16,12 @@ class Erc extends Anvl{
         parent::__construct($linelength);
     }
 
-    /*
-    ** Existing stories are overwritten.
-    */
+    /**
+     * Existing stories are overwritten.
+     */
     public function story(array $values, $story)
     {
-
+        
         $elements = ['who','what','when','where'];
 
         if($story){

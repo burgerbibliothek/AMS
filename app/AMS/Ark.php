@@ -8,13 +8,11 @@ class Ark {
 	/**
      * Generates a random ARK with given NAAN.
 	 * @naan = Name Assigning Authority Name
-	 * @length = Stringlenght of generated ARK
-	 * @xdigit = Digits whicht should be used for generating ARK
-	 * @ncda = set fals to not include a checkdigit
      */
-	public static function generate($naan, $shoulder = null){
+	public static function generate($naan)
+	{
 
-		// Retrieve settings
+		// Get minter settings for NAAN
 		$record = Naan::leftJoin('minter_settings', 'minter_settings.id', '=', 'naans.minter_settings_id')->firstWhere('naan', $naan);
 		
 		if(!$record){
@@ -28,32 +26,34 @@ class Ark {
 		$xdigitsArr = str_split($xdigits);
 		$xdigitsLength = count($xdigitsArr) - 1;
 
-		// Check if NAAN has valid shoulders.
-		if($shoulder){
-			
-		}
-
+		// TODO: Implement shoulders
+		/*
+		if($shoulder){}
 		$id .= $shoulder;
+		*/
 
-		// Length can't be longer then xdigits length in order for the NCDA to work.
+		/**
+		 * Length can't be longer then xdigits length in order for the NCDA to work.
+		 * https://metacpan.org/dist/Noid/view/noid#NOID-CHECK-DIGIT-ALGORITHM
+		 */
 		if($lengthId > $xdigitsLength){
 			return false;
 		}
 
-		// Generate a random ID based on the submited xdigits.
+		// Generate random ID based on minter settings
 		while ($lengthId > 0) {
 			$random = random_int(0, $xdigitsLength);
 			$id .= $xdigits[$random];
 			$lengthId--;
 		}
 
-		// Calculate the check digit for the ID
+		// Add check digit
 		if ($record->ncda) {
 			$id = $id . Ncda::calc($id, $xdigits);
 		}
 		
 		return $id;
 
-	}
+	}	
 
 }

@@ -13,7 +13,11 @@ class EditNaan extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            Actions\DeleteAction::make()
+                ->label(__('ams.button_delete'))
+                ->modalHeading(__('ams.naan_resource_dialog_delete_heading'))
+                ->modalDescription(__('ams.naan_resource_dialog_delete_desc'))
+                ->modalSubmitActionLabel(__('ams.naan_resource_dialog_delete_submit')),
         ];
     }
 }

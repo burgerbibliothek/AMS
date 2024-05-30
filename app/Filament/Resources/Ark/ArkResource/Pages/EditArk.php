@@ -17,14 +17,16 @@ class EditArk extends EditRecord
     {
         return [
             Actions\DeleteAction::make()
-                ->modalHeading('Are you sure?')
-                ->modalDescription('This will delete the ARK permanently and cannot be undone.')
-                ->modalSubmitActionLabel('Yes, delete it'),
+                ->label(__('ams.button_delete'))
+                ->modalHeading(__('ams.ark_resource_dialog_delete_heading'))
+                ->modalDescription(__('ams.ark_resource_dialog_delete_desc'))
+                ->modalSubmitActionLabel(__('ams.ark_resource_dialog_delete_submit')),
         ];
     }
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
+        
         if($data['metadata']){
             $erc = Erc::parseKernelMetadata($data['metadata']);
             $data['who'] = $erc['who'];

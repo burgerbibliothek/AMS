@@ -17,10 +17,10 @@ class ListArks extends ListRecords
     {
         return [
             ImportAction::make()
-                ->label('CSV-Import')
+                ->label(__('ams.ark_resource_actions_import'))
                 ->importer(ArkImporter::class),
             Actions\CreateAction::make()
-                ->label('Create ARK'),
+                ->label(__('ams.ark_resource_actions_create')),
         ];
     }
 }

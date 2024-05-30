@@ -11,11 +11,15 @@ class ViewImports extends ViewRecord
 {
     protected static string $resource = ImportsResource::class;
 
+    
+
     public function infolist(Infolist $infolist): Infolist
     {
+        dump($this);
         return $infolist
             ->schema([
                 Infolists\Components\TextEntry::make('file_name'),
+                Infolists\Components\TextEntry::make('file_path'),
                 Infolists\Components\TextEntry::make('total_rows'),
                 Infolists\Components\TextEntry::make('successful_rows')
                     ->columnSpanFull(),

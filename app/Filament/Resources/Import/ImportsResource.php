@@ -17,7 +17,7 @@ class ImportsResource extends Resource
 {
     protected static ?string $model = Imports::class;
     protected static ?string $navigationIcon = 'heroicon-o-arrow-right-end-on-rectangle';
-    protected static ?string $slug = 'Imports';
+    protected static ?string $slug = 'imports';
     protected static ?string $navigationLabel = 'Imports';
 
     public static function form(Form $form): Form

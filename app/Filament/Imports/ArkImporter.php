@@ -26,6 +26,7 @@ class ArkImporter extends Importer
                 ->options(Naan::all()->whereNotNull('minter_settings_id')->pluck('naan','naan'))
                 ->required(),
             Checkbox::make('skipExistingUri')
+                ->default('true')
                 ->label('Bestehende URI überspringen'),
         ];
     }
@@ -40,21 +41,13 @@ class ArkImporter extends Importer
                 ->requiredMapping()
                 ->rules(['required','url']),
             ImportColumn::make('who')
-                ->label('Who')
-                ->requiredMapping()
-                ->rules(['required']),
+                ->label('Who'),
             ImportColumn::make('what')
-                ->label('What')
-                ->requiredMapping()
-                ->rules(['required']),
+                ->label('What'),
             ImportColumn::make('when')
-                ->label('When')
-                ->requiredMapping()
-                ->rules(['required']),
-            ImportColumn::make('what')
+                ->label('When'),
+            ImportColumn::make('where')
                 ->label('Where')
-                ->requiredMapping()
-                ->rules(['required']),
         ];
     }
 
@@ -69,16 +62,33 @@ class ArkImporter extends Importer
         unset($this->data['what']);
         unset($this->data['where']);
 
-        // If ARK column is empty, generate new ARK.
-        if(!$this->data['ark']){
+        if($this->data['ark']){
+            
+            $ark = explode('/', $this->data['ark']);
+
+            // Check if ARK has existing NAAN
+            if(!Naan::firstWhere('naan','=',$ark[0])){
+                throw new RowImportFailedException("NAAN not found.");    
+            }
+
+        } else {
+
+            // Allocate new ARK
             $ark = new Ark;
             $this->data['ark'] = $ark->generate($this->options['naan']);
-        }
 
+            // Check if allocated ARK not already existing
+            if(ArkModel::firstWhere('ark','=',$this->data['ark'])){
+                throw new RowImportFailedException("Failed allocating new ARK.");
+            }
+
+        }
     }
 
     public function resolveRecord(): ?ArkModel
     {
+
+        
 
         if ($this->options['skipExistingUri'] ?? false) {
             
@@ -92,8 +102,6 @@ class ArkImporter extends Importer
             }
         }
         
-        
-
         return ArkModel::firstOrNew([
             'ark' => $this->data['ark'],
         ]);

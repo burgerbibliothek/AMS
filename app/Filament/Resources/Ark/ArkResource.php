@@ -2,14 +2,13 @@
 
 namespace App\Filament\Resources\Ark;
 
-use App\AMS\ARK;
 use App\Filament\Exports\ArkExporter;
-use App\Filament\Imports\ARKImporter;
 use App\Filament\Resources\Ark\ArkResource\Pages;
 use App\Models\Ark as ArkModel;
-use App\Models\Status;
-use App\Models\Naan;
-use App\Rules\ExistingNaan;
+use App\Models\Naan as NaanModel;
+use App\Models\Status as StatusModel;
+use App\Rules\NaanExists;
+use Closure;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Components\Section;
@@ -20,60 +19,56 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Actions\ExportBulkAction;
 
-
 class ArkResource extends Resource
 {
     protected static ?string $model = ArkModel::class;
     protected static ?string $navigationIcon = 'heroicon-s-key';
     protected static ?string $navigationLabel = 'ARKs';
     protected static ?string $label = 'ARKs';
+    protected static ?string $slug = 'arks';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Section::make('general')
+                Section::make(__('ams.ark_resource_section_basic'))
                     ->schema([
                         Select::make('naan')
-                            ->label('NAAN')
-                            ->options(Naan::all()->whereNotNull('minter_settings_id')->pluck('naan','naan'))
+                            ->label(__('ams.ark_resource_naan'))
+                            ->options(NaanModel::all()->whereNotNull('minter_settings_id')->pluck('naan','naan'))
                             ->visible(fn (Get $get): bool => is_null($get('ark')))
-                            ->rules([new ExistingNaan()])
+                            ->rules(['exists:naans,naan'])
                             ->required(),
                         TextInput::make('ark')
+                            ->label(__('ams.ark_resource_ark'))
                             ->unique(ignoreRecord: true)
                             ->disabled()
-                            ->visible(fn (Get $get): bool => !is_null($get('ark')))
-                            ->label('ARK'),
+                            ->visible(fn (Get $get): bool => !is_null($get('ark'))),
                         TextInput::make('uri')
-                            ->label('URI')
+                            ->label(__('ams.ark_resource_uri'))
                             ->activeUrl()
                             ->required(),
                         Select::make('status_id')
-                            ->label('HTTP-Status')
-                            ->options(Status::all()->pluck('label', 'id')),
+                            ->label(__('ams.ark_resource_status'))
+                            ->options(StatusModel::all()->pluck('label', 'id')),
                     ]),
-                Section::make('Electronic Resource Citation (ERC)')
+                Section::make(__('ams.ark_resource_section_metadata'))
                     ->schema([
                         TextInput::make('who')
-                            ->label('Who')
-                            ->helperText('A responsible person or party.')
-                            ->required(),
+                            ->label(__('ams.ark_resource_erc_who'))
+                            ->helperText(__('ams.ark_resource_erc_who_help')),
                         TextInput::make('what')
-                            ->label('What')
-                            ->helperText('A name or other human-oriented identifier.')
-                            ->required(),
+                            ->label(__('ams.ark_resource_erc_what'))
+                            ->helperText(__('ams.ark_resource_erc_what_help')),
                         TextInput::make('when')
-                            ->label('When')
-                            ->helperText('A date important in the object\'s lifecycle.')
-                            ->required(),
+                            ->label(__('ams.ark_resource_erc_when'))
+                            ->helperText(__('ams.ark_resource_erc_when_help')),
                         TextInput::make('where')
-                            ->label('Where')
-                            ->helperText('A location or system-oriented identifier.')
-                            ->required(),
+                            ->label(__('ams.ark_resource_erc_where'))
+                            ->helperText(__('ams.ark_resource_erc_where_help')),
                         TextInput::make('note')
-                            ->label('Note')
-                            ->helperText('A location or system-oriented identifier.'),
+                            ->label(__('ams.ark_resource_erc_note'))
+                            ->helperText(__('ams.ark_resource_erc_note_help')),
                     ])
             ])->columns(1);
     }
@@ -83,13 +78,12 @@ class ArkResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('ark')
-                ->searchable()
-                ->sortable()
-                ->label('ARK'),
+                    ->label(__('ams.ark_resource_ark_list'))
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('uri')
-                ->searchable()
-                ->label('URI')
-                //
+                    ->label(__('ams.ark_resource_uri_list'))
+                    ->searchable()
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -99,14 +93,6 @@ class ArkResource extends Resource
                     ->exporter(ArkExporter::class)
             ]);
     }
-
-    public static function getRelations(): array
-    {
-        return [
-            //
-        ];
-    }
-
 
     public static function getPages(): array
     {

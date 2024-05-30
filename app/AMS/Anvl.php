@@ -3,6 +3,11 @@ namespace App\AMS;
 
 class Anvl{
 
+    /**
+     * Create and interact with ANVL records
+     * https://datatracker.ietf.org/doc/draft-kunze-anvl/
+     */
+
     public $record;
     protected array $recordArray;
     protected int $linelength;
