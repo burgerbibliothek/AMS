@@ -3,8 +3,6 @@
 namespace Tests\Feature;
 
 use App\AMS\Ncda;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class NcdaTest extends TestCase
@@ -28,7 +26,6 @@ class NcdaTest extends TestCase
 
         $checkIllegealRepetoire = Ncda::calc($id, $illegalRepetoire);
         $this->assertFalse($checkIllegealRepetoire);
-
         
     }
 }

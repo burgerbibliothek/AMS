@@ -1,9 +1,11 @@
 <?php
+
 namespace App\AMS;
 
 use App\AMS\Anvl;
 
-class Erc extends Anvl{
+class Erc extends Anvl
+{
 
     /**
      * arr $elements example:
@@ -11,7 +13,7 @@ class Erc extends Anvl{
      */
     function __construct(array $elements, $linelength = 72)
     {
-        $this->add('erc','');
+        $this->add('erc', '');
         $this->story($elements, null);
         parent::__construct($linelength);
     }
@@ -21,43 +23,42 @@ class Erc extends Anvl{
      */
     public function story(array $values, $story)
     {
-        
-        $elements = ['who','what','when','where'];
 
-        if($story){
-            $elements = array_map(fn($h) => $story.'-'.$h, $elements);
+        $elements = ['who', 'what', 'when', 'where'];
+
+        if ($story) {
+            $elements = array_map(fn ($h) => $story . '-' . $h, $elements);
         }
 
-        foreach($elements as $index => $h){
+        foreach ($elements as $index => $h) {
             $this->add($h, $values[$index]);
         }
     }
 
-    public static function parseKernelMetadata(string $metadata) : ?array
+    public static function parseKernelMetadata(string $metadata): ?array
     {
 
         $rows = explode(chr(0x0A), $metadata);
-        
-        if(!empty($rows[count($rows)-1]) && !empty($rows[count($rows)-2])){
+
+        if (!empty($rows[count($rows) - 1]) && !empty($rows[count($rows) - 2])) {
             return null;
         }
 
         $rows = array_slice($rows, 0, -2);
 
-        if(trim($rows[0]) !== 'erc:'){
+        if (trim($rows[0]) !== 'erc:') {
             return null;
         }
 
-        foreach($rows as $row){
-            $pair = explode(':',trim($row));
-            $kernel[$pair[0]] = trim($pair[1]); 
+        foreach ($rows as $row) {
+            $pair = explode(':', trim($row));
+            $kernel[$pair[0]] = trim($pair[1]);
         }
 
-        if(!array_key_exists('who', $kernel) || !array_key_exists('what', $kernel) || !array_key_exists('when', $kernel) || !array_key_exists('where', $kernel)){
+        if (!array_key_exists('who', $kernel) || !array_key_exists('what', $kernel) || !array_key_exists('when', $kernel) || !array_key_exists('where', $kernel)) {
             return null;
         }
-        
+
         return $kernel;
     }
-
 }

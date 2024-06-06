@@ -1,76 +1,83 @@
 <?php
+
 namespace App\AMS;
-use Illuminate\Http\RedirectResponse;
+
 use App\AMS\Ncda;
 use App\AMS\Validator;
 use App\Models\Ark as ArkModel;
 use App\Models\Naan as NaanModel;
+use App\Models\Minter as MinterModel;
 use App\Models\Status as StatusModel;
 
-
-class Resolver {
+class Resolver
+{
 
     public static function resolve($request, $naan, $baseNameAndSuffixes)
     {
 
-        $inflection = parse_url($request->fullUrl(), PHP_URL_QUERY);
-
-        /**
-         * Normalize NAAN 
-         * NAAN consists only of betanumeric characters
-         */ 
+        // Normalize NAAN: NAAN consists only of betanumeric characters
         $naan = strtolower($naan);
-        
-        /**
-         * Normalize basename and suffixes
-         * Remove hyphens and whitespace
-         */
+
+        // Normalize basename and suffixes: remove hyphens and whitespace
         $baseNameAndSuffixes = explode('/', trim(preg_replace('/[\x{0020}|\x{00a0}|\x{002d}|\x{00ad}|\x{2000}-\x{2015}]/u', '', $baseNameAndSuffixes)));
         $baseName = $baseNameAndSuffixes[0];
         $suffixes = implode('/', array_slice($baseNameAndSuffixes, 1));
-        $checkZone = $naan.'/'.$baseName;
-        
-        // search ARK in database
-        $ark = ArkModel::where('ark', $checkZone)->first();        
+        $checkZone = $naan . '/' . $baseName;
+        $query = $request->getQueryString();
+        $queryParams = $request->keys();
 
-        // ARK has been found
-        if($ark){
+        // Try to retrive ARK from database
+        $ark = ArkModel::where('ark', $checkZone)->first();
 
-            // Get HTTP-Status of ARK
-            if($ark->status_id){
+        if ($ark) {
+
+            // If ARK could be retrieved process request
+            $uri = $ark->uri . '/' . $suffixes . '?' . $query;
+
+            // Return metadata if ?info inflection is set
+            if ($suffixes === '' && isset($queryParams[0]) && $queryParams[0] == 'info') {
+                return response($ark->metadata)->header('Content-Type', 'text/plain');
+            }
+
+            // Check if ark has an http status set
+            if ($ark->status_id) {
+
                 $status = StatusModel::find($ark->status_id);
-                return abort($status->code);
+                $code = $status->code;
+
+                if ($code > 299 && $code < 400) {
+                    return redirect()->away($uri, $code);
+                }
+
+                return abort($code);
             }
-            
-            // Return URI for redirection passing trough the suffix
-            return $ark->uri.'/'.$suffixes;
-                    
-        }else{
-            
-            // ARK has not been found
+
+            // Standard redirect
+            return redirect()->away($uri, 302);
+        } else {
+
             // Check if NAAN is valid
-            if(!Validator::validNaan($naan)){
-                abort(400, __('errors.invalidNAAN'));
+            if (!Validator::validNaan($naan)) {
+                return abort(400, __('errors.invalidNAAN'));
             }
 
-            // check if ARK is valid
-            if(!Ncda::verify($checkZone)){
-                abort(400, __('errors.invalidARK'));
+            // Try to retrieve NAAN from database
+            $getNaan = NaanModel::where('naan', $naan)->first();
+
+            if ($getNaan) {
+
+                //Check ARK for transcription errors
+                $minter = MinterModel::firstWhere('id', $getNaan->minter_settings_id);
+                if (!Ncda::verify($checkZone, $minter->xdigits)) {
+                    abort(400, __('errors.invalidARK'));
+                }
+
+                // If nothing worked out, return 404
+                return abort(404, __('errors.notFoundARK'));
             }
 
-            // Check if NAAN in database and if not redirect to global resolver.
-            $naanInDatabase = NaanModel::where('naan', $naan)->first();
-            if(!$naanInDatabase){
-                return 'https://n2t.net/ark:'.$naan.'/'.$baseNameAndSuffixes;
-            }
-
-            return abort(404, __('errors.notFoundARK'));
-    
+            // Redirect to global resolver.
+            return redirect()->away('https://n2t.net/ark:' . $checkZone . '/' . $suffixes . '/?' . $query, 301);
         }
-
     }
-    
-
-    
-
 }
