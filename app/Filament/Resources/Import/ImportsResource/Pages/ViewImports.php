@@ -3,19 +3,24 @@
 namespace App\Filament\Resources\Import\ImportsResource\Pages;
 
 use App\Filament\Resources\Import\ImportsResource;
+use App\Models\SuccessfullImportRow;
 use Filament\Resources\Pages\ViewRecord;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
+use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Table;
 
 class ViewImports extends ViewRecord
 {
     protected static string $resource = ImportsResource::class;
-
     
+   
 
     public function infolist(Infolist $infolist): Infolist
     {
-        dump($this);
+        $result = SuccessfullImportRow::find($this->record['id'])->import->get();
+        dump($result);
         return $infolist
             ->schema([
                 Infolists\Components\TextEntry::make('file_name'),
@@ -26,4 +31,14 @@ class ViewImports extends ViewRecord
             ]);
     }
 
+    public function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                TextColumn::make('title'),
+                TextColumn::make('slug'),
+                IconColumn::make('is_featured')
+                    ->boolean(),
+            ]);
+    }
 }

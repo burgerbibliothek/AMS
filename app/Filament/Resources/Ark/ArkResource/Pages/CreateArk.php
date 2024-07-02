@@ -1,11 +1,12 @@
 <?php
+
 namespace App\Filament\Resources\Ark\ArkResource\Pages;
 
-use App\AMS\Ark;
-use App\AMS\Erc;
+use Burgerbibliothek\ArkManagementTools\Ark;
+use Burgerbibliothek\ArkManagementTools\Erc;
+use App\Models\Naan;
 use App\Filament\Resources\Ark\ArkResource;
 use Filament\Resources\Pages\CreateRecord;
-use Illuminate\Database\Eloquent\Model;
 
 class CreateArk extends CreateRecord
 {
@@ -13,11 +14,18 @@ class CreateArk extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-        $erc = new Erc([$data['who'], $data['what'], $data['when'], $data['where']]);
-        
-        $data['metadata'] = $erc->record();
-        $data['ark'] = Ark::generate($data['naan']);
 
+        /** Get minter settings of naan */
+        $minterSettings = Naan::firstWhere('naan', $data['naan'])->minter;
+
+        /** Retrieve new ARK */
+        $data['ark'] = Ark::generate($data['naan'], $minterSettings->xdigits, $minterSettings->length, null, $minterSettings->ncda);
+
+        /** Create ERC record */
+        $erc = new Erc;
+        $erc->addStory([$data['who'], $data['what'], $data['when'], $data['where']]);
+        $data['metadata'] = $erc->record();
+        
         unset($data['who']);
         unset($data['what']);
         unset($data['when']);
@@ -27,5 +35,4 @@ class CreateArk extends CreateRecord
 
         return $data;
     }
-
 }

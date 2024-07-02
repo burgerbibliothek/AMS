@@ -7,8 +7,6 @@ use App\Filament\Resources\Ark\ArkResource\Pages;
 use App\Models\Ark as ArkModel;
 use App\Models\Naan as NaanModel;
 use App\Models\Status as StatusModel;
-use App\Rules\NaanExists;
-use Closure;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
 use Filament\Forms\Components\Section;
@@ -66,9 +64,6 @@ class ArkResource extends Resource
                         TextInput::make('where')
                             ->label(__('ams.ark_resource_erc_where'))
                             ->helperText(__('ams.ark_resource_erc_where_help')),
-                        TextInput::make('note')
-                            ->label(__('ams.ark_resource_erc_note'))
-                            ->helperText(__('ams.ark_resource_erc_note_help')),
                     ])
             ])->columns(1);
     }
