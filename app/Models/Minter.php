@@ -7,9 +7,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Minter extends Model
 {
-    protected $table = 'minter_settings';
     use HasFactory;
 
+    protected $table = 'minter_settings';
+    protected $guarded = ['id','created_at'];
+    
     public function naans(): HasMany
     {
         return $this->hasMany(Naan::class, 'minter_settings_id');

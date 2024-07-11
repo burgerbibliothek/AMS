@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Ark extends Model
 {
     protected $table = 'arks';
-
+    protected $guarded = ['id','created_at'];
 
     public function status(): HasOne
     {

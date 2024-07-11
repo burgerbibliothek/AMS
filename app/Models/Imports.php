@@ -4,14 +4,28 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Imports extends Model
 {
-    protected $table = 'imports';    
+    protected $table = 'imports';
+
     use HasFactory;
 
     public function failedImportRows(): HasMany
     {
         return $this->hasMany(FailedImportRow::class);
+    }
+
+    public function mintedArks(): HasManyThrough
+    {
+        return $this->hasManyThrough(
+            Ark::class, 
+            SuccessfullImportRow::class,
+            'import_id',
+            'id',
+            'id',
+            'ark_id'
+        );
     }
 }

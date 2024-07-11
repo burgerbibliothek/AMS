@@ -1,6 +1,6 @@
 <?php
 
-namespace App\AMS;
+namespace App\Ams;
 
 use Burgerbibliothek\ArkManagementTools\Ark;
 use Burgerbibliothek\ArkManagementTools\Ncda;

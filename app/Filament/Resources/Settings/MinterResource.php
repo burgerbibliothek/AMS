@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Settings;
 
-use App\AMS\Validator;
+use Burgerbibliothek\ArkManagementTools\Validator;
 use App\Filament\Resources\Settings\MinterResource\Pages;
 use App\Models\Minter as MinterModel;
 use Closure;
@@ -54,7 +54,7 @@ class MinterResource extends Resource
                             ->rules([
                                 fn (): Closure => function (string $attribute, $value, Closure $fail) {
                                     // Check if conttains only valid ARK characters.
-                                    if(!Validator::validArkCharacterRepetoire($value)){
+                                    if(!Validator::followsArkCharacterRepetoire($value)){
                                         $fail(__('ams.minter_resource_xdigits_error'));
                                     }
                                 },

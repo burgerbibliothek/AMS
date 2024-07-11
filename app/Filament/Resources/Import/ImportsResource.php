@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\Import;
 
 use App\Filament\Resources\Import\ImportsResource\Pages;
+use App\Filament\Resources\Import\ImportsResource\RelationManagers;
 use App\Models\Imports;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -19,9 +20,7 @@ class ImportsResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                //
-            ]);
+            ->schema([]);
     }
 
     public static function table(Table $table): Table
@@ -52,7 +51,7 @@ class ImportsResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ArksRelationManager::class,
         ];
     }
 
@@ -60,7 +59,7 @@ class ImportsResource extends Resource
     {
         return [
             'index' => Pages\ListImports::route('/'),
-            'view' => Pages\ViewImports::route('/{record}'),
+            'edit' => Pages\ListImportsDetails::route('/import/{record}'),
         ];
     }
 }

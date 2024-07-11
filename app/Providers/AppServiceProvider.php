@@ -26,6 +26,6 @@ class AppServiceProvider extends ServiceProvider
          * Details: https://laravel.com/docs/10.x/migrations#index-lengths-mysql-mariadb
          */
         Schema::defaultStringLength(191);
-        Model::unguard();
+        //Model::unguard();
     }
 }

@@ -1,12 +1,10 @@
 <?php
 
-use App\AMS\Resolver;
+use App\Ams\Resolver;
 use App\Http\Middleware\Language;
+use App\Models\Imports;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Burgerbibliothek\ArkManagementTools\Anvl;
-use Burgerbibliothek\ArkManagementTools\Erc;
-use Burgerbibliothek\ArkManagementTools\Ark;
 
 Route::get('/', function () {
     return response('ARK Resolver Service')->header('Content-Type', 'text/plain');
@@ -25,4 +23,11 @@ Route::get('/ark:/{naan}/{blade}', function (string $naan, string $baseNameAndSu
 /** Resolve NAAN */
 Route::get('/ark:/{naan}', function (string $naan) {
     return 'NAAN';
+});
+
+/** Resolve TEST */
+Route::get('/test', function () {
+
+    $test = Imports::find(1)->mintedArks;
+    dump($test);
 });

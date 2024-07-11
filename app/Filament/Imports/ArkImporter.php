@@ -3,7 +3,6 @@
 namespace App\Filament\Imports;
 
 use Burgerbibliothek\ArkManagementTools\Ark;
-use App\AMS\Erc;
 use App\Models\Ark as ArkModel;
 use App\Models\Naan;
 use App\Models\SuccessfullImportRow;
@@ -68,21 +67,26 @@ class ArkImporter extends Importer
             if (!Naan::firstWhere('naan', '=', $ark[0])) {
                 throw new RowImportFailedException("NAAN not found in database.");
             }
+
         } else {
 
             /** Get minter settings of NAAN */
             $naan = $this->options['naan'];
             $minterSettings = Naan::firstWhere('naan', $naan)->minter;
 
+            if (!$minterSettings) {
+                throw new RowImportFailedException("There is no minter associated to this NAAN.");
+            }
+
             /** Allocate new ARK */
             $this->data['ark'] = Ark::generate($naan, $minterSettings->xdigits, $minterSettings->length, null, $minterSettings->ncda);
-
+            
             /** Check if allocated ARK not already existing */
             if (ArkModel::firstWhere('ark', '=', $this->data['ark'])) {
                 throw new RowImportFailedException("Failed allocating new ARK.");
             }
-        }
 
+        }
         
         /** Create ERC metadata record */
         /*
