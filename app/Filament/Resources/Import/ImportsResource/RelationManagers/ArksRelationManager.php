@@ -2,9 +2,12 @@
 
 namespace App\Filament\Resources\Import\ImportsResource\RelationManagers;
 
+use App\Filament\Exports\ImportExporter;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Tables\Actions\ExportAction;
+use Filament\Tables\Actions\ExportBulkAction;
 
 class ArksRelationManager extends RelationManager
 {
@@ -15,19 +18,28 @@ class ArksRelationManager extends RelationManager
         return $table
             ->recordTitleAttribute('ark')
             ->columns([
-                Tables\Columns\TextColumn::make('ark'),
-                Tables\Columns\TextColumn::make('uri'),
+                Tables\Columns\TextColumn::make('ark')
+                    ->label('ARK')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('uri')
+                    ->label('URI')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('created_at')
+                    ->sortable()
             ])
             ->filters([
                 //
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                ExportAction::make()
+                    ->exporter(ImportExporter::class)
+                    ->label('Export List')
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
+                ExportBulkAction::make()
+                    ->exporter(ImportExporter::class)
+                    ->label('Export ARKs')
             ]);
     }
 }

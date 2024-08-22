@@ -64,7 +64,11 @@ class ArkResource extends Resource
                         TextInput::make('where')
                             ->label(__('ams.ark_resource_erc_where'))
                             ->helperText(__('ams.ark_resource_erc_where_help')),
-                    ])
+                ]),
+                Section::make('Revisions')->schema([
+                    // Todo
+
+                ])
             ])->columns(1);
     }
 

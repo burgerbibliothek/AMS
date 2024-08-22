@@ -24,5 +24,6 @@ class ListImportsDetails extends ViewRecord
                     ->columnSpanFull(),
             ]);
     }
+    
 
 }
