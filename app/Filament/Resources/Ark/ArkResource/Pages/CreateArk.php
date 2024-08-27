@@ -25,14 +25,8 @@ class CreateArk extends CreateRecord
         $erc = new Erc;
         $erc->addStory([$data['who'], $data['what'], $data['when'], $data['where']]);
         $data['metadata'] = $erc->record();
+        unset($data['who'], $data['what'], $data['when'], $data['where'], $data['note'], $data['naan']);
         
-        unset($data['who']);
-        unset($data['what']);
-        unset($data['when']);
-        unset($data['where']);
-        unset($data['note']);
-        unset($data['naan']);
-
         return $data;
     }
 }

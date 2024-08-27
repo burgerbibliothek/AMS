@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('arks', function (Blueprint $table) {
+        Schema::create('ark_revisions', function (Blueprint $table) {
             $table->id();
-            $table->string('ark', 255)->unique();
-            $table->text('uri');
-            $table->foreignId('status_id')->nullable()->references('id')->on('status');
-            $table->text('metadata')->nullable();
+            $table->foreignId('ark_id')->references('id')->on('arks');
+            $table->json('revision');
             $table->timestamps();
-            $table->softDeletes('deleted_at');
         });
     }
 
@@ -27,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('arks');
+        Schema::dropIfExists('ark_revisions');
     }
 };

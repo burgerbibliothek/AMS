@@ -4,6 +4,8 @@ namespace App\Filament\Resources\Ark\ArkResource\Pages;
 
 use Burgerbibliothek\ArkManagementTools\Erc;
 use App\Filament\Resources\Ark\ArkResource;
+use App\Models\Ark as ArkModel;
+use App\Models\ArkRevision;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
@@ -25,35 +27,25 @@ class EditArk extends EditRecord
     protected function mutateFormDataBeforeFill(array $data): array
     {        
         if($data['metadata']){
-            $erc = Erc::parseKernelMetadata($data['metadata']);
-            $data['who'] = $erc['who'];
-            $data['what'] = $erc['what'];
-            $data['when'] = $erc['when'];
-            $data['where'] = $erc['where'];
-            if(key_exists('note', $erc)){
-                $data['note'] = $erc['note'];
-            }
-        }else{
-            $data['who'] = '';
-            $data['what'] = '';
-            $data['when'] = '';
-            $data['where'] = '';
+            $data = array_merge($data, ArkResource::desirializeMetadata($data['metadata']));
         }
-
         return $data;
     }
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
+
+        $currentData = ArkModel::find($this->data['id'])->toJson();
+        $revision = new ArkRevision;
+        $revision->ark_id = $this->data['id'];
+        $revision->revision = $currentData;
+        $revision->save();
+
         $erc = new Erc();
         $erc->addStory([$data['who'], $data['what'], $data['when'], $data['where']]);
         $data['metadata'] = $erc->record();
-        
-        unset($data['who']);
-        unset($data['what']);
-        unset($data['when']);
-        unset($data['where']);
-        unset($data['note']);
+
+        unset($data['who'], $data['what'], $data['when'], $data['where']);
                 
         return $data;
     }

@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Ark;
 
+use Burgerbibliothek\ArkManagementTools\Erc;
 use App\Filament\Exports\ArkExporter;
 use App\Filament\Resources\Ark\ArkResource\Pages;
 use App\Models\Ark as ArkModel;
@@ -85,7 +86,12 @@ class ArkResource extends Resource
                     ->searchable()
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\EditAction::make()
+                    ->using(function (Model $record, array $data): Model {
+                        $record->update($data);
+             
+                        return $record;
+                    }),
             ])
             ->bulkActions([
                 ExportBulkAction::make()
@@ -100,6 +106,16 @@ class ArkResource extends Resource
             'edit' => Pages\EditArk::route('/edit/{record}'),
             'create' => Pages\CreateArk::route('/create'),
         ];
+    }
+
+    public static function desirializeMetadata($metadata)
+    {
+        $erc = Erc::parseKernelMetadata($metadata);
+        foreach($erc as $k => $v){
+            $data[$k] = $v;
+        }
+
+        return $data;
     }
 
 }
