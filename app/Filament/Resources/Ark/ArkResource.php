@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Ark;
 use Burgerbibliothek\ArkManagementTools\Erc;
 use App\Filament\Exports\ArkExporter;
 use App\Filament\Resources\Ark\ArkResource\Pages;
+use App\Filament\Resources\Import\ImportsResource\RelationManagers;
 use App\Models\Ark as ArkModel;
 use App\Models\Naan as NaanModel;
 use App\Models\Status as StatusModel;
@@ -28,6 +29,7 @@ class ArkResource extends Resource
 
     public static function form(Form $form): Form
     {
+
         return $form
             ->schema([
                 Section::make(__('ams.ark_resource_section_basic'))
@@ -37,7 +39,24 @@ class ArkResource extends Resource
                             ->options(NaanModel::all()->whereNotNull('minter_settings_id')->pluck('naan','naan'))
                             ->visible(fn (Get $get): bool => is_null($get('ark')))
                             ->rules(['exists:naans,naan'])
-                            ->required(),
+                            ->required()
+                            ->live(),
+                        Select::make('shoulder')
+                            ->label(__('ams.ark_resource_shoulders'))
+                            ->options(function (Get $get): array {
+                                // Get shoulders of NAAN
+                                $options = [];
+                                if($get('naan')){
+                                    $shoulders = NaanModel::where('naan', $get('naan'))->pluck('shoulders')->flatten(1);
+                                    if($shoulders && !is_null($shoulders[0])){
+                                        foreach($shoulders as $shoulder){
+                                            $options[$shoulder['shoulder']] = $shoulder['shoulder'].' ('.$shoulder['description'].')';
+                                        }
+                                    }
+                                }
+                                return $options;
+                            })
+                            ->visible(fn (Get $get): bool => is_null($get('ark'))),                      
                         TextInput::make('ark')
                             ->label(__('ams.ark_resource_ark'))
                             ->unique(ignoreRecord: true)
@@ -65,10 +84,6 @@ class ArkResource extends Resource
                         TextInput::make('where')
                             ->label(__('ams.ark_resource_erc_where'))
                             ->helperText(__('ams.ark_resource_erc_where_help')),
-                ]),
-                Section::make('Revisions')->schema([
-                    // Todo
-
                 ])
             ])->columns(1);
     }
@@ -105,6 +120,13 @@ class ArkResource extends Resource
             'index' => Pages\ListArks::route('/'),
             'edit' => Pages\EditArk::route('/edit/{record}'),
             'create' => Pages\CreateArk::route('/create'),
+        ];
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            RelationManagers\ArkRevisionsRelationManager::class,
         ];
     }
 

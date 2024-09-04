@@ -10,9 +10,9 @@ use Filament\Actions\Imports\ImportColumn;
 use Filament\Actions\Imports\Importer;
 use Filament\Actions\Imports\Models\Import;
 use Filament\Actions\Imports\Exceptions\RowImportFailedException;
+use Filament\Forms\Get;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Select;
-
 
 class ArkImporter extends Importer
 {
@@ -24,7 +24,23 @@ class ArkImporter extends Importer
             Select::make('naan')
                 ->label('NAAN')
                 ->options(Naan::all()->whereNotNull('minter_settings_id')->pluck('naan', 'naan'))
-                ->required(),
+                ->required()
+                ->live(),
+            Select::make('shoulder')
+                ->label('Shoulder')
+                ->options(function (Get $get): array {
+                    // Get shoulders of NAAN
+                    $options = [];
+                    if($get('naan')){
+                        $shoulders = Naan::where('naan', $get('naan'))->pluck('shoulders')->flatten(1);
+                        if($shoulders && !is_null($shoulders[0])){
+                            foreach($shoulders as $shoulder){
+                                $options[$shoulder['shoulder']] = $shoulder['shoulder'].' ('.$shoulder['description'].')';
+                            }
+                        }
+                    }
+                    return $options;
+                }),
             Checkbox::make('skipExistingUri')
                 ->default('true')
                 ->label('Bestehende URI überspringen'),
@@ -79,7 +95,7 @@ class ArkImporter extends Importer
             }
 
             /** Allocate new ARK */
-            $this->data['ark'] = Ark::generate($naan, $minterSettings->xdigits, $minterSettings->length, null, $minterSettings->ncda);
+            $this->data['ark'] = Ark::generate($naan, $minterSettings->xdigits, $minterSettings->length, $this->options['shoulder'], $minterSettings->ncda);
             
             /** Check if allocated ARK not already existing */
             if (ArkModel::firstWhere('ark', '=', $this->data['ark'])) {

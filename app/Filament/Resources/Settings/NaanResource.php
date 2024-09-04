@@ -51,17 +51,19 @@ class NaanResource extends Resource
                                     ->label(__('ams.naan_resource_shoulder'))
                                     ->required()
                                     ->filled()
-                                    ->rules([new UniqueShoulder('test')]),
+                                    ->rules([new UniqueShoulder]),
                                 TextInput::make('description')
                                     ->label(__('ams.naan_resource_desc'))
                                     ->filled()
                                     ->required(),
                             ])
+                            ->columns(2)
                             ->reorderable(false)
                             ->collapsed()
+                            ->addActionLabel('Create Shoulder')
                             ->itemLabel(fn (array $state): ?string => $state['description'].' ('.$state['shoulder'].')' ?? null)
-                    ])
-                    
+                            ->defaultItems(0)
+                ])                    
             ]);
     }
 

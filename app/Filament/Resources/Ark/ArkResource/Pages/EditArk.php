@@ -26,6 +26,7 @@ class EditArk extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {        
+        // Deserialize ERC Metadata
         if($data['metadata']){
             $data = array_merge($data, ArkResource::desirializeMetadata($data['metadata']));
         }
@@ -34,18 +35,20 @@ class EditArk extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-
-        $currentData = ArkModel::find($this->data['id'])->toJson();
+        // Save current data as revision.
+        $currentData = ArkModel::find($this->data['id']);
+        $revisionData = ['uri' => $currentData->uri, 'metadata' => $currentData->metadata];
         $revision = new ArkRevision;
         $revision->ark_id = $this->data['id'];
-        $revision->revision = $currentData;
+        $revision->revision = json_encode($revisionData);
         $revision->save();
 
-        $erc = new Erc();
-        $erc->addStory([$data['who'], $data['what'], $data['when'], $data['where']]);
-        $data['metadata'] = $erc->record();
-
-        unset($data['who'], $data['what'], $data['when'], $data['where']);
+        if($data['who'] || $data['what'] || $data['when'] || $data['where']){
+            $erc = new Erc();
+            $erc->addStory([$data['who'], $data['what'], $data['when'], $data['where']]);
+            $data['metadata'] = $erc->record();
+            unset($data['who'], $data['what'], $data['when'], $data['where']);
+        }
                 
         return $data;
     }

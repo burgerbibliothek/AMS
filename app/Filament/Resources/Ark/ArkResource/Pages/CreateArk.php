@@ -16,10 +16,10 @@ class CreateArk extends CreateRecord
     {
 
         /** Get minter settings of naan */
-        $minterSettings = Naan::firstWhere('naan', $data['naan'])->minter;
-
+        $minterSettings = Naan::firstWhere('naan', $data['naan'])->minter;    
+        
         /** Retrieve new ARK */
-        $data['ark'] = Ark::generate($data['naan'], $minterSettings->xdigits, $minterSettings->length, null, $minterSettings->ncda);
+        $data['ark'] = Ark::generate($data['naan'], $minterSettings->xdigits, $minterSettings->length, $data['shoulder'], $minterSettings->ncda);
 
         /** Create ERC record */
         $erc = new Erc;

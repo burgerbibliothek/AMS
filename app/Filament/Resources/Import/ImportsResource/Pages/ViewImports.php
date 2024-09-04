@@ -4,7 +4,6 @@ namespace App\Filament\Resources\Import\ImportsResource\Pages;
 
 use App\Filament\Resources\Import\ImportsResource;
 use App\Models\SuccessfullImportRow;
-use Filament\Resources\Pages\ViewRecord;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;

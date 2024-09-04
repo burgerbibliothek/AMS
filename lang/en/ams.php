@@ -34,6 +34,7 @@ return [
     'ark_resource_dialog_delete_submit' => 'Yes, I\'m sure.',
     'ark_resource_actions_import' => 'CSV-Import',
     'ark_resource_actions_create' => 'Create ARK',
+    'ark_resource_shoulders' => 'Shoulder',
 
     /*
      * Minter Resource

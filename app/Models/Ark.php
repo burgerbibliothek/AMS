@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ark extends Model
@@ -18,9 +19,9 @@ class Ark extends Model
         return $this->hasOne(Status::class);
     }
 
-    public function revisions(): HasMany
+    public function ark_revisions(): HasMany
     {
-        return $this->hasMany(ArkRevisions::class);
+        return $this->hasMany(ArkRevision::class, 'ark_id', 'id');
     }
     
 }
