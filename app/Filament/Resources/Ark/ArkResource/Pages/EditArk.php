@@ -26,7 +26,7 @@ class EditArk extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {        
-        // Deserialize ERC Metadata
+        /** Deserialize ERC Metadata */
         if($data['metadata']){
             $data = array_merge($data, ArkResource::desirializeMetadata($data['metadata']));
         }
@@ -35,7 +35,7 @@ class EditArk extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        // Save current data as revision.
+        /** Save current data as revision. */
         $currentData = ArkModel::find($this->data['id']);
         $revisionData = ['uri' => $currentData->uri, 'metadata' => $currentData->metadata];
         $revision = new ArkRevision;

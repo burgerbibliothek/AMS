@@ -1,155 +1,115 @@
-[06-Mar-2024 14:25:22 UTC] PHP Fatal error:  Cannot declare class App\Filament\Resources\NaanResource\Pages\ListNaans, because the name is already in use in /home/heiraterei/sites/ark-fil.diani.xyz/app/Filament/Resources/Settings/NaanResource/Pages/ListNaans.php on line 0
-[06-Mar-2024 14:25:23 UTC] PHP Fatal error:  Cannot declare class App\Filament\Resources\NaanResource\Pages\ListNaans, because the name is already in use in /home/heiraterei/sites/ark-fil.diani.xyz/app/Filament/Resources/Settings/NaanResource/Pages/ListNaans.php on line 0
-[06-Mar-2024 14:25:24 UTC] PHP Fatal error:  Cannot declare class App\Filament\Resources\NaanResource\Pages\ListNaans, because the name is already in use in /home/heiraterei/sites/ark-fil.diani.xyz/app/Filament/Resources/Settings/NaanResource/Pages/ListNaans.php on line 0
-[06-Mar-2024 14:26:02 UTC] PHP Fatal error:  Cannot declare class App\Filament\Resources\NaanResource\Pages\ListNaans, because the name is already in use in /home/heiraterei/sites/ark-fil.diani.xyz/app/Filament/Resources/Settings/NaanResource/Pages/ListNaans.php on line 0
-[06-Mar-2024 14:26:17 UTC] PHP Fatal error:  Cannot declare class App\Filament\Resources\NaanResource\Pages\ListNaans, because the name is already in use in /home/heiraterei/sites/ark-fil.diani.xyz/app/Filament/Resources/Settings/NaanResource/Pages/ListNaans.php on line 0
-[06-Mar-2024 14:27:30 UTC] PHP Fatal error:  Cannot declare class App\Filament\Resources\NaanResource\Pages\EditNaan, because the name is already in use in /home/heiraterei/sites/ark-fil.diani.xyz/app/Filament/Resources/Settings/NaanResource/Pages/EditNaan.php on line 0
-[06-Mar-2024 14:27:56 UTC] PHP Fatal error:  Cannot declare class App\Filament\Resources\NaanResource\Pages\EditNaan, because the name is already in use in /home/heiraterei/sites/ark-fil.diani.xyz/app/Filament/Resources/Settings/NaanResource/Pages/EditNaan.php on line 0
-[06-Mar-2024 15:01:59 UTC] PHP Fatal error:  Cannot declare class App\Filament\Resources\StatusResource\Pages\ListStatuses, because the name is already in use in /home/heiraterei/sites/ark-fil.diani.xyz/app/Filament/Resources/Settings/StatusResource/Pages/ListStatuses.php on line 0
-[06-Mar-2024 15:40:47 UTC] PHP Fatal error:  Declaration of App\Filament\Resources\ArkResource\Pages\ArksOverview::render() must be compatible with Filament\Pages\BasePage::render(): Illuminate\Contracts\View\View in /home/heiraterei/sites/ark-fil.diani.xyz/app/Filament/Resources/ArkResource/Pages/ArksOverview.php on line 15
-[12-Mar-2024 11:38:31 UTC] PHP Fatal error:  Cannot use App\AMS\ARK as ARK because the name is already in use in /home/heiraterei/sites/ark-fil.diani.xyz/app/Filament/Resources/ArkResource.php on line 10
-[12-Mar-2024 11:38:32 UTC] PHP Fatal error:  Cannot use App\AMS\ARK as ARK because the name is already in use in /home/heiraterei/sites/ark-fil.diani.xyz/app/Filament/Resources/ArkResource.php on line 10
-[12-Mar-2024 11:38:36 UTC] PHP Fatal error:  Cannot use App\AMS\ARK as ARK because the name is already in use in /home/heiraterei/sites/ark-fil.diani.xyz/app/Filament/Resources/ArkResource.php on line 10
-[12-Mar-2024 12:37:15 UTC] PHP Fatal error:  Cannot redeclare App\Filament\Resources\Settings\StatusResource::$navigationGroup in /home/heiraterei/sites/ark-fil.diani.xyz/app/Filament/Resources/Settings/StatusResource.php on line 24
-[12-Mar-2024 15:52:54 UTC] PHP Fatal error:  Cannot make non static method Filament\Resources\Pages\CreateRecord::form() static in class App\Filament\Resources\ArkResource\Pages\CreateArk in /home/heiraterei/sites/ark-fil.diani.xyz/app/Filament/Resources/ArkResource/Pages/CreateArk.php on line 13
-[12-Mar-2024 15:52:56 UTC] PHP Fatal error:  Cannot make non static method Filament\Resources\Pages\CreateRecord::form() static in class App\Filament\Resources\ArkResource\Pages\CreateArk in /home/heiraterei/sites/ark-fil.diani.xyz/app/Filament/Resources/ArkResource/Pages/CreateArk.php on line 13
-[12-Mar-2024 15:53:39 UTC] PHP Fatal error:  Cannot make non static method Filament\Resources\Pages\CreateRecord::form() static in class App\Filament\Resources\ArkResource\Pages\CreateArk in /home/heiraterei/sites/ark-fil.diani.xyz/app/Filament/Resources/ArkResource/Pages/CreateArk.php on line 18
-[12-Mar-2024 16:23:26 UTC] PHP Fatal error:  Could not check compatibility between App\Filament\Resources\ArkResource\Pages\CreateArk::handleRecordCreation(array $data): App\Filament\Resources\ArkResource\Pages\Model and Filament\Resources\Pages\CreateRecord::handleRecordCreation(array $data): Illuminate\Database\Eloquent\Model, because class App\Filament\Resources\ArkResource\Pages\Model is not available in /home/heiraterei/sites/ark-fil.diani.xyz/app/Filament/Resources/ArkResource/Pages/CreateArk.php on line 14
-[10-Apr-2024 09:12:21 UTC] PHP Fatal error:  Constant expression contains invalid operations in /home/heiraterei/sites/AMS/app/Filament/Resources/ArkResource.php on line 34
-[10-Apr-2024 15:09:30 UTC] PHP Fatal error:  Type of App\Filament\Resources\Ark\ArkResource\Pages\ArksOverview::$title must be ?string (as in class Filament\Pages\BasePage) in /home/heiraterei/sites/AMS/app/Filament/Resources/Ark/ArkResource/Pages/ArksOverview.php on line 11
-[10-Apr-2024 15:09:59 UTC] PHP Fatal error:  Cannot redeclare App\Filament\Resources\Ark\ArkResource\Pages\ListArks::getHeaderActions() in /home/heiraterei/sites/AMS/app/Filament/Resources/Ark/ArkResource/Pages/ListArks.php on line 20
-[11-Apr-2024 11:55:39 UTC] PHP Fatal error:  During class fetch: Uncaught ParseError: syntax error, unexpected token ";", expecting ")" in /home/heiraterei/sites/AMS/vendor/filament/actions/src/Concerns/CanImportRecords.php:77
+[12-Sep-2024 16:47:14 Europe/Zurich] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function premutations(), 0 passed in /home/heiraterei/sites/ams-reloaded/public/test.php on line 22 and exactly 2 expected in /home/heiraterei/sites/ams-reloaded/public/test.php:12
 Stack trace:
-#0 /home/heiraterei/sites/AMS/vendor/composer/ClassLoader.php(427): Composer\Autoload\{closure}()
-#1 /home/heiraterei/sites/AMS/vendor/filament/actions/src/ImportAction.php(5): Composer\Autoload\ClassLoader->loadClass()
-#2 /home/heiraterei/sites/AMS/vendor/composer/ClassLoader.php(576): include('/home/heiratere...')
-#3 /home/heiraterei/sites/AMS/vendor/composer/ClassLoader.php(427): Composer\Autoload\{closure}()
-#4 /home/heiraterei/sites/AMS/app/Filament/Resources/Ark/ArkResource/Pages/ListArks.php(18): Composer\Autoload\ClassLoader->loadClass()
-#5 /home/heiraterei/sites/AMS/vendor/filament/filament/src/Pages/Concerns/InteractsWithHeaderActions.php(27): App\Filament\Resources\Ark\ArkResource\Pages\ListArks->getHeaderActions()
-#6 /home/heiraterei/sites/AMS/vendor/filament/support/src/Components/ComponentManager.php(70): Filament\Pages\Page->Filament\Pages\Concerns\{closure}()
-#7 /home/heiraterei/sites/AMS/vendor/filament/support/src/Concerns/Configurable.php(12): Filament\Support\Components\ComponentManager->configureUsing()
-#8 /home/heiraterei/sites/AMS/vendor/filament/filament/src/Pages/Concerns/InteractsWithHeaderActions.php(25): Filament\Support\Components\Component::configureUsing()
-#9 /home/heiraterei/sites/AMS/vendor/filament/filament/src/Pages/Concerns/InteractsWithHeaderActions.php(19): Filament\Pages\Page->cacheHeaderActions()
-#10 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(36): Filament\Pages\Page->bootedInteractsWithHeaderActions()
-#11 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Container/Util.php(41): Illuminate\Container\BoundMethod::Illuminate\Container\{closure}()
-#12 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(93): Illuminate\Container\Util::unwrapIfClosure()
-#13 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(35): Illuminate\Container\BoundMethod::callBoundMethod()
-#14 /home/heiraterei/sites/AMS/vendor/livewire/livewire/src/Wrapped.php(23): Illuminate\Container\BoundMethod::call()
-#15 /home/heiraterei/sites/AMS/vendor/livewire/livewire/src/Features/SupportLifecycleHooks/SupportLifecycleHooks.php(135): Livewire\Wrapped->__call()
-#16 /home/heiraterei/sites/AMS/vendor/livewire/livewire/src/Features/SupportLifecycleHooks/SupportLifecycleHooks.php(24): Livewire\Features\SupportLifecycleHooks\SupportLifecycleHooks->callTraitHook()
-#17 /home/heiraterei/sites/AMS/vendor/livewire/livewire/src/ComponentHook.php(19): Livewire\Features\SupportLifecycleHooks\SupportLifecycleHooks->mount()
-#18 /home/heiraterei/sites/AMS/vendor/livewire/livewire/src/ComponentHookRegistry.php(45): Livewire\ComponentHook->callMount()
-#19 /home/heiraterei/sites/AMS/vendor/livewire/livewire/src/EventBus.php(60): Livewire\ComponentHookRegistry::Livewire\{closure}()
-#20 /home/heiraterei/sites/AMS/vendor/livewire/livewire/src/helpers.php(100): Livewire\EventBus->trigger()
-#21 /home/heiraterei/sites/AMS/vendor/livewire/livewire/src/Mechanisms/HandleComponents/HandleComponents.php(49): Livewire\trigger()
-#22 /home/heiraterei/sites/AMS/vendor/livewire/livewire/src/LivewireManager.php(72): Livewire\Mechanisms\HandleComponents\HandleComponents->mount()
-#23 /home/heiraterei/sites/AMS/vendor/livewire/livewire/src/Features/SupportPageComponents/HandlesPageComponents.php(17): Livewire\LivewireManager->mount()
-#24 /home/heiraterei/sites/AMS/vendor/livewire/livewire/src/Features/SupportPageComponents/SupportPageComponents.php(118): Livewire\Component->Livewire\Features\SupportPageComponents\{closure}()
-#25 /home/heiraterei/sites/AMS/vendor/livewire/livewire/src/Features/SupportPageComponents/HandlesPageComponents.php(14): Livewire\Features\SupportPageComponents\SupportPageComponents::interceptTheRenderOfTheComponentAndRetreiveTheLayoutConfiguration()
-#26 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(46): Livewire\Component->__invoke()
-#27 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Routing/Route.php(260): Illuminate\Routing\ControllerDispatcher->dispatch()
-#28 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Routing/Route.php(206): Illuminate\Routing\Route->runController()
-#29 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Routing/Router.php(806): Illuminate\Routing\Route->run()
-#30 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\Routing\Router->Illuminate\Routing\{closure}()
-#31 /home/heiraterei/sites/AMS/vendor/filament/filament/src/Http/Middleware/DispatchServingFilamentEvent.php(15): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#32 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Filament\Http\Middleware\DispatchServingFilamentEvent->handle()
-#33 /home/heiraterei/sites/AMS/vendor/filament/filament/src/Http/Middleware/DisableBladeIconComponents.php(14): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#34 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Filament\Http\Middleware\DisableBladeIconComponents->handle()
-#35 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(50): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#36 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\Routing\Middleware\SubstituteBindings->handle()
-#37 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(88): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#38 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\Foundation\Http\Middleware\VerifyCsrfToken->handle()
-#39 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Session/Middleware/AuthenticateSession.php(67): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#40 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\Session\Middleware\AuthenticateSession->handle()
-#41 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php(64): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#42 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\Auth\Middleware\Authenticate->handle()
-#43 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#44 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\View\Middleware\ShareErrorsFromSession->handle()
-#45 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(121): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#46 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(64): Illuminate\Session\Middleware\StartSession->handleStatefulRequest()
-#47 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\Session\Middleware\StartSession->handle()
-#48 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#49 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse->handle()
-#50 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(75): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#51 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\Cookie\Middleware\EncryptCookies->handle()
-#52 /home/heiraterei/sites/AMS/vendor/filament/filament/src/Http/Middleware/SetUpPanel.php(19): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#53 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Filament\Http\Middleware\SetUpPanel->handle()
-#54 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#55 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Routing/Router.php(805): Illuminate\Pipeline\Pipeline->then()
-#56 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Routing/Router.php(784): Illuminate\Routing\Router->runRouteWithinStack()
-#57 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Routing/Router.php(748): Illuminate\Routing\Router->runRoute()
-#58 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Routing/Router.php(737): Illuminate\Routing\Router->dispatchToRoute()
-#59 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(200): Illuminate\Routing\Router->dispatch()
-#60 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(144): Illuminate\Foundation\Http\Kernel->Illuminate\Foundation\Http\{closure}()
-#61 /home/heiraterei/sites/AMS/vendor/livewire/livewire/src/Features/SupportDisablingBackButtonCache/DisableBackButtonCacheMiddleware.php(19): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#62 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Livewire\Features\SupportDisablingBackButtonCache\DisableBackButtonCacheMiddleware->handle()
-#63 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#64 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php(31): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
-#65 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull->handle()
-#66 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#67 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php(51): Illuminate\Foundation\Http\Middleware\TransformsRequest->handle()
-#68 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\Foundation\Http\Middleware\TrimStrings->handle()
-#69 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Http/Middleware/ValidatePostSize.php(27): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#70 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\Http\Middleware\ValidatePostSize->handle()
-#71 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php(110): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#72 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance->handle()
-#73 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php(49): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#74 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\Http\Middleware\HandleCors->handle()
-#75 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php(57): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#76 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(183): Illuminate\Http\Middleware\TrustProxies->handle()
-#77 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(119): Illuminate\Pipeline\Pipeline->Illuminate\Pipeline\{closure}()
-#78 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(175): Illuminate\Pipeline\Pipeline->then()
-#79 /home/heiraterei/sites/AMS/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(144): Illuminate\Foundation\Http\Kernel->sendRequestThroughRouter()
-#80 /home/heiraterei/sites/AMS/public/index.php(51): Illuminate\Foundation\Http\Kernel->handle()
-#81 {main} in /home/heiraterei/sites/AMS/vendor/filament/actions/src/ImportAction.php on line 5
-[16-Apr-2024 09:11:55 UTC] PHP Fatal error:  Cannot use App\Models\Ark as Ark because the name is already in use in /home/heiraterei/sites/AMS/app/Filament/Imports/ArkImporter.php on line 6
-[16-Apr-2024 09:29:57 UTC] PHP Fatal error:  Declaration of App\Filament\Imports\ArkImporter::resolveRecord(): ?App\AMS\ARK must be compatible with Filament\Actions\Imports\Importer::resolveRecord(): ?Illuminate\Database\Eloquent\Model in /home/heiraterei/sites/AMS/app/Filament/Imports/ArkImporter.php on line 42
-[16-Apr-2024 09:31:56 UTC] PHP Fatal error:  Declaration of App\Filament\Imports\ArkImporter::resolveRecord(): ?App\AMS\ARK must be compatible with Filament\Actions\Imports\Importer::resolveRecord(): ?Illuminate\Database\Eloquent\Model in /home/heiraterei/sites/AMS/app/Filament/Imports/ArkImporter.php on line 51
-[16-Apr-2024 09:31:59 UTC] PHP Fatal error:  Declaration of App\Filament\Imports\ArkImporter::resolveRecord(): ?App\AMS\ARK must be compatible with Filament\Actions\Imports\Importer::resolveRecord(): ?Illuminate\Database\Eloquent\Model in /home/heiraterei/sites/AMS/app/Filament/Imports/ArkImporter.php on line 51
-[16-Apr-2024 09:32:25 UTC] PHP Fatal error:  Declaration of App\Filament\Imports\ArkImporter::resolveRecord(): ?App\AMS\ARK must be compatible with Filament\Actions\Imports\Importer::resolveRecord(): ?Illuminate\Database\Eloquent\Model in /home/heiraterei/sites/AMS/app/Filament/Imports/ArkImporter.php on line 51
-[17-Apr-2024 14:41:26 UTC] PHP Fatal error:  A function with return type must return a value (did you mean "return null;" instead of "return;"?) in /home/heiraterei/sites/AMS/app/AMS/Metadata.php on line 17
-[18-Apr-2024 06:47:13 UTC] PHP Warning:  "integer" will be interpreted as a class name. Did you mean "int"? Write "\integer" to suppress this warning in /home/heiraterei/sites/AMS/app/AMS/Anvl.php on line 6
-[18-Apr-2024 06:47:13 UTC] PHP Warning:  "integer" will be interpreted as a class name. Did you mean "int"? Write "\integer" to suppress this warning in /home/heiraterei/sites/AMS/app/AMS/Anvl.php on line 8
-[18-Apr-2024 06:47:36 UTC] PHP Warning:  "integer" will be interpreted as a class name. Did you mean "int"? Write "\integer" to suppress this warning in /home/heiraterei/sites/AMS/app/AMS/Anvl.php on line 6
-[18-Apr-2024 06:47:36 UTC] PHP Warning:  "integer" will be interpreted as a class name. Did you mean "int"? Write "\integer" to suppress this warning in /home/heiraterei/sites/AMS/app/AMS/Anvl.php on line 13
-[18-Apr-2024 06:48:30 UTC] PHP Warning:  "integer" will be interpreted as a class name. Did you mean "int"? Write "\integer" to suppress this warning in /home/heiraterei/sites/AMS/app/AMS/Anvl.php on line 6
-[18-Apr-2024 06:48:30 UTC] PHP Warning:  "integer" will be interpreted as a class name. Did you mean "int"? Write "\integer" to suppress this warning in /home/heiraterei/sites/AMS/app/AMS/Anvl.php on line 13
-[18-Apr-2024 06:49:51 UTC] PHP Warning:  "integer" will be interpreted as a class name. Did you mean "int"? Write "\integer" to suppress this warning in /home/heiraterei/sites/AMS/app/AMS/Anvl.php on line 6
-[18-Apr-2024 06:49:51 UTC] PHP Warning:  "integer" will be interpreted as a class name. Did you mean "int"? Write "\integer" to suppress this warning in /home/heiraterei/sites/AMS/app/AMS/Anvl.php on line 13
-[18-Apr-2024 06:50:19 UTC] PHP Warning:  "integer" will be interpreted as a class name. Did you mean "int"? Write "\App\AMS\integer" or import the class with "use" to suppress this warning in /home/heiraterei/sites/AMS/app/AMS/Anvl.php on line 7
-[18-Apr-2024 06:50:19 UTC] PHP Warning:  "integer" will be interpreted as a class name. Did you mean "int"? Write "\App\AMS\integer" or import the class with "use" to suppress this warning in /home/heiraterei/sites/AMS/app/AMS/Anvl.php on line 14
-[18-Apr-2024 12:33:21 UTC] PHP Fatal error:  Access level to App\AMS\Erc::$record must be public (as in class App\AMS\Anvl) in /home/heiraterei/sites/AMS/app/AMS/Erc.php on line 6
-[18-Apr-2024 12:44:28 UTC] PHP Fatal error:  Declaration of App\AMS\Erc::add($test) must be compatible with App\AMS\Anvl::add($name, $value) in /home/heiraterei/sites/AMS/app/AMS/Erc.php on line 13
-[18-Apr-2024 14:51:07 UTC] PHP Fatal error:  Default value for property of type int may not be null. Use the nullable type ?int to allow null default value in /home/heiraterei/sites/AMS/app/AMS/Anvl.php on line 8
-[16-May-2024 11:52:41 UTC] PHP Fatal error:  'break' not in the 'loop' or 'switch' context in /home/heiraterei/sites/AMS/app/Models/Minter.php on line 22
-[23-May-2024 11:06:18 Europe/Zurich] PHP Fatal error:  Cannot declare class App\Filament\Resources\Import\ImportsResource\Pages\ListImports, because the name is already in use in /home/heiraterei/sites/AMS/app/Filament/Resources/Import/ImportsResource/Pages/ViewImports.php on line 9
-[23-May-2024 11:15:06 Europe/Zurich] PHP Fatal error:  Cannot make non static method Filament\Resources\Pages\ViewRecord::infolist() static in class App\Filament\Resources\Import\ImportsResource\Pages\ViewImports in /home/heiraterei/sites/AMS/app/Filament/Resources/Import/ImportsResource/Pages/ViewImports.php on line 14
-[30-May-2024 10:53:14 Europe/Zurich] PHP Fatal error:  Constant expression contains invalid operations in /home/heiraterei/sites/AMS/app/Filament/Resources/Import/ImportsResource.php on line 21
-[30-May-2024 10:53:20 Europe/Zurich] PHP Fatal error:  Constant expression contains invalid operations in /home/heiraterei/sites/AMS/app/Filament/Resources/Import/ImportsResource.php on line 21
-[30-May-2024 10:53:21 Europe/Zurich] PHP Fatal error:  Constant expression contains invalid operations in /home/heiraterei/sites/AMS/app/Filament/Resources/Import/ImportsResource.php on line 21
-[30-May-2024 10:53:59 Europe/Zurich] PHP Fatal error:  Constant expression contains invalid operations in /home/heiraterei/sites/AMS/app/Filament/Resources/Import/ImportsResource.php on line 21
-[30-May-2024 10:54:06 Europe/Zurich] PHP Fatal error:  Constant expression contains invalid operations in /home/heiraterei/sites/AMS/app/Filament/Resources/Import/ImportsResource.php on line 21
-[30-May-2024 11:50:33 Europe/Zurich] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/heiraterei/sites/AMS/app/Filament/Resources/Settings/MinterResource.php on line 53
-[30-May-2024 11:50:53 Europe/Zurich] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/heiraterei/sites/AMS/app/Filament/Resources/Settings/MinterResource.php on line 55
-[20-Jun-2024 13:28:37 Europe/Zurich] PHP Deprecated:  Optional parameter $story declared before required parameter $comments is implicitly treated as a required parameter in /home/heiraterei/sites/ark-management-tools/src/Erc.php on line 23
-[02-Jul-2024 10:53:32 Europe/Zurich] PHP Fatal error:  Cannot use isset() on the result of an expression (you can use "null !== expression" instead) in /home/heiraterei/sites/ark-management-tools/src/Ark.php on line 164
-[02-Jul-2024 14:01:53 Europe/Zurich] PHP Fatal error:  Declaration of Burgerbibliothek\ArkManagementTools\Erc::add(string $story, ?string $body) must be compatible with Burgerbibliothek\ArkManagementTools\Anvl::add(string $label, string $value = '') in /home/heiraterei/sites/ark-management-tools/src/Erc.php on line 21
-[02-Jul-2024 14:20:26 Europe/Zurich] PHP Fatal error:  Declaration of Burgerbibliothek\ArkManagementTools\Erc::add(string $story, ?string $body) must be compatible with Burgerbibliothek\ArkManagementTools\Anvl::add(string $label, string $value = '') in /home/heiraterei/sites/ark-management-tools/src/Erc.php on line 32
-[02-Jul-2024 14:20:39 Europe/Zurich] PHP Fatal error:  Declaration of Burgerbibliothek\ArkManagementTools\Erc::add(string $story, ?string $body) must be compatible with Burgerbibliothek\ArkManagementTools\Anvl::add(string $label, string $value = '') in /home/heiraterei/sites/ark-management-tools/src/Erc.php on line 32
-[02-Jul-2024 14:27:03 Europe/Zurich] PHP Deprecated:  Optional parameter $type declared before required parameter $stories is implicitly treated as a required parameter in /home/heiraterei/sites/ark-management-tools/src/Erc.php on line 21
-[02-Jul-2024 15:16:18 Europe/Zurich] PHP Warning:  "boolean" will be interpreted as a class name. Did you mean "bool"? Write "\Burgerbibliothek\ArkManagementTools\boolean" or import the class with "use" to suppress this warning in /home/heiraterei/sites/ark-management-tools/src/Erc.php on line 27
-[02-Jul-2024 15:16:18 Europe/Zurich] PHP Fatal error:  Cannot use bool as default value for parameter $append of type Burgerbibliothek\ArkManagementTools\boolean in /home/heiraterei/sites/ark-management-tools/src/Erc.php on line 27
-[02-Jul-2024 17:14:03 Europe/Zurich] PHP Fatal error:  Cannot declare class App\Models\SuccessfullImports, because the name is already in use in /home/heiraterei/sites/ams-reloaded/app/Models/SuccessfullImportRow.php on line 8
-[11-Jul-2024 11:32:00 Europe/Zurich] PHP Fatal error:  A function with return type must return a value in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Import/ImportsResource/Pages/ListImports.php on line 14
-[11-Jul-2024 11:34:34 Europe/Zurich] PHP Fatal error:  Cannot declare class App\Filament\Resources\Import\ImportsResource\Pages\ViewImports, because the name is already in use in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Import/ImportsResource/Pages/ListImportsDetails.php on line 15
-[11-Jul-2024 12:08:05 Europe/Zurich] PHP Fatal error:  Trait "App\Filament\Resources\Import\ImportsResource\Pages\InteractsWithRecord" not found in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Import/ImportsResource/Pages/ListImportsDetails.php on line 12
-[11-Jul-2024 12:08:12 Europe/Zurich] PHP Fatal error:  Trait "App\Filament\Resources\Import\ImportsResource\Pages\InteractsWithRecord" not found in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Import/ImportsResource/Pages/ListImportsDetails.php on line 12
-[11-Jul-2024 13:47:36 Europe/Zurich] PHP Fatal error:  Cannot declare class App\Filament\Resources\Import\ImportsResource\Pages\ViewImports, because the name is already in use in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Import/ImportsResource/Pages/ListImportsDetails.php on line 15
-[11-Jul-2024 13:47:58 Europe/Zurich] PHP Fatal error:  Cannot declare class App\Filament\Resources\Import\ImportsResource\Pages\ViewImports, because the name is already in use in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Import/ImportsResource/Pages/ListImportsDetails.php on line 15
-[11-Jul-2024 13:48:15 Europe/Zurich] PHP Fatal error:  Cannot declare class App\Filament\Resources\Import\ImportsResource\Pages\ListImportDetails, because the name is already in use in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Import/ImportsResource/Pages/ListImportsDetails.php on line 15
-[11-Jul-2024 13:48:29 Europe/Zurich] PHP Fatal error:  Cannot declare class App\Filament\Resources\Import\ImportsResource\Pages\ListImportDetails, because the name is already in use in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Import/ImportsResource/Pages/ListImportsDetails.php on line 15
-[11-Jul-2024 13:48:53 Europe/Zurich] PHP Fatal error:  Cannot declare class App\Filament\Resources\Import\ImportsResource\Pages\ListImportDetails, because the name is already in use in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Import/ImportsResource/Pages/ListImportsDetails.php on line 15
-[11-Jul-2024 13:49:22 Europe/Zurich] PHP Fatal error:  Cannot declare class App\Filament\Resources\Import\ImportsResource\Pages\ListImportDetails, because the name is already in use in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Import/ImportsResource/Pages/ListImportsDetails.php on line 12
-[11-Jul-2024 13:50:01 Europe/Zurich] PHP Fatal error:  Cannot declare class App\Filament\Resources\Import\ImportsResource\Pages\ListImportDetails, because the name is already in use in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Import/ImportsResource/Pages/ListImportsDetails.php on line 12
-[11-Jul-2024 13:50:22 Europe/Zurich] PHP Fatal error:  Cannot declare class App\Filament\Resources\Import\ImportsResource\Pages\ListImporstDetails, because the name is already in use in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Import/ImportsResource/Pages/ListImportsDetails.php on line 12
-[11-Jul-2024 13:50:23 Europe/Zurich] PHP Fatal error:  Cannot declare class App\Filament\Resources\Import\ImportsResource\Pages\ListImporstDetails, because the name is already in use in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Import/ImportsResource/Pages/ListImportsDetails.php on line 12
+#0 /home/heiraterei/sites/ams-reloaded/public/test.php(22): premutations()
+#1 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/public/test.php on line 12
+[12-Sep-2024 16:47:20 Europe/Zurich] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function premutations(), 0 passed in /home/heiraterei/sites/ams-reloaded/public/test.php on line 22 and exactly 2 expected in /home/heiraterei/sites/ams-reloaded/public/test.php:12
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/public/test.php(22): premutations()
+#1 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/public/test.php on line 12
+[12-Sep-2024 16:47:24 Europe/Zurich] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function premutations(), 0 passed in /home/heiraterei/sites/ams-reloaded/public/test.php on line 22 and exactly 2 expected in /home/heiraterei/sites/ams-reloaded/public/test.php:12
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/public/test.php(22): premutations()
+#1 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/public/test.php on line 12
+[12-Sep-2024 16:47:33 Europe/Zurich] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function premutations(), 0 passed in /home/heiraterei/sites/ams-reloaded/public/test.php on line 22 and exactly 2 expected in /home/heiraterei/sites/ams-reloaded/public/test.php:12
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/public/test.php(22): premutations()
+#1 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/public/test.php on line 12
+[12-Sep-2024 16:47:52 Europe/Zurich] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function premutations(), 0 passed in /home/heiraterei/sites/ams-reloaded/public/test.php on line 20 and exactly 2 expected in /home/heiraterei/sites/ams-reloaded/public/test.php:12
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/public/test.php(20): premutations()
+#1 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/public/test.php on line 12
+[12-Sep-2024 16:47:53 Europe/Zurich] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function premutations(), 0 passed in /home/heiraterei/sites/ams-reloaded/public/test.php on line 20 and exactly 2 expected in /home/heiraterei/sites/ams-reloaded/public/test.php:12
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/public/test.php(20): premutations()
+#1 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/public/test.php on line 12
+[12-Sep-2024 16:47:56 Europe/Zurich] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function premutations(), 0 passed in /home/heiraterei/sites/ams-reloaded/public/test.php on line 20 and exactly 2 expected in /home/heiraterei/sites/ams-reloaded/public/test.php:12
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/public/test.php(20): premutations()
+#1 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/public/test.php on line 12
+[12-Sep-2024 16:48:05 Europe/Zurich] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function premutations(), 0 passed in /home/heiraterei/sites/ams-reloaded/public/test.php on line 20 and exactly 2 expected in /home/heiraterei/sites/ams-reloaded/public/test.php:12
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/public/test.php(20): premutations()
+#1 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/public/test.php on line 12
+[12-Sep-2024 16:55:28 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:28 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:28 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:28 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:28 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:28 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 11
+[12-Sep-2024 16:55:29 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:29 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:29 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:29 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:29 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:29 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 11
+[12-Sep-2024 16:55:32 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:32 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:32 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:32 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:32 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:32 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 11
+[12-Sep-2024 16:55:33 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:33 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:33 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:33 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:33 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:33 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 11
+[12-Sep-2024 16:55:41 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:41 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 8
+[12-Sep-2024 16:55:41 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:41 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 8
+[12-Sep-2024 16:55:41 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:41 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 8
+[12-Sep-2024 16:55:41 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:41 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 8
+[12-Sep-2024 16:55:41 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:41 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 8
+[12-Sep-2024 16:55:41 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 12
+[12-Sep-2024 16:55:42 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:42 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 8
+[12-Sep-2024 16:55:42 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:42 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 8
+[12-Sep-2024 16:55:42 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:42 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 8
+[12-Sep-2024 16:55:42 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:42 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 8
+[12-Sep-2024 16:55:42 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:42 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 8
+[12-Sep-2024 16:55:42 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 12
+[12-Sep-2024 16:55:43 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:43 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 8
+[12-Sep-2024 16:55:43 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:43 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 8
+[12-Sep-2024 16:55:43 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:43 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 8
+[12-Sep-2024 16:55:43 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:43 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 8
+[12-Sep-2024 16:55:43 Europe/Zurich] PHP Warning:  Undefined variable $i in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 16:55:43 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 8
+[12-Sep-2024 16:55:43 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 12
+[12-Sep-2024 16:59:59 Europe/Zurich] PHP Warning:  Undefined variable $n in /home/heiraterei/sites/ams-reloaded/public/test.php on line 4
+[12-Sep-2024 17:00:01 Europe/Zurich] PHP Warning:  Undefined variable $n in /home/heiraterei/sites/ams-reloaded/public/test.php on line 4
+[12-Sep-2024 17:00:05 Europe/Zurich] PHP Warning:  Undefined variable $n in /home/heiraterei/sites/ams-reloaded/public/test.php on line 3
+[12-Sep-2024 17:00:07 Europe/Zurich] PHP Warning:  Undefined variable $n in /home/heiraterei/sites/ams-reloaded/public/test.php on line 3
+[12-Sep-2024 17:01:28 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 17:01:29 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 17:01:35 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 17:01:44 Europe/Zurich] PHP Warning:  Undefined variable $f in /home/heiraterei/sites/ams-reloaded/public/test.php on line 5
+[12-Sep-2024 17:04:34 Europe/Zurich] PHP Fatal error:  Uncaught TypeError: factorial(): Return value must be of type int, float returned in /home/heiraterei/sites/ams-reloaded/public/test.php:11
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/public/test.php(17): factorial()
+#1 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/public/test.php on line 11
+[12-Sep-2024 17:04:40 Europe/Zurich] PHP Fatal error:  A void function must not return a value in /home/heiraterei/sites/ams-reloaded/public/test.php on line 11
+[12-Sep-2024 17:12:14 Europe/Zurich] PHP Fatal error:  Uncaught Error: Call to undefined function pc_premute() in /home/heiraterei/sites/ams-reloaded/public/test.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/public/test.php on line 17

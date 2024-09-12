@@ -26,16 +26,14 @@ class MinterResource extends Resource
     protected static ?string $label = 'Minter';
 
     
-    /*
-     * Remove duplicates from and sort string. 
-     */
+    /** Remove duplicates from and sort string. */
     public static function arkCharacterRepetoire($xdigits)
     {
         $xdigits = array_unique(str_split($xdigits));
         sort($xdigits);
         return implode('', $xdigits);
     }
-
+    
     public static function form(Form $form): Form
     {
         return $form
@@ -53,7 +51,7 @@ class MinterResource extends Resource
                             ->placeholder(__('ams.minter_resource_xdigits_placeholder'))
                             ->rules([
                                 fn (): Closure => function (string $attribute, $value, Closure $fail) {
-                                    // Check if conttains only valid ARK characters.
+                                    /** Check if conttains only valid ARK characters. */
                                     if(!Validator::followsArkCharacterRepetoire($value)){
                                         $fail(__('ams.minter_resource_xdigits_error'));
                                     }
@@ -69,7 +67,7 @@ class MinterResource extends Resource
                             ->minValue(2)
                             ->rules([
                                 fn (Get $get): Closure => function (string $attribute, $value, Closure $fail) use ($get) {
-                                    // Check if id-length does not exceed length of character repetoire.
+                                    /** Check if id-length does not exceed length of character repetoire. */
                                     $xdigitsArr = array_unique(str_split($get('xdigits')));
                                     $xdigitsArrLength = count($xdigitsArr);
                                     
@@ -91,7 +89,7 @@ class MinterResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                ->label('Name')
+                ->label(__('ams.minter_resource_name'))
                 ->sortable()
             ])
             ->actions([

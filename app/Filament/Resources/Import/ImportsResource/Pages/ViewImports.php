@@ -17,8 +17,6 @@ class ViewImports extends ListRecords
     
     public function infolist(Infolist $infolist): Infolist
     {
-        $result = SuccessfullImportRow::find($this->record['id'])->import->get();
-        dump($result);
         return $infolist
             ->schema([
                 Infolists\Components\TextEntry::make('file_name'),

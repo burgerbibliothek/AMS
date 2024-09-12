@@ -13,7 +13,7 @@ use App\Models\Status as StatusModel;
 class Resolver
 {
 
-    public static function resolve($request, $naan, $baseNameAndSuffixes)
+    public static function resolve($request, $naan)
     {
         
         /** Normalize incoming request */

@@ -15,9 +15,9 @@ class CreateArk extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
 
-        /** Get minter settings of naan */
-        $minterSettings = Naan::firstWhere('naan', $data['naan'])->minter;    
-        
+        /** Get minter settings of NAAN */
+        $minterSettings = Naan::firstWhere('naan', $data['naan'])->minter;
+
         /** Retrieve new ARK */
         $data['ark'] = Ark::generate($data['naan'], $minterSettings->xdigits, $minterSettings->length, $data['shoulder'], $minterSettings->ncda);
 
@@ -26,7 +26,7 @@ class CreateArk extends CreateRecord
         $erc->addStory([$data['who'], $data['what'], $data['when'], $data['where']]);
         $data['metadata'] = $erc->record();
         unset($data['who'], $data['what'], $data['when'], $data['where'], $data['note'], $data['naan']);
-        
+
         return $data;
     }
 }

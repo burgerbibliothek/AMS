@@ -21,8 +21,13 @@ class StatusResource extends Resource
     protected static ?string $slug = 'settings/http-status-codes';
     protected static ?string $navigationLabel = 'HTTP-Status-Codes';
     protected static ?string $navigationIcon = 'heroicon-o-cloud';
-    protected static ?string $navigationGroup = 'Settings';
+    //protected static ?string $navigationGroup = 'Settings';
     protected static ?string $label = 'HTTP-Status-Code';
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('ams.navigation_settings');
+    }
 
     public static function form(Form $form): Form
     {

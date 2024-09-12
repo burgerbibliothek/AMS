@@ -1,14 +1,16 @@
 {
-    "name": "laravel/laravel",
+    "name": "burgerbibliothek/ark-management-system",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "The ARK Management System (AMS) helps you to mint and manage Archival Resource Keys (ARK).",
     "keywords": [
         "laravel",
-        "framework"
+        "filamentphp",
+        "ams",
+        "ark"
     ],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
         "burgerbibliothek/ark-management-tools": "dev-main",
         "filament/filament": "^3.2",
         "filament/notifications": "^3.2",
@@ -68,12 +70,6 @@
             "php-http/discovery": true
         }
     },
-    "repositories": [
-        {
-            "type": "path",
-            "url": "/home/heiraterei/sites/ams-laravel"
-        }
-    ],
     "minimum-stability": "stable",
     "prefer-stable": true
 }
