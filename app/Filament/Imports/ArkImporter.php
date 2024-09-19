@@ -3,6 +3,7 @@
 namespace App\Filament\Imports;
 
 use Burgerbibliothek\ArkManagementTools\Ark;
+use Burgerbibliothek\ArkManagementTools\Erc;
 use App\Models\Ark as ArkModel;
 use App\Models\Naan;
 use App\Models\SuccessfullImportRow;
@@ -31,11 +32,11 @@ class ArkImporter extends Importer
                 ->options(function (Get $get): array {
                     // Get shoulders of NAAN
                     $options = [];
-                    if($get('naan')){
+                    if ($get('naan')) {
                         $shoulders = Naan::where('naan', $get('naan'))->pluck('shoulders')->flatten(1);
-                        if($shoulders && !is_null($shoulders[0])){
-                            foreach($shoulders as $shoulder){
-                                $options[$shoulder['shoulder']] = $shoulder['shoulder'].' ('.$shoulder['description'].')';
+                        if ($shoulders && !is_null($shoulders[0])) {
+                            foreach ($shoulders as $shoulder) {
+                                $options[$shoulder['shoulder']] = $shoulder['shoulder'] . ' (' . $shoulder['description'] . ')';
                             }
                         }
                     }
@@ -56,26 +57,36 @@ class ArkImporter extends Importer
                 ->label('URI')
                 ->requiredMapping()
                 ->rules(['required', 'url']),
-            ImportColumn::make('who')
-                ->label('Who'),
-            ImportColumn::make('what')
-                ->label('What'),
-            ImportColumn::make('when')
-                ->label('When'),
-            ImportColumn::make('where')
-                ->label('Where')
+            ImportColumn::make('metadata')
+                ->label('Metadata')
         ];
     }
 
-    protected function beforeFill(): void
+    public function resolveRecord(): ?ArkModel
     {
 
         /**
-         * Validate ARK to Import.
-         * Check if ARK already exists.
-         * If not existing, allocate new ARK.
+         * Option: Skip existing URI.
+         * If the option is set, don't update or allocate new ARK.
          */
-        if ($this->data['ark']) {
+        if ($this->options['skipExistingUri'] ?? false) {
+
+            /** Search for ARK with given URI and NAAN from options. */
+            $uri = ArkModel::where([
+                ['uri', '=', $this->data['uri']],
+                ['ark', 'LIKE', $this->options['naan'] . '/' . '%'],
+            ])->first();
+
+            if ($uri) {
+                throw new RowImportFailedException("Option to skip existing URIs has been set and URI already has at least one corresponding ARK: {$uri->ark}.");
+            }
+        }
+
+        /**
+         * Validate or allocate ARK.
+         * Check if ARK already exists, if not, allocate new ARK.
+         */
+        if (!empty($this->data['ark'])) {
 
             /** Check if ARK from Import contains a NAAN which is in database */
             $ark = explode('/', $this->data['ark']);
@@ -86,55 +97,22 @@ class ArkImporter extends Importer
 
         } else {
 
-            /** Get minter settings of NAAN */
-            $naan = $this->options['naan'];
-            $minterSettings = Naan::firstWhere('naan', $naan)->minter;
+            /** Get minter settings */
+            $minterSettings = Naan::firstWhere('naan', $this->options['naan'])->minter;
 
             if (!$minterSettings) {
-                throw new RowImportFailedException("There is no minter associated to this NAAN.");
+                throw new RowImportFailedException("There is no minter associated with this NAAN.");
             }
 
             /** Allocate new ARK */
-            $this->data['ark'] = Ark::generate($naan, $minterSettings->xdigits, $minterSettings->length, $this->options['shoulder'], $minterSettings->ncda);
-            
+            $this->data['ark'] = Ark::generate($this->options['naan'], $minterSettings->xdigits, $minterSettings->length, $this->options['shoulder'], $minterSettings->ncda);
+
             /** Check if allocated ARK not already existing */
             if (ArkModel::firstWhere('ark', '=', $this->data['ark'])) {
                 throw new RowImportFailedException("Failed allocating new ARK.");
             }
-
         }
-        
-        /** Create ERC metadata record */
-        /*
-        $erc = new Erc([$this->data['who'], $this->data['what'], $this->data['what'], $this->data['when']]);
-        $this->data['metadata'] = $erc->record();
-        unset($this->data['who']);
-        unset($this->data['when']);
-        unset($this->data['what']);
-        unset($this->data['where']);
-        */
-    }
 
-    public function resolveRecord(): ?ArkModel
-    {
-
-        /**
-         * Skip existing URI Option.
-         * If the option is set, don't update or allocate new ARK.
-         */
-        if ($this->options['skipExistingUri'] ?? false) {
-
-            /** Search for ARK with given URI and NAAN from options. */
-            $uri = ArkModel::where([
-                ['uri', '=', $this->data['uri']],
-                ['ark', 'like', $this->options['naan'] . '%'],
-            ])->first();
-
-            if ($uri) {
-                throw new RowImportFailedException("Option to skip existing URIs has been set and URI already has at least one corresponding ARK: {$uri->ark}.");
-            }
-        }
-        
         return ArkModel::firstOrNew([
             'ark' => $this->data['ark'],
         ]);

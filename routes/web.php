@@ -1,6 +1,7 @@
 <?php
 
 use App\Ams\Resolver;
+use App\Ams\Metadata;
 use App\Http\Middleware\Language;
 use App\Models\Imports;
 use Illuminate\Http\Request;
@@ -28,6 +29,6 @@ Route::get('/ark:/{naan}', function (string $naan) {
 /** Resolve TEST */
 Route::get('/test', function () {
 
-    $test = Imports::find(1)->mintedArks;
-    dump($test);
+    Metadata::encodeMetadata("erc", ["test-who", "test-what", "test-when", "test-where"]);
+
 });
