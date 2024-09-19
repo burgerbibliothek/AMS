@@ -1,0 +1,1 @@
+[18-Sep-2024 16:06:34 Europe/Zurich] PHP Fatal error:  Cannot declare class App\Filament\Resources\Import\ImportsResource\RelationManagers\ArksRelationManager, because the name is already in use in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Import/ImportsResource/RelationManagers/ArkRevisionsRelationManager.php on line 12

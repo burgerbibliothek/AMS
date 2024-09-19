@@ -5,7 +5,7 @@ namespace App\Filament\Resources\Ark;
 use Burgerbibliothek\ArkManagementTools\Erc;
 use App\Filament\Exports\ArkExporter;
 use App\Filament\Resources\Ark\ArkResource\Pages;
-use App\Filament\Resources\Import\ImportsResource\RelationManagers;
+use App\Filament\Resources\Ark\ArkResource\RelationManagers;
 use App\Models\Ark as ArkModel;
 use App\Models\Naan as NaanModel;
 use App\Models\Status as StatusModel;

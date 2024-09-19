@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Resources\Import\ImportsResource\RelationManagers;
+namespace App\Filament\Resources\Ark\ArkResource\RelationManagers;
 
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
