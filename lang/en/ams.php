@@ -18,7 +18,7 @@ return [
     'ark_resource_uri' => 'Uniform Resource Identifier (URI)',
     'ark_resource_uri_list' => 'URI',
     'ark_resource_status' => 'HTTP-Status',
-    'ark_resource_section_metadata' => 'Electronic Resource Citation (ERC)',
+    'ark_resource_section_metadata' => 'Metadata',
     'ark_resource_erc_who' => 'Who',
     'ark_resource_erc_who_help' => 'A responsible person or party.',
     'ark_resource_erc_what' => 'What',

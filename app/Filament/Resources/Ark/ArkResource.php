@@ -11,6 +11,7 @@ use App\Models\Naan as NaanModel;
 use App\Models\Status as StatusModel;
 use Filament\Forms\Form;
 use Filament\Forms\Get;
+use Filament\Forms\Components\Builder;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -72,19 +73,18 @@ class ArkResource extends Resource
                     ]),
                 Section::make(__('ams.ark_resource_section_metadata'))
                     ->schema([
-                        TextInput::make('who')
-                            ->label(__('ams.ark_resource_erc_who'))
-                            ->helperText(__('ams.ark_resource_erc_who_help')),
-                        TextInput::make('what')
-                            ->label(__('ams.ark_resource_erc_what'))
-                            ->helperText(__('ams.ark_resource_erc_what_help')),
-                        TextInput::make('when')
-                            ->label(__('ams.ark_resource_erc_when'))
-                            ->helperText(__('ams.ark_resource_erc_when_help')),
-                        TextInput::make('where')
-                            ->label(__('ams.ark_resource_erc_where'))
-                            ->helperText(__('ams.ark_resource_erc_where_help')),
-                ])
+                        Builder::make('stories')
+                            ->blocks([
+                                Builder\Block::make('story')
+                                    ->schema([
+                                        TextInput::make('prefix'),
+                                        TextInput::make('who')->required(),
+                                        TextInput::make('what')->required(),
+                                        TextInput::make('when')->required(),
+                                        TextInput::make('where')->required(),
+                                    ]),
+                                ]),
+                    ])
             ])->columns(1);
     }
 
@@ -132,9 +132,8 @@ class ArkResource extends Resource
 
     public static function desirializeMetadata($metadata)
     {
-        dump($metadata);
+        
         $erc = Erc::parseKernelMetadata($metadata);
-        dump($erc);
         foreach($erc as $k => $v){
             $data[$k] = $v;
         }

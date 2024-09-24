@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Ark\ArkResource\Pages;
 
-use Burgerbibliothek\ArkManagementTools\Erc;
+use App\Ams\Metadata;
 use App\Filament\Resources\Ark\ArkResource;
 use App\Models\Ark as ArkModel;
 use App\Models\ArkRevision;
@@ -28,7 +28,7 @@ class EditArk extends EditRecord
     {        
         /** Deserialize ERC Metadata */
         if($data['metadata']){
-            $data = array_merge($data, ArkResource::desirializeMetadata($data['metadata']));
+            $data = array_merge($data, Metadata::deserialize($data['metadata']));
         }
         return $data;
     }
@@ -43,11 +43,9 @@ class EditArk extends EditRecord
         $revision->revision = json_encode($revisionData);
         $revision->save();
 
-        if($data['who'] || $data['what'] || $data['when'] || $data['where']){
-            $erc = new Erc();
-            $erc->addStory([$data['who'], $data['what'], $data['when'], $data['where']]);
-            $data['metadata'] = $erc->record();
-            unset($data['who'], $data['what'], $data['when'], $data['where']);
+        if($data['stories']){
+            $data['metadata'] = Metadata::serialize('erc', $data['stories']);
+            unset($data['stories']);
         }
                 
         return $data;

@@ -29,6 +29,19 @@ Route::get('/ark:/{naan}', function (string $naan) {
 /** Resolve TEST */
 Route::get('/test', function () {
 
-    Metadata::encodeMetadata("erc", ["test-who", "test-what", "test-when", "test-where"]);
+    $test = [
+            "stories" => [
+                "type" => "story", 
+                "data" => [
+                    "prefix" => null, 
+                    "who" => "Gio", 
+                    "what" => "Bern", 
+                    "when" => "Heute", 
+                    "where" => "Hier"
+                    ]
+                ], 
+            ];
+
+    Metadata::encodeMetadata("erc", $test);
 
 });
