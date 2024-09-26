@@ -2,6 +2,7 @@
 
 namespace App\Filament\Imports;
 
+use App\Ams\Metadata;
 use Burgerbibliothek\ArkManagementTools\Ark;
 use Burgerbibliothek\ArkManagementTools\Erc;
 use App\Models\Ark as ArkModel;
@@ -23,14 +24,16 @@ class ArkImporter extends Importer
     {
         return [
             Select::make('naan')
-                ->label('NAAN')
+                ->label(__('ams.ark_resource_import_naan'))
+                ->helperText(__('ams.ark_resource_import_naan_helptext'))
                 ->options(Naan::all()->whereNotNull('minter_settings_id')->pluck('naan', 'naan'))
                 ->required()
                 ->live(),
             Select::make('shoulder')
-                ->label('Shoulder')
+                ->label(__('ams.ark_resource_import_shoulder'))
+                ->helperText(__('ams.ark_resource_import_shoulder_helptext'))
                 ->options(function (Get $get): array {
-                    // Get shoulders of NAAN
+                    /** Load NAAN shoulders. */
                     $options = [];
                     if ($get('naan')) {
                         $shoulders = Naan::where('naan', $get('naan'))->pluck('shoulders')->flatten(1);
@@ -44,7 +47,8 @@ class ArkImporter extends Importer
                 }),
             Checkbox::make('skipExistingUri')
                 ->default('true')
-                ->label('Bestehende URI überspringen'),
+                ->label(__('ams.ark_resource_import_skip'))
+                ->helperText(__('ams.ark_resource_import_skip_hint')),
         ];
     }
 
@@ -83,6 +87,30 @@ class ArkImporter extends Importer
         }
 
         /**
+         * Validate Metadata
+         */
+        if (!empty($this->data['metadata'])) {
+
+            $json = json_decode($this->data['metadata'], 1);
+            $check = null;
+
+            if ($json) {
+                foreach ($json as $j) {
+                    if ($j['type'] == 'erc' && Erc::isValidRecord($j['data'])) {
+                        $check = true;
+                        break;
+                    }
+                }
+
+                if(!$check){
+                    throw new RowImportFailedException("Metadata: No valid ERC record found.");
+                }
+            } else {
+                throw new RowImportFailedException("Metadata: JSON could not be decoded.");
+            }
+        }
+
+        /**
          * Validate or allocate ARK.
          * Check if ARK already exists, if not, allocate new ARK.
          */
@@ -94,7 +122,6 @@ class ArkImporter extends Importer
             if (!Naan::firstWhere('naan', '=', $ark[0])) {
                 throw new RowImportFailedException("NAAN not found in database.");
             }
-
         } else {
 
             /** Get minter settings */

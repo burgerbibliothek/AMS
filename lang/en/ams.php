@@ -35,6 +35,14 @@ return [
     'ark_resource_actions_import' => 'CSV-Import',
     'ark_resource_actions_create' => 'Create ARK',
     'ark_resource_shoulders' => 'Shoulder',
+    'ark_resource_import_modalheading' => 'CSV-Import',
+    'ark_resource_import_submitactionlabel' => 'Start Import',
+    'ark_resource_import_naan' => 'NAAN',
+    'ark_resource_import_naan_helptext' => 'For entries without an ARK, the selected NAAN is used to allocate new ARK.',
+    'ark_resource_import_shoulder' => 'Shoulder',
+    'ark_resource_import_shoulder_helptext' => 'Allocation of new ARK uses the selected Shoulder.',
+    'ark_resource_import_skip' => 'Skip existing URIs',
+    'ark_resource_import_skip_hint' => 'If this option is selected, entries with URIs already in the database are skipped.',
 
     /*
      * Minter Resource

@@ -20,10 +20,9 @@ class Metadata
 
       $erc = new Erc;
 
-      foreach ($data as $story) {
-        $erc->addStory([$story['data']['who'], $story['data']['what'], $story['data']['when'], $story['data']['where']], $story['data']['prefix']);
+      foreach ($data as $element) {
+        $erc->addElement($element['label'], $element['value']);
       }
-
       $erc->record();
       $metadata[] = ['type' => 'erc', 'data' => $erc->record()];
     }
@@ -31,37 +30,30 @@ class Metadata
     return json_encode($metadata);
   }
 
+  /**
+   * Deserialize metadata
+   */
   public static function deserialize($metadata)
   {
 
-    $metadata = json_decode($metadata, 1);
+    $elements = json_decode($metadata, 1);
 
-    foreach ($metadata as $entry) {
-      if ($entry['type'] == 'erc') {
-
-        $erc = Erc::parseKernelMetadata($entry['data']);
-        unset($erc['erc']);
-
-        $stories = array_chunk($erc, 4, true);
+    foreach ($elements as $element) {
+      
+      if ($element['type'] == 'erc') {
+        $erc = new Erc;
+        $record = $erc->parseKernelMetadata($element['data']);
+        unset($record['erc']);
         $data = [];
-        $prefix = null;
-
-        foreach ($stories as $story) {
-          if (str_contains(array_key_first($story), '-')) {
-            $prepos = strrpos(array_key_first($story), '-');
-            $prefix = substr(array_key_first($story), 0, $prepos);
-            foreach ($story as $sk => $s) {
-              $pos = strrpos($sk, '-');
-              $story[substr($sk, $pos + 1, strlen($sk))] = $s;
-              unset($story[$sk]);
-            }
-            $story['prefix'] = $prefix;
-          }
-          $data['stories'][] = ["type" => "story", "data" => $story];
+        foreach ($record as $key => $value) {
+          $data[] = ['label' => $key, 'value' => $value];
         }
-
-        return $data;
       }
     }
+
+    return $data;
   }
+
+  
+
 }

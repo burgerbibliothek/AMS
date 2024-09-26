@@ -25,10 +25,10 @@ class EditArk extends EditRecord
     }
 
     protected function mutateFormDataBeforeFill(array $data): array
-    {        
+    {
         /** Deserialize ERC Metadata */
-        if($data['metadata']){
-            $data = array_merge($data, Metadata::deserialize($data['metadata']));
+        if ($data['metadata']) {
+            $data['metadata'] = Metadata::deserialize($data['metadata']);
         }
         return $data;
     }
@@ -43,11 +43,10 @@ class EditArk extends EditRecord
         $revision->revision = json_encode($revisionData);
         $revision->save();
 
-        if($data['stories']){
-            $data['metadata'] = Metadata::serialize('erc', $data['stories']);
-            unset($data['stories']);
+        if ($data['metadata']) {
+            $data['metadata'] = Metadata::serialize('erc', $data['metadata']);
         }
-                
+
         return $data;
     }
 }

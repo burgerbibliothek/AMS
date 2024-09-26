@@ -18,6 +18,8 @@ class ListArks extends ListRecords
         return [
             ImportAction::make()
                 ->label(__('ams.ark_resource_actions_import'))
+                ->modalHeading(__('ams.ark_resource_import_modalheading'))
+                ->modalSubmitActionLabel(__('ams.ark_resource_import_submitactionlabel'))
                 ->importer(ArkImporter::class),
             Actions\CreateAction::make()
                 ->label(__('ams.ark_resource_actions_create')),

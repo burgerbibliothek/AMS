@@ -22,11 +22,8 @@ class CreateArk extends CreateRecord
         $data['ark'] = Ark::generate($data['naan'], $minterSettings->xdigits, $minterSettings->length, $data['shoulder'], $minterSettings->ncda);
         
         /** Create ERC record */
-        if($data['stories']){
-            $data['metadata'] = Metadata::serialize('erc', $data['stories']);
-            unset($data['stories']);
-        }
-
+        $data['metadata'] = Metadata::serialize('erc', $data['metadata']);
+        
         return $data;
     }
 }
