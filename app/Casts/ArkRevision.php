@@ -15,12 +15,13 @@ class ArkRevision implements CastsAttributes
     public function get(Model $model, string $key, mixed $value, array $attributes): mixed
     {
         $json = json_decode($value, true);
-        $value = '<li><strong>URI:</strong> '.$json['uri'].'</li>';
+        $value = '<strong>URI:</strong> '.$json['uri'].'<br>';
+        
         if($json['metadata']){
-            $value .= '<li><strong>Metadata:</strong> <pre>'.$json['metadata'].'</pre></li>';
+            $value .= '<strong>Metadata:</strong> <code>'.$json['metadata'].'</code>';
         }
 
-        return '<ul>'.$value.'<ul>';
+        return $value;
     }
 
     /**

@@ -43,6 +43,8 @@ return [
     'ark_resource_import_shoulder_helptext' => 'Allocation of new ARK uses the selected Shoulder.',
     'ark_resource_import_skip' => 'Skip existing URIs',
     'ark_resource_import_skip_hint' => 'If this option is selected, entries with URIs already in the database are skipped.',
+    'ark_resource_import_emptydatadelete' => 'Delete data on empty metadata row.',
+    'ark_resource_import_emptydatadelete_helptext' => 'If this option is selected, empty metadata entries delete present metadata.',
 
     /*
      * Minter Resource

@@ -8,6 +8,7 @@ use Burgerbibliothek\ArkManagementTools\Erc;
 use App\Models\Ark as ArkModel;
 use App\Models\Naan;
 use App\Models\SuccessfullImportRow;
+use App\Models\ArkRevision;
 use Filament\Actions\Imports\ImportColumn;
 use Filament\Actions\Imports\Importer;
 use Filament\Actions\Imports\Models\Import;
@@ -20,6 +21,9 @@ class ArkImporter extends Importer
 {
     protected static ?string $model = Ark::class;
 
+    /**
+     * Import form.
+     */
     public static function getOptionsFormComponents(): array
     {
         return [
@@ -49,20 +53,29 @@ class ArkImporter extends Importer
                 ->default('true')
                 ->label(__('ams.ark_resource_import_skip'))
                 ->helperText(__('ams.ark_resource_import_skip_hint')),
+            Checkbox::make('emptyMetadataDelete')
+                ->label(__('ams.ark_resource_import_emptydatadelete'))
+                ->helperText(__('ams.ark_resource_import_emptydatadelete_helptext')),
         ];
     }
 
+    /**
+     * Define Example CSV
+     */
     public static function getColumns(): array
     {
         return [
             ImportColumn::make('ark')
-                ->label('ARK'),
+                ->label('ARK')
+                ->example('12345/abc1337'),
             ImportColumn::make('uri')
                 ->label('URI')
+                ->example('https://burgerbib.ch')
                 ->requiredMapping()
                 ->rules(['required', 'url']),
             ImportColumn::make('metadata')
                 ->label('Metadata')
+                ->example('[{"type":"erc","data":"erc:\nwho: Burgerbibliothek%spBern\nwhat: Burgerbibliothek%spBern\nwhere: https%cn%sl%slburgerbib.ch%sl\nwhen: 1951\n\n"}]')
         ];
     }
 
@@ -95,6 +108,7 @@ class ArkImporter extends Importer
             $check = null;
 
             if ($json) {
+
                 foreach ($json as $j) {
                     if ($j['type'] == 'erc' && Erc::isValidRecord($j['data'])) {
                         $check = true;
@@ -102,12 +116,20 @@ class ArkImporter extends Importer
                     }
                 }
 
-                if(!$check){
+                if (!$check) {
                     throw new RowImportFailedException("Metadata: No valid ERC record found.");
                 }
+
             } else {
                 throw new RowImportFailedException("Metadata: JSON could not be decoded.");
             }
+        }
+
+        /**
+         * Use empty metadata entries to delete or not
+         */
+        if(!$this->options['emptyMetadataDelete']){
+            unset($this->data['metadata']);
         }
 
         /**
@@ -144,7 +166,6 @@ class ArkImporter extends Importer
             'ark' => $this->data['ark'],
         ]);
 
-        return new ArkModel();
     }
 
     /** TODO implement Revision when importing */
@@ -152,9 +173,20 @@ class ArkImporter extends Importer
     /**
      * Save which ARKs have been touched by the import.
      */
+    protected function beforeSave(): void
+    {
+        $currentData = ArkModel::firstWhere('ark', $this->data['ark']);
+        if($currentData){
+            $revisionData = ['uri' => $currentData->uri, 'metadata' => $currentData->metadata];
+            $revision = new ArkRevision;
+            $revision->ark_id = $currentData->id;
+            $revision->revision = json_encode($revisionData);
+            $revision->save();
+        }        
+    }
+
     protected function afterSave(): void
     {
-        // Runs after a record is saved to the database.
         $successfullRow = new SuccessfullImportRow();
         $successfullRow->import_id = $this->import['id'];
         $successfullRow->ark_id = $this->record['id'];

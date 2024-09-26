@@ -34,12 +34,6 @@ class ImportsResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')
                     ->since()
                     ->sortable()
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                //
             ]);
     }
 
