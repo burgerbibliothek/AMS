@@ -114,3 +114,9 @@ Stack trace:
 #0 {main}
   thrown in /home/heiraterei/sites/ams-reloaded/public/test.php on line 17
 [19-Sep-2024 11:30:05 Europe/Zurich] PHP Fatal error:  'break' not in the 'loop' or 'switch' context in /home/heiraterei/sites/ams-reloaded/app/Filament/Imports/ArkImporter.php on line 74
+[30-Sep-2024 14:59:38 Europe/Zurich] PHP Fatal error:  Could not check compatibility between App\Filament\Imports\ArkImporter::resolveRecord(): ?App\Filament\Imports\Model\Ark and Filament\Actions\Imports\Importer::resolveRecord(): ?Illuminate\Database\Eloquent\Model, because class App\Filament\Imports\Model\Ark is not available in /home/heiraterei/sites/ams-reloaded/app/Filament/Imports/ArkImporter.php on line 75
+[30-Sep-2024 14:59:57 Europe/Zurich] PHP Fatal error:  Cannot use App\Models\Ark as Ark because the name is already in use in /home/heiraterei/sites/ams-reloaded/app/Filament/Imports/ArkImporter.php on line 8
+[30-Sep-2024 16:19:43 Europe/Zurich] PHP Fatal error:  'break' not in the 'loop' or 'switch' context in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Ark/ArkResource/Pages/CreateArk.php on line 27
+[30-Sep-2024 16:19:43 Europe/Zurich] PHP Fatal error:  'break' not in the 'loop' or 'switch' context in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Ark/ArkResource/Pages/CreateArk.php on line 27
+[30-Sep-2024 16:19:44 Europe/Zurich] PHP Fatal error:  'break' not in the 'loop' or 'switch' context in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Ark/ArkResource/Pages/CreateArk.php on line 27
+[30-Sep-2024 16:19:52 Europe/Zurich] PHP Fatal error:  A function with return type must return a value in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Ark/ArkResource/Pages/CreateArk.php on line 27

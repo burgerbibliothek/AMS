@@ -20,7 +20,7 @@ use Filament\Forms\Components\Select;
 
 class ArkImporter extends Importer
 {
-    protected static ?string $model = Ark::class;
+    protected static ?string $model = ArkModel::class;
 
     /**
      * Import Dialog
@@ -39,8 +39,8 @@ class ArkImporter extends Importer
             Select::make('shoulder')
                 ->label(__('ams.ark_resource_import_shoulder'))
                 ->helperText(__('ams.ark_resource_import_shoulder_helptext'))
-                ->options(fn (Get $get): array => Naan::shoulders($get('naan')))
-                ->visible(fn (Get $get): bool => Naan::hasShoulder($get('naan')))
+                ->options(fn(Get $get): array => Naan::shoulders($get('naan')))
+                ->visible(fn(Get $get): bool => Naan::hasShoulder($get('naan')))
                 ->live(),
             Checkbox::make('skipExistingUri')
                 ->default('true')
@@ -54,6 +54,8 @@ class ArkImporter extends Importer
 
     /**
      * Define Example CSV
+     * Example CSV which can be downloaded in the dialog.
+     * @return array
      */
     public static function getColumns(): array
     {
@@ -72,6 +74,10 @@ class ArkImporter extends Importer
         ];
     }
 
+    /**
+     * Resolve Record.
+     * https://filamentphp.com/docs/3.x/actions/prebuilt-actions/import#updating-existing-records-when-importing
+     */
     public function resolveRecord(): ?ArkModel
     {
 

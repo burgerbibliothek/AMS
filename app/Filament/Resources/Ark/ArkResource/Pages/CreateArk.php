@@ -23,7 +23,7 @@ class CreateArk extends CreateRecord
         
         /** Create ERC record */
         $data['metadata'] = Metadata::serialize('erc', $data['metadata']);
-        
+
         return $data;
     }
 }
