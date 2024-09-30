@@ -17,12 +17,15 @@ use Filament\Forms\Get;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Select;
 
+
 class ArkImporter extends Importer
 {
     protected static ?string $model = Ark::class;
 
     /**
-     * Import form.
+     * Import Dialog
+     * Form for the import dialog.
+     * @return array
      */
     public static function getOptionsFormComponents(): array
     {
@@ -36,19 +39,9 @@ class ArkImporter extends Importer
             Select::make('shoulder')
                 ->label(__('ams.ark_resource_import_shoulder'))
                 ->helperText(__('ams.ark_resource_import_shoulder_helptext'))
-                ->options(function (Get $get): array {
-                    /** Load NAAN shoulders. */
-                    $options = [];
-                    if ($get('naan')) {
-                        $shoulders = Naan::where('naan', $get('naan'))->pluck('shoulders')->flatten(1);
-                        if ($shoulders && !is_null($shoulders[0])) {
-                            foreach ($shoulders as $shoulder) {
-                                $options[$shoulder['shoulder']] = $shoulder['shoulder'] . ' (' . $shoulder['description'] . ')';
-                            }
-                        }
-                    }
-                    return $options;
-                }),
+                ->options(fn (Get $get): array => Naan::shoulders($get('naan')))
+                ->visible(fn (Get $get): bool => Naan::hasShoulder($get('naan')))
+                ->live(),
             Checkbox::make('skipExistingUri')
                 ->default('true')
                 ->label(__('ams.ark_resource_import_skip'))
@@ -119,7 +112,6 @@ class ArkImporter extends Importer
                 if (!$check) {
                     throw new RowImportFailedException("Metadata: No valid ERC record found.");
                 }
-
             } else {
                 throw new RowImportFailedException("Metadata: JSON could not be decoded.");
             }
@@ -128,7 +120,7 @@ class ArkImporter extends Importer
         /**
          * Use empty metadata entries to delete or not
          */
-        if(!$this->options['emptyMetadataDelete']){
+        if (!$this->options['emptyMetadataDelete']) {
             unset($this->data['metadata']);
         }
 
@@ -165,7 +157,6 @@ class ArkImporter extends Importer
         return ArkModel::firstOrNew([
             'ark' => $this->data['ark'],
         ]);
-
     }
 
     /** TODO implement Revision when importing */
@@ -176,13 +167,13 @@ class ArkImporter extends Importer
     protected function beforeSave(): void
     {
         $currentData = ArkModel::firstWhere('ark', $this->data['ark']);
-        if($currentData){
+        if ($currentData) {
             $revisionData = ['uri' => $currentData->uri, 'metadata' => $currentData->metadata];
             $revision = new ArkRevision;
             $revision->ark_id = $currentData->id;
             $revision->revision = json_encode($revisionData);
             $revision->save();
-        }        
+        }
     }
 
     protected function afterSave(): void

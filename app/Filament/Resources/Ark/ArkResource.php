@@ -31,7 +31,6 @@ class ArkResource extends Resource
 
     public static function form(Form $form): Form
     {
-
         return $form
             ->schema([
                 Section::make(__('ams.ark_resource_section_basic'))
@@ -45,20 +44,8 @@ class ArkResource extends Resource
                             ->live(),
                         Select::make('shoulder')
                             ->label(__('ams.ark_resource_shoulders'))
-                            ->options(function (Get $get): array {
-                                /** Load NAAN Shoulders */
-                                $options = [];
-                                if ($get('naan')) {
-                                    $shoulders = NaanModel::where('naan', $get('naan'))->pluck('shoulders')->flatten(1);
-                                    if ($shoulders && !is_null($shoulders[0])) {
-                                        foreach ($shoulders as $shoulder) {
-                                            $options[$shoulder['shoulder']] = $shoulder['shoulder'] . ' (' . $shoulder['description'] . ')';
-                                        }
-                                    }
-                                }
-                                return $options;
-                            })
-                            ->visible(fn(Get $get): bool => is_null($get('ark'))),
+                            ->options(fn(Get $get): array => NaanModel::shoulders($get('naan')))
+                            ->visible(fn(Get $get): bool => is_null($get('ark')) && NaanModel::hasShoulder($get('naan'))),
                         TextInput::make('ark')
                             ->label(__('ams.ark_resource_ark'))
                             ->unique(ignoreRecord: true)
