@@ -3,12 +3,15 @@
 namespace App\Ams;
 
 use Burgerbibliothek\ArkManagementTools\Ark;
+use Burgerbibliothek\ArkManagementTools\Erc;
 use Burgerbibliothek\ArkManagementTools\Ncda;
 use Burgerbibliothek\ArkManagementTools\Validator;
+use App\Ams\Metadata;
 use App\Models\Ark as ArkModel;
 use App\Models\Naan as NaanModel;
 use App\Models\Minter as MinterModel;
 use App\Models\Status as StatusModel;
+
 
 class Resolver
 {
@@ -29,8 +32,16 @@ class Resolver
             $uri = $ark->uri . '/' . $components['suffixes'];
 
             /** Return metadata when inflection is present */
-            if(in_array(array_key_first($request->query()), ['?', 'info'])){  
-                return response($ark->metadata)->header('Content-Type', 'text/plain');
+            if(in_array(array_key_first($request->query()), ['?', 'info'])){
+                
+                if(empty($ark->metadata)){
+                    return 'erc: (:tba) | (:tba) | (:tba) | (:tba)';
+                }
+                
+                $erc = new Erc;
+                $erc->record = Metadata::deserialize($ark->metadata, 1);
+
+                return response($erc->record())->header('Content-Type', 'text/plain');
             }
 
             /** Return status if present */

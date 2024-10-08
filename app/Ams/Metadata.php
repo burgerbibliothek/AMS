@@ -31,17 +31,18 @@ class Metadata
         $erc->addElement($element['label'], $element['value']);
       }
 
-      $erc->record();
-      $metadata[] = ['type' => 'erc', 'data' => $erc->record()];
+      $metadata[] = ['type' => 'erc', 'data' => $erc->record(false)];
+
     }
 
     return json_encode($metadata);
   }
 
   /**
-   * Deserialize metadata
+   * Deserialize metadata for displaying in backend.
+   * @param string $metadata JSON encoded Metadata.
    */
-  public static function deserialize($metadata)
+  public static function deserialize(string $metadata, $raw = false)
   {
 
     $elements = json_decode($metadata, 1);
@@ -51,8 +52,12 @@ class Metadata
       if ($element['type'] == 'erc') {
 
         $erc = new Erc;
-
         $record = $erc->parseKernelMetadata($element['data']);
+
+        if($raw){
+          return $record;
+        }
+
         unset($record['erc']);
 
         $data = [];
@@ -64,4 +69,17 @@ class Metadata
 
     return $data;
   }
+
+  /**
+   * 
+   */
+  public static function erc($metadata)
+  {
+    $elements = json_decode($metadata, 1);
+    foreach ($elements as $element) {
+      if ($element['type'] == 'erc') {
+        return Erc::decodeElementValue($element['data']);
+      }
+  }}
+   
 }

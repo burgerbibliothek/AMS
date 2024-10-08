@@ -39,6 +39,7 @@ class ArkImporter extends Importer
             Select::make('shoulder')
                 ->label(__('ams.ark_resource_import_shoulder'))
                 ->helperText(__('ams.ark_resource_import_shoulder_helptext'))
+                ->placeholder('−')
                 ->options(fn(Get $get): array => Naan::shoulders($get('naan')))
                 ->visible(fn(Get $get): bool => Naan::hasShoulder($get('naan')))
                 ->live(),
