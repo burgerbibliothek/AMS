@@ -17,8 +17,12 @@ class ArkRevision implements CastsAttributes
         $json = json_decode($value, true);
         $value = '<strong>URI:</strong> '.$json['uri'].'<br>';
         
-        if($json['metadata']){
+        if(!empty($json['metadata'])){
             $value .= '<strong>Metadata:</strong> <code>'.$json['metadata'].'</code>';
+        }
+
+        if(!empty($json['http-status'])){
+            $value .= '<strong>HTTP-Status:</strong> <code>'.$json['http-status'].'</code>';
         }
 
         return $value;

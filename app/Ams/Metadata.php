@@ -10,9 +10,16 @@ class Metadata
   /**
    * Serialize metadata for saving to Database.
    * Saves metadata into a JSON structure. currently only ERC is supported.
+   * @param string $type Metadata scheme. Currently only "erc".
+   * @param array $data Data elements.
+   * @return string Returns a JSON encoded string.
    */
-  public static function serialize($type, $data)
+  public static function serialize(string $type = 'erc', array $data): ?string
   {
+
+    if(!$data){
+      return null;
+    }
 
     $metadata = [];
 

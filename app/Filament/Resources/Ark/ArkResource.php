@@ -127,7 +127,8 @@ class ArkResource extends Resource
                                         '(:tba)',
                                         '(:etal)',
                                         '(:at)'
-                                    ]),
+                                    ])
+                                    ->required(),
                             ])
                             ->reorderableWithButtons()
                             ->columns(2)

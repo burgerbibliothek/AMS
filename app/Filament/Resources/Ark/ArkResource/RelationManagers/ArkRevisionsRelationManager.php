@@ -11,18 +11,19 @@ use Filament\Tables\Columns\TextColumn;
 class ArkRevisionsRelationManager extends RelationManager
 {
     protected static string $relationship = 'ark_revisions';
-
+    
     public function table(Table $table): Table
     {
         return $table
+            ->heading(__('ams.ark_resource_revision_title'))
             ->columns([
                 Tables\Columns\TextColumn::make('created_at')
                     ->sortable()
-                    ->label('Modification Date'),
+                    ->label(__('ams.ark_resource_revision_moddate')),
                 Tables\Columns\TextColumn::make('revision')
                     ->html()
                     ->size(TextColumn\TextColumnSize::ExtraSmall)
-                    ->label('Revision'),
+                    ->label(__('ams.ark_resource_revision_data')),
             ]);
     }
 }

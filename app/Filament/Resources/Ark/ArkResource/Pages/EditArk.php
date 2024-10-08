@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Ark\ArkResource\Pages;
 use App\Ams\Metadata;
 use App\Filament\Resources\Ark\ArkResource;
 use App\Models\Ark as ArkModel;
+use App\Models\Status as StatusModel;
 use App\Models\ArkRevision;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
@@ -37,15 +38,20 @@ class EditArk extends EditRecord
     {
         /** Save current data as revision. */
         $currentData = ArkModel::find($this->data['id']);
-        $revisionData = ['uri' => $currentData->uri, 'metadata' => $currentData->metadata];
+        
+        /** Get status label */
+        $currentStatus = null;
+        if($currentData->status_id){
+            $currentStatus = StatusModel::find($currentData->status_id)->label;
+        }
+
+        $revisionData = ['uri' => $currentData->uri, 'http-status' => $currentStatus, 'metadata' => $currentData->metadata];
         $revision = new ArkRevision;
         $revision->ark_id = $this->data['id'];
         $revision->revision = json_encode($revisionData);
         $revision->save();
 
-        if ($data['metadata']) {
-            $data['metadata'] = Metadata::serialize('erc', $data['metadata']);
-        }
+        $data['metadata'] = Metadata::serialize('erc', $data['metadata']);
 
         return $data;
     }
