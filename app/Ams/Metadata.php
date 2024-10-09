@@ -26,7 +26,7 @@ class Metadata
     if ($type == 'erc') {
 
       $erc = new Erc;
-
+      
       foreach ($data as $element) {
         $erc->addElement($element['label'], $element['value']);
       }
@@ -41,28 +41,35 @@ class Metadata
   /**
    * Deserialize metadata for displaying in backend.
    * @param string $metadata JSON encoded Metadata.
+   * @param bool $raw If set to TRUE complete ERC record is returned as array.
    */
-  public static function deserialize(string $metadata, $raw = false)
+  public static function deserialize(string $metadata, bool $raw = false)
   {
-
+    
+    $data = [];
     $elements = json_decode($metadata, 1);
 
-    foreach ($elements as $element) {
+    /** Check if JSON could be decoded */
+    if($elements){
 
-      if ($element['type'] == 'erc') {
+      /** Iterate elements */
+      foreach ($elements as $element) {
 
-        $erc = new Erc;
-        $record = $erc->parseKernelMetadata($element['data']);
+        if (!empty($element['type']) && $element['type'] == 'erc' && !empty($element['data'])) {
+          
+          $record = Erc::parseRecord($element['data']);
 
-        if($raw){
-          return $record;
-        }
+          if($raw){
+            return $record;
+          }
 
-        unset($record['erc']);
+          unset($record['erc']);
 
-        $data = [];
-        foreach ($record as $key => $value) {
-          $data[] = ['label' => $key, 'value' => Erc::decodeElementValue($value)];
+          if($record){
+            foreach ($record as $label => $value) {
+              $data[] = ['label' => $label, 'value' => Erc::decodeElementValue($value)];
+            }
+          }
         }
       }
     }

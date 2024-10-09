@@ -18,7 +18,6 @@ return new class extends Migration
             $table->foreignId('status_id')->nullable()->references('id')->on('status');
             $table->text('metadata')->nullable();
             $table->timestamps();
-            $table->softDeletes('deleted_at');
         });
     }
 

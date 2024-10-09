@@ -18,6 +18,10 @@ class CreateArk extends CreateRecord
         /** Get minter settings of NAAN */
         $minterSettings = Naan::firstWhere('naan', $data['naan'])->minter;
 
+        if(empty($data['shoulder'])){
+            $data['shoulder'] = null;
+        }
+
         /** Retrieve new ARK */
         $data['ark'] = Ark::generate($data['naan'], $minterSettings->xdigits, $minterSettings->length, $data['shoulder'], $minterSettings->ncda);
         

@@ -9,8 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ark extends Model
 {
-    use SoftDeletes;
-
     protected $table = 'arks';
     protected $guarded = ['id','created_at'];
 

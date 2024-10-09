@@ -81,7 +81,7 @@ class ArkImporter extends Importer
      */
     public function resolveRecord(): ?ArkModel
     {
-
+        
         /**
          * Option: Skip existing URI.
          * If the option is set, don't update or allocate new ARK.
@@ -99,9 +99,7 @@ class ArkImporter extends Importer
             }
         }
 
-        /**
-         * Validate Metadata
-         */
+        /** Validate and preprocess metadata */
         if (!empty($this->data['metadata'])) {
 
             $json = json_decode($this->data['metadata'], 1);
@@ -111,7 +109,21 @@ class ArkImporter extends Importer
 
                 foreach ($json as $j) {
                     if ($j['type'] == 'erc' && Erc::isValidRecord($j['data'])) {
+                        
                         $check = true;
+
+                        $erc = new Erc;
+                        $erc->record = Erc::parseKernelMetadata($j['data']);
+                        
+                        $this->data['metadata'] = [];
+
+                        foreach ($erc->record as $label => $value) {
+                            if(in_array($label, ['who', 'what', 'when', 'where', 'how', 'why', 'huh', 'erc', 'about-erc', 'about-who', 'about-what', 'about-when', 'about-where', 'about-how', 'support-erc', 'support-who', 'support-what', 'support-when', 'support-where', 'meta-erc', 'meta-who', 'meta-what', 'meta-when', 'meta-where', 'depositor-erc', 'depositor-who', 'depositor-what', 'depositor-when', 'depositor-where', 'title', 'creator', 'subject', 'description', 'publisher', 'contributor', 'date', 'type', 'format', 'identifier', 'source', 'language', 'relation', 'coverage', 'rights', 'note', 'in'])){
+                                $this->data['metadata'][] = ['label' => $label, 'value' => $value];
+                            }
+                        }
+
+                        $this->data['metadata'] = Metadata::serialize('erc', $this->data['metadata']);
                         break;
                     }
                 }
@@ -119,6 +131,7 @@ class ArkImporter extends Importer
                 if (!$check) {
                     throw new RowImportFailedException("Metadata: No valid ERC record found.");
                 }
+
             } else {
                 throw new RowImportFailedException("Metadata: JSON could not be decoded.");
             }
@@ -127,7 +140,7 @@ class ArkImporter extends Importer
         /**
          * Use empty metadata entries to delete or not
          */
-        if (!$this->options['emptyMetadataDelete']) {
+        if (!$this->options['emptyMetadataDelete'] && empty($this->data['metadata'])) {
             unset($this->data['metadata']);
         }
 
@@ -143,6 +156,7 @@ class ArkImporter extends Importer
             if (!Naan::firstWhere('naan', '=', $ark[0])) {
                 throw new RowImportFailedException("NAAN not found in database.");
             }
+
         } else {
 
             /** Get minter settings */
@@ -150,6 +164,10 @@ class ArkImporter extends Importer
 
             if (!$minterSettings) {
                 throw new RowImportFailedException("There is no minter associated with this NAAN.");
+            }
+
+            if(empty($this->options['shoulder'])){
+                $this->options['shoulder'] = null;
             }
 
             /** Allocate new ARK */
@@ -164,9 +182,9 @@ class ArkImporter extends Importer
         return ArkModel::firstOrNew([
             'ark' => $this->data['ark'],
         ]);
-    }
 
-    /** TODO implement Revision when importing */
+
+    }
 
     /**
      * Save which ARKs have been touched by the import.
