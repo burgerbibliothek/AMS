@@ -17,12 +17,6 @@ class ImportsResource extends Resource
     protected static ?string $slug = 'imports';
     protected static ?string $navigationLabel = 'Imports';
 
-    public static function form(Form $form): Form
-    {
-        return $form
-            ->schema([]);
-    }
-
     public static function table(Table $table): Table
     {
         return $table

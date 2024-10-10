@@ -12,6 +12,9 @@ class CreateNaan extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
+       
+        $data['shoulders'] = $data['shoulders'] ? $data['shoulders'] : null;
+        
         /** Add trailing slash to nma */
         $data['nma'] = rtrim($data['nma'],"/").'/';
         return $data;
