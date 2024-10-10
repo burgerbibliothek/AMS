@@ -42,7 +42,7 @@ class ImportsResource extends Resource
     {
         return [
             'index' => Pages\ListImports::route('/'),
-            'edit' => Pages\ListImportsDetails::route('/import/{record}'),
+            'view' => Pages\ListImportsDetails::route('/view/{record}'),
         ];
     }
 }

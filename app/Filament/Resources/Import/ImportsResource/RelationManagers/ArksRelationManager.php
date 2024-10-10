@@ -8,13 +8,15 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ExportBulkAction;
+use App\Models\Imports;
 
 class ArksRelationManager extends RelationManager
 {
-    protected static string $relationship = 'mintedArks';
+    protected static string $relationship = 'successfullImportRows';
 
     public function table(Table $table): Table
     {
+                
         return $table
             ->recordTitleAttribute('ark')
             ->columns([
@@ -27,9 +29,6 @@ class ArksRelationManager extends RelationManager
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->sortable()
-            ])
-            ->filters([
-                //
             ])
             ->headerActions([
                 ExportAction::make()

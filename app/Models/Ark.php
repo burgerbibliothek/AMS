@@ -5,7 +5,6 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Ark extends Model
 {
@@ -20,6 +19,11 @@ class Ark extends Model
     public function ark_revisions(): HasMany
     {
         return $this->hasMany(ArkRevision::class, 'ark_id', 'id');
+    }
+
+    public function successfullImportRows(): BelongsTo
+    {
+        return $this->BelongsTo(SuccessfullImportRow::class, 'id', 'ark_id');
     }
 
     public static function hasChanged(int $id, array $attributes): bool

@@ -3,10 +3,9 @@
 namespace App\Filament\Resources\Import\ImportsResource\Pages;
 
 use App\Filament\Resources\Import\ImportsResource;
-use App\Models\SuccessfullImportRow;
-use Filament\Resources\Pages\ListRecords;
 use Filament\Infolists;
 use Filament\Infolists\Infolist;
+use Filament\Resources\Pages\ListRecords;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;

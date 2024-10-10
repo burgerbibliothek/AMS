@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Imports extends Model
@@ -17,9 +18,9 @@ class Imports extends Model
         return $this->hasMany(FailedImportRow::class);
     }
 
-    public function mintedArks(): HasManyThrough
+    public function successfullImportRows(): HasManyThrough
     {
-        return $this->hasManyThrough(
+        return $this->HasManyThrough(
             Ark::class, 
             SuccessfullImportRow::class,
             'import_id',
@@ -28,4 +29,5 @@ class Imports extends Model
             'ark_id'
         );
     }
+
 }
