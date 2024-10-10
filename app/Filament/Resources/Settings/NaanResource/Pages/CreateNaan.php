@@ -9,4 +9,11 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateNaan extends CreateRecord
 {
     protected static string $resource = NaanResource::class;
+
+    protected function mutateFormDataBeforeCreate(array $data): array
+    {
+        /** Add trailing slash to nma */
+        $data['nma'] = rtrim($data['nma'],"/").'/';
+        return $data;
+    }
 }

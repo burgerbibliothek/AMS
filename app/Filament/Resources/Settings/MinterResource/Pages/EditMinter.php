@@ -23,7 +23,7 @@ class EditMinter extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        $data['xdigits'] = MinterResource::arkCharacterRepetoire($data['xdigits']);        
+        $data['xdigits'] = MinterResource::arkCharacterRepetoire($data['xdigits']);
         return $data;
     }
 }

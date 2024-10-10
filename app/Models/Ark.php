@@ -21,5 +21,21 @@ class Ark extends Model
     {
         return $this->hasMany(ArkRevision::class, 'ark_id', 'id');
     }
+
+    public static function hasChanged(int $id, array $attributes): bool
+    {
+        $current = self::find($id);
+        $result = [];
+
+        foreach ($attributes as $attr => $value) {
+            $result[] = $current->$attr === $value;
+        }
+
+        $result = in_array(false, $result, 1) ? true : false;
+
+        return $result;
+
+    }
+
     
 }

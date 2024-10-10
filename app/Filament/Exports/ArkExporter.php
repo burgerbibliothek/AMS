@@ -14,8 +14,7 @@ class ArkExporter extends Exporter
     public static function getColumns(): array
     {
         return [
-            ExportColumn::make('id')
-                ->label('ID'),
+            ExportColumn::make('id')->label('ID'),
             ExportColumn::make('ark'),
             ExportColumn::make('uri'),
             ExportColumn::make('status_id'),

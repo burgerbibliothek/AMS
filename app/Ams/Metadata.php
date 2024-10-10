@@ -17,13 +17,13 @@ class Metadata
   public static function serialize(string $type = 'erc', array $data): ?string
   {
 
-    if(!$data){
+    if(empty($data)){
       return null;
     }
 
     $metadata = [];
 
-    if ($type == 'erc') {
+    if ($type === 'erc') {
 
       $erc = new Erc;
       

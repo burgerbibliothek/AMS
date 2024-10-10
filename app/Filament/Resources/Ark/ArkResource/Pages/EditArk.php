@@ -25,6 +25,11 @@ class EditArk extends EditRecord
         ];
     }
 
+    protected function getRedirectUrl(): string
+    {
+        return $this->getResource()::getUrl('edit', ['record' => $this->getRecord()]);
+    }
+
     protected function mutateFormDataBeforeFill(array $data): array
     {
         /** Deserialize ERC Metadata */
@@ -36,22 +41,32 @@ class EditArk extends EditRecord
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        /** Save current data as revision. */
-        $currentData = ArkModel::find($this->data['id']);
-        
-        /** Get status label */
-        $currentStatus = null;
-        if($currentData->status_id){
-            $currentStatus = StatusModel::find($currentData->status_id)->label;
-        }
-
-        $revisionData = ['uri' => $currentData->uri, 'http-status' => $currentStatus, 'metadata' => $currentData->metadata];
-        $revision = new ArkRevision;
-        $revision->ark_id = $this->data['id'];
-        $revision->revision = json_encode($revisionData);
-        $revision->save();
-
         $data['metadata'] = Metadata::serialize('erc', $data['metadata']);
+        
+        /** Save current data as revision. */
+        $change = ArkModel::hasChanged($this->data['id'], [
+            'ark' => $this->data['ark'], 
+            'uri' => $this->data['uri'],
+            'status_id' => $this->data['status_id'],
+            'metadata' => $data['metadata']
+        ]);
+        
+        if($change){
+
+            $currentData = ArkModel::find($this->data['id']);
+
+            /** Get status label */
+            $currentStatus = null;
+            if($currentData->status_id){
+                $currentStatus = StatusModel::find($currentData->status_id)->label;
+            }
+
+            $revisionData = ['uri' => $currentData->uri, 'http-status' => $currentStatus, 'metadata' => $currentData->metadata];
+            $revision = new ArkRevision;
+            $revision->ark_id = $this->data['id'];
+            $revision->revision = json_encode($revisionData);
+            $revision->save();
+        }
 
         return $data;
     }

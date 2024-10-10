@@ -35,6 +35,10 @@ class NaanResource extends Resource
                             ->label(__('ams.naan_resource_naan'))
                             ->unique(ignoreRecord: true)
                             ->required(),
+                        TextInput::make('nma')
+                            ->label(__('ams.naan_resource_nma'))
+                            ->activeUrl()
+                            ->required(),
                         TextInput::make('description')
                             ->label(__('ams.naan_resource_desc'))
                             ->required(),
@@ -97,4 +101,5 @@ class NaanResource extends Resource
             'edit' => Pages\EditNaan::route('/edit/{record}'),
         ];
     }
+    
 }

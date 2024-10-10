@@ -41,10 +41,12 @@ return [
     'ark_resource_import_naan_helptext' => 'For entries without an ARK, the selected NAAN is used to allocate new ARKs.',
     'ark_resource_import_shoulder' => 'Shoulder',
     'ark_resource_import_shoulder_helptext' => 'Optional selection of a shoulder for the allocation of new ARKs.',
-    'ark_resource_import_skip' => 'Skip entries w/ existing URIs',
+    'ark_resource_import_skip' => 'Skip entries w/ existing URIs.',
     'ark_resource_import_skip_hint' => 'If this option is selected, entries that already have the identical URI are skipped.',
     'ark_resource_import_emptydatadelete' => 'Delete data on empty metadata row.',
     'ark_resource_import_emptydatadelete_helptext' => 'If this option is selected, empty metadata entries delete present metadata.',
+    'ark_resource_import_ercwhere' => 'Add “where” story w/ ARK.',
+    'ark_resource_import_ercwhere_helptext' => 'If this option is selected, a “where” story containing the ARK is added to the ERC record (incl. Name Mapping Authority)',
     'ark_resource_revision_title' => 'Revisions',
     'ark_resource_revision_data' => 'Data',
     'ark_resource_revision_moddate' => 'Revision date',
@@ -75,6 +77,7 @@ return [
      */
     'naan_resource_section_minter' => 'Basic Settings',
     'naan_resource_naan' => 'Name Assigning Authority Number (NAAN)',
+    'naan_resource_nma' => 'Name Mapping Authority (NMA)',
     'naan_resource_naan_list' => 'NAAN',
     'naan_resource_desc' => 'Description',
     'naan_resource_minter' => 'Minter',
@@ -97,8 +100,6 @@ return [
      * Import Resource
      */
     'import_resource_navigationlabel' => 'Importations',
-
-
-    'ams.navigation_settings' => 'Einstellungen'
+    'ams.navigation_settings' => 'Settings'
 
 ];

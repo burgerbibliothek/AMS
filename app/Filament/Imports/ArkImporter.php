@@ -50,6 +50,9 @@ class ArkImporter extends Importer
             Checkbox::make('emptyMetadataDelete')
                 ->label(__('ams.ark_resource_import_emptydatadelete'))
                 ->helperText(__('ams.ark_resource_import_emptydatadelete_helptext')),
+            Checkbox::make('ercWhere')
+                ->label(__('ams.ark_resource_import_ercwhere'))
+                ->helperText(__('ams.ark_resource_import_ercwhere_helptext')),
         ];
     }
 
@@ -99,65 +102,8 @@ class ArkImporter extends Importer
             }
         }
 
-        /** Validate and preprocess metadata */
-        if (!empty($this->data['metadata'])) {
-
-            $json = json_decode($this->data['metadata'], 1);
-            $check = null;
-
-            if ($json) {
-
-                foreach ($json as $j) {
-                    if ($j['type'] == 'erc' && Erc::isValidRecord($j['data'])) {
-                        
-                        $check = true;
-
-                        $erc = new Erc;
-                        $erc->record = Erc::parseKernelMetadata($j['data']);
-                        
-                        $this->data['metadata'] = [];
-
-                        foreach ($erc->record as $label => $value) {
-                            if(in_array($label, ['who', 'what', 'when', 'where', 'how', 'why', 'huh', 'erc', 'about-erc', 'about-who', 'about-what', 'about-when', 'about-where', 'about-how', 'support-erc', 'support-who', 'support-what', 'support-when', 'support-where', 'meta-erc', 'meta-who', 'meta-what', 'meta-when', 'meta-where', 'depositor-erc', 'depositor-who', 'depositor-what', 'depositor-when', 'depositor-where', 'title', 'creator', 'subject', 'description', 'publisher', 'contributor', 'date', 'type', 'format', 'identifier', 'source', 'language', 'relation', 'coverage', 'rights', 'note', 'in'])){
-                                $this->data['metadata'][] = ['label' => $label, 'value' => $value];
-                            }
-                        }
-
-                        $this->data['metadata'] = Metadata::serialize('erc', $this->data['metadata']);
-                        break;
-                    }
-                }
-
-                if (!$check) {
-                    throw new RowImportFailedException("Metadata: No valid ERC record found.");
-                }
-
-            } else {
-                throw new RowImportFailedException("Metadata: JSON could not be decoded.");
-            }
-        }
-
-        /**
-         * Use empty metadata entries to delete or not
-         */
-        if (!$this->options['emptyMetadataDelete'] && empty($this->data['metadata'])) {
-            unset($this->data['metadata']);
-        }
-
-        /**
-         * Validate or allocate ARK.
-         * Check if ARK already exists, if not, allocate new ARK.
-         */
-        if (!empty($this->data['ark'])) {
-
-            /** Check if ARK from Import contains a NAAN which is in database */
-            $ark = explode('/', $this->data['ark']);
-
-            if (!Naan::firstWhere('naan', '=', $ark[0])) {
-                throw new RowImportFailedException("NAAN not found in database.");
-            }
-
-        } else {
+        /** Allocate new ARK if no ARK is provided by import. */
+        if (empty($this->data['ark'])) {
 
             /** Get minter settings */
             $minterSettings = Naan::firstWhere('naan', $this->options['naan'])->minter;
@@ -177,8 +123,62 @@ class ArkImporter extends Importer
             if (ArkModel::firstWhere('ark', '=', $this->data['ark'])) {
                 throw new RowImportFailedException("Failed allocating new ARK.");
             }
+        
+        } else {
+            /** Check if the provided ARK contains a NAAN which is in database */
+            $ark = explode('/', $this->data['ark']);
+
+            if (!Naan::firstWhere('naan', '=', $ark[0])) {
+                throw new RowImportFailedException("NAAN not found in database.");
+            }
         }
 
+        /** Validate and preprocess metadata */
+        if (!empty($this->data['metadata'])) {
+
+            $json = json_decode($this->data['metadata'], 1);
+            $check = null;
+
+            if ($json) {
+
+                foreach ($json as $j) {
+                    if ($j['type'] == 'erc' && $j['data']) {
+                        
+                        $record = Erc::parseRecord($j['data']);
+
+                        if($record === null){
+                            throw new RowImportFailedException("Metadata: No valid ERC record found or ERC record contains unallowed labels.");
+                        }
+
+                        $this->data['metadata'] = [];
+                        foreach ($record as $label => $value) {
+                            $this->data['metadata'][] = ['label' => $label, 'value' => $value];
+                        }
+
+                        break;
+                    }
+                }
+
+            } else {
+                throw new RowImportFailedException("Metadata: JSON could not be decoded.");
+            }
+        }
+
+        /** Use empty metadata entries to delete or not */
+        if (!$this->options['emptyMetadataDelete'] && empty($this->data['metadata'])) {
+            unset($this->data['metadata']);
+        }
+
+        /** Add "where" story w/ ARK */
+        if ($this->options['ercWhere']){
+            $naan = explode('/', $this->data['ark']);
+            $nma = Naan::firstWhere('naan', '=', $naan[0])->nma;
+            $this->data['metadata'][] = ['label' => 'where', 'value' => $nma.'ark:'.$this->data['ark']];
+        }
+
+        $this->data['metadata'] = Metadata::serialize('erc', $this->data['metadata']);
+
+        /** Save to record matching with ark field or create a new one */
         return ArkModel::firstOrNew([
             'ark' => $this->data['ark'],
         ]);

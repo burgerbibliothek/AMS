@@ -20,4 +20,11 @@ class EditNaan extends EditRecord
                 ->modalSubmitActionLabel(__('ams.naan_resource_dialog_delete_submit')),
         ];
     }
+
+    protected function mutateFormDataBeforeSave(array $data): array
+    {
+        /** Add trailing slash to nma */
+        $data['nma'] = rtrim($data['nma'],"/").'/';
+        return $data;
+    }
 }

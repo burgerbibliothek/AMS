@@ -17,7 +17,7 @@ class CreateArk extends CreateRecord
 
         /** Get minter settings of NAAN */
         $minterSettings = Naan::firstWhere('naan', $data['naan'])->minter;
-
+        
         if(empty($data['shoulder'])){
             $data['shoulder'] = null;
         }
