@@ -9,7 +9,6 @@ class Minter extends Model
 {
     use HasFactory;
 
-    protected $table = 'minter_settings';
     protected $guarded = ['id','created_at'];
     
     public function naans(): HasMany

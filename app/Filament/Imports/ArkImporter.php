@@ -84,7 +84,7 @@ class ArkImporter extends Importer
      */
     public function resolveRecord(): ?ArkModel
     {
-        
+
         /**
          * Option: Skip existing URI.
          * If the option is set, don't update or allocate new ARK.
@@ -112,18 +112,23 @@ class ArkImporter extends Importer
                 throw new RowImportFailedException("There is no minter associated with this NAAN.");
             }
 
-            if(empty($this->options['shoulder'])){
+            if (empty($this->options['shoulder'])) {
                 $this->options['shoulder'] = null;
             }
 
-            /** Allocate new ARK */
-            $this->data['ark'] = Ark::generate($this->options['naan'], $minterSettings->xdigits, $minterSettings->length, $this->options['shoulder'], $minterSettings->ncda);
+            /** Allocate new ARK, retry three times */
+            for ($i = 1; $i <= 3; $i++) {
 
-            /** Check if allocated ARK not already existing */
-            if (ArkModel::firstWhere('ark', '=', $this->data['ark'])) {
-                throw new RowImportFailedException("Failed allocating new ARK.");
+                /** Allocate new ARK */
+                $this->data['ark'] = Ark::generate($this->options['naan'], $minterSettings->xdigits, $minterSettings->length, $this->options['shoulder'], $minterSettings->ncda);
+
+                /** Check if allocated ARK not already existing */
+                if (!ArkModel::firstWhere('ark', '=', $this->data['ark'])) {
+                    break;
+                } else if ($i >= 3) {
+                    throw new RowImportFailedException("Failed allocating new ARK.");
+                }
             }
-        
         } else {
             /** Check if the provided ARK contains a NAAN which is in database */
             $ark = explode('/', $this->data['ark']);
@@ -137,16 +142,14 @@ class ArkImporter extends Importer
         if (!empty($this->data['metadata'])) {
 
             $json = json_decode($this->data['metadata'], 1);
-            $check = null;
 
             if ($json) {
-
                 foreach ($json as $j) {
                     if ($j['type'] == 'erc' && $j['data']) {
-                        
+
                         $record = Erc::parseRecord($j['data']);
 
-                        if($record === null){
+                        if ($record === null) {
                             throw new RowImportFailedException("Metadata: No valid ERC record found or ERC record contains unallowed labels.");
                         }
 
@@ -158,32 +161,32 @@ class ArkImporter extends Importer
                         break;
                     }
                 }
-
             } else {
                 throw new RowImportFailedException("Metadata: JSON could not be decoded.");
             }
         }
 
-        /** Use empty metadata entries to delete or not */
+        /** Use empty metadata entries to delete */
         if (!$this->options['emptyMetadataDelete'] && empty($this->data['metadata'])) {
             unset($this->data['metadata']);
         }
 
         /** Add "where" story w/ ARK */
-        if ($this->options['ercWhere']){
+        if ($this->options['ercWhere']) {
             $naan = explode('/', $this->data['ark']);
             $nma = Naan::firstWhere('naan', '=', $naan[0])->nma;
-            $this->data['metadata'][] = ['label' => 'where', 'value' => $nma.'ark:'.$this->data['ark']];
+            $this->data['metadata'][] = ['label' => 'where', 'value' => $nma . 'ark:' . $this->data['ark']];
         }
 
-        $this->data['metadata'] = Metadata::serialize('erc', $this->data['metadata']);
+        /** Serialize Metadata if present */
+        if(!empty($this->data['metadata'])){
+            $this->data['metadata'] = Metadata::serialize('erc', $this->data['metadata']);
+        }
 
         /** Save to record matching with ark field or create a new one */
         return ArkModel::firstOrNew([
             'ark' => $this->data['ark'],
         ]);
-
-
     }
 
     /**

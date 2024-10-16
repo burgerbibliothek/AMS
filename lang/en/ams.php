@@ -2,6 +2,11 @@
 
 return [
 
+    /**
+     * Navigation
+     */
+    'navigation_settings' => 'Settings',
+
     /*
      * Actions
      */
@@ -46,7 +51,7 @@ return [
     'ark_resource_import_emptydatadelete' => 'Delete data on empty metadata row.',
     'ark_resource_import_emptydatadelete_helptext' => 'If this option is selected, empty metadata entries delete present metadata.',
     'ark_resource_import_ercwhere' => 'Add “where” story w/ ARK.',
-    'ark_resource_import_ercwhere_helptext' => 'If this option is selected, a “where” story containing the ARK is added to the ERC record (incl. Name Mapping Authority)',
+    'ark_resource_import_ercwhere_helptext' => 'If this option is selected, a “where” story containing the ARK is added to the ERC record (incl. Name Mapping Authority).',
     'ark_resource_revision_title' => 'Revisions',
     'ark_resource_revision_data' => 'Data',
     'ark_resource_revision_moddate' => 'Revision date',

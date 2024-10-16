@@ -7,8 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class ArkRevision extends Model
 {
-    protected $table = 'ark_revisions';
-
     protected function casts(): array
     {
         return [

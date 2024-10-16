@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Naan extends Model
 {
-    protected $table = 'naans';
     protected $guarded = ['id', 'created_at'];
 
     protected function casts(): array

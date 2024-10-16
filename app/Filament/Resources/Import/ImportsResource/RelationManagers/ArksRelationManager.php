@@ -8,17 +8,16 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Actions\ExportBulkAction;
-use App\Models\Imports;
 
 class ArksRelationManager extends RelationManager
 {
+    protected static ?string $title = 'Imported / Minted ARKs';
     protected static string $relationship = 'successfullImportRows';
 
     public function table(Table $table): Table
     {
                 
         return $table
-            ->recordTitleAttribute('ark')
             ->columns([
                 Tables\Columns\TextColumn::make('ark')
                     ->label('ARK')

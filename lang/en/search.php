@@ -1,5 +1,6 @@
 <?php
 return [
-    'title' => 'Searchresults for “:uri”',
-    'linkTitle' => 'Visit page with ARK :ark metadata.'
+    'titleURI' => 'Searchresults for “:uri”',
+    'linkTitleURI' => 'Visit page with ARK :ark metadata.',
+    'searchresultURI' => 'No entries found for the URI.'
 ];

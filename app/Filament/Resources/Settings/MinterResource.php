@@ -21,10 +21,13 @@ class MinterResource extends Resource
     protected static ?string $model = MinterModel::class;
     protected static ?string $slug = 'settings/minters';
     protected static ?string $navigationIcon = 'heroicon-o-calculator';
-    protected static ?string $navigationGroup = 'Settings';
     protected static ?string $navigationLabel = 'Minter';
     protected static ?string $label = 'Minter';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return __('ams.navigation_settings');
+    }
     
     /** Remove duplicates from and sort string. */
     public static function arkCharacterRepetoire($xdigits)

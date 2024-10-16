@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class FailedImportRow extends Model
 {
-    protected $table = 'failed_import_rows';
+
 }

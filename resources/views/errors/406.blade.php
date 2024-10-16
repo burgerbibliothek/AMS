@@ -1,5 +1,5 @@
-@extends('errors::minimal')
+@extends('errors::base')
 
-@section('title', __(''))
+@section('title', __('errors.title406'))
 @section('code', '406')
 @section('message', __($exception->getMessage() ?: 'Not Acceptable'))

@@ -19,11 +19,14 @@ class NaanResource extends Resource
 {
     protected static ?string $model = NaanModel::class;
     protected static ?string $slug = 'settings/naans';
-    protected static ?string $navigationLabel = 'NAANs';
     protected static ?string $navigationIcon = 'heroicon-o-building-library';
-    protected static ?string $navigationGroup = 'Settings';
     protected static ?string $label = 'NAAN';
     protected static ?string $pluralLabel = 'NAANs';
+
+    public static function getNavigationGroup(): ?string
+    {
+        return __('ams.navigation_settings');
+    }
 
     public static function form(Form $form): Form
     {

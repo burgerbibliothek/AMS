@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return response('ARK Resolver Service')->header('Content-Type', 'text/plain');
+    return view('index');
 });
 
 /** Resolve incoming ARKs */
@@ -20,11 +20,7 @@ Route::get('/ark:/{naan}/{blade}', function (string $naan, string $baseNameAndSu
     return redirect('/ark:' . $naan . '/' . $baseNameAndSuffixes);
 })->where('blade', '.*');
 
-/** Resolve NAAN */
-Route::get('/ark:/{naan}', function (string $naan) {
-    return 'NAAN';
-});
-
+/** Search ARK via URI */
 Route::get('/search/uri/{uri}', function(string $uri) {
     
     $result = Ark::where('uri', $uri)->pluck('ark');

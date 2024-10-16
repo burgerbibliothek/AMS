@@ -35,7 +35,7 @@ class Resolver
             if(in_array(array_key_first($request->query()), ['?', 'info'])){
                 
                 if(empty($ark->metadata)){
-                    return 'erc: (:tba) | (:tba) | (:tba) | (:tba)';
+                    return response('erc: (:tba) | (:tba) | (:tba) | (:tba)')->header('Content-Type', 'text/plain');
                 }
                 
                 $erc = new Erc;

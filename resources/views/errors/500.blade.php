@@ -1,5 +1,5 @@
-@extends('errors::minimal')
+@extends('errors::base')
 
-@section('title', __('Server Error'))
+@section('title', __('errors.title500'))
 @section('code', '500')
 @section('message', __('Server Error'))

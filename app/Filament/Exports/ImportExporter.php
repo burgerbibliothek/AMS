@@ -13,10 +13,9 @@ class ImportExporter extends Exporter
 
     public static function getColumns(): array
     {
-
         return [
-            ExportColumn::make('ark'),
-            ExportColumn::make('uri'), 
+            ExportColumn::make('arks.ark'),
+            ExportColumn::make('arks.uri'), 
         ];
     }
     

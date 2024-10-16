@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SuccessfullImportRow extends Model
 {
-    protected $table = 'successfull_import_rows';
     public $timestamps = false;
 
     public function arks(): HasMany

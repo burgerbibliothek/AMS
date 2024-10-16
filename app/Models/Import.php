@@ -7,9 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
-class Imports extends Model
+class Import extends Model
 {
-    protected $table = 'imports';
 
     use HasFactory;
 
