@@ -45,7 +45,7 @@ class NaanResource extends Resource
                         TextInput::make('description')
                             ->label(__('ams.naan_resource_desc'))
                             ->required(),
-                        Select::make('minter_settings_id')
+                        Select::make('minter_id')
                             ->label(__('ams.naan_resource_minter'))
                             ->options(MinterModel::all()->pluck('name', 'id'))
                             ->required(),
