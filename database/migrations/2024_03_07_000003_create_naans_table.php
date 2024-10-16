@@ -18,15 +18,15 @@ return new class extends Migration
             $table->string('nma', 255);
             $table->string('description', 255);
             $table->json('shoulders')->nullable();
-            $table->foreignId('minter_settings_id')->nullable()->constrained();
+            $table->foreignId('minter_id')->nullable()->constrained();
             $table->timestamps();
         });
 
         $defaultNAANItems = [
-            ['naan' => '12345', 'nma' => 'http://n2t.net/', 'description' => 'Examples', 'minter_settings_id' => '1'],
-            ['naan' => '99152', 'nma' => 'http://n2t.net/', 'description' => 'Terms', 'minter_settings_id' => '7'],
-            ['naan' => '99166', 'nma' => 'http://n2t.net/', 'description' => 'Agents', 'minter_settings_id' => '7'],
-            ['naan' => '99999', 'nma' => 'http://n2t.net/', 'description' => 'Test IDs', 'minter_settings_id' => '8'],
+            ['naan' => '12345', 'nma' => 'http://n2t.net/', 'description' => 'Examples', 'minter_id' => '1'],
+            ['naan' => '99152', 'nma' => 'http://n2t.net/', 'description' => 'Terms', 'minter_id' => '7'],
+            ['naan' => '99166', 'nma' => 'http://n2t.net/', 'description' => 'Agents', 'minter_id' => '7'],
+            ['naan' => '99999', 'nma' => 'http://n2t.net/', 'description' => 'Test IDs', 'minter_id' => '8'],
         ];
         
         Naan::insert($defaultNAANItems);
