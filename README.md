@@ -17,11 +17,20 @@ AMS needs the following to run:
 * Meets the [Laravel Server Requirements](https://laravel.com/docs/11.x/deployment#server-requirements)
 * A relational [database](https://laravel.com/docs/11.x/database#introduction)
 
+### Clone Repository
 ```bash
-composer require filament/filament:"^3.2" -W
-php artisan filament:install --panels
-php artisan make:filament-user
+git clone https://github.com/burgerbibliothek/AMS /path/to/desired/directory
 ```
+
+### Configurations
+The following configurations are intended for setting up the application in a productive environment.
+
+1. Make a copy of the .env.example named .env file in the root directory `cp .env.example .env`
+2. Generat the app Key via the command `php artisan key:generate`
+3. Enter the details of your database connection in the .env file. Further possible database configuration options can be found in the official Laravel [documentation](https://laravel.com/docs/11.x/installation#databases-and-migrations).
+4. Initialize the database using the command `php artisan migrate`.
+5. Create a user via the following command `php artisan make:filament-user`
+
 
 ## License
 [MIT license](https://opensource.org/licenses/MIT).
