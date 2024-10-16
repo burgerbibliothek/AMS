@@ -33,7 +33,7 @@ class ArkImporter extends Importer
             Select::make('naan')
                 ->label(__('ams.ark_resource_import_naan'))
                 ->helperText(__('ams.ark_resource_import_naan_helptext'))
-                ->options(Naan::all()->whereNotNull('minter_settings_id')->pluck('naan', 'naan'))
+                ->options(Naan::all()->whereNotNull('minter_id')->pluck('naan', 'naan'))
                 ->required()
                 ->live(),
             Select::make('shoulder')

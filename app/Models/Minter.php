@@ -13,13 +13,13 @@ class Minter extends Model
     
     public function naans(): HasMany
     {
-        return $this->hasMany(Naan::class, 'minter_settings_id');
+        return $this->hasMany(Naan::class, 'minter_id');
     }
     
     protected static function booted(): void
     {
         static::deleting(function(Minter $minter) {
-            $minter->naans()->update(['minter_settings_id' => null]);
+            $minter->naans()->update(['minter_id' => null]);
        });
     }
     

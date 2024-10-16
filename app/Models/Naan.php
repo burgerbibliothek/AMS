@@ -20,7 +20,7 @@ class Naan extends Model
 
     public function minter(): HasOne
     {
-        return $this->hasOne(Minter::class, 'id', 'minter_settings_id');
+        return $this->hasOne(Minter::class, 'id', 'minter_id');
     }
 
     /**
