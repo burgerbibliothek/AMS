@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('successfull_import_rows', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('import_id')->references('id')->on('imports');
-            $table->foreignId('ark_id')->references('id')->on('arks');
+            $table->foreignId('import_id')->constrained()->onDelete('cascade');
+            $table->foreignId('ark_id')->constrained()->onDelete('cascade');
         });
     }
 
