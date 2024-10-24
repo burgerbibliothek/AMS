@@ -152,6 +152,8 @@ class ArkImporter extends Importer
                         if ($record === null) {
                             throw new RowImportFailedException("Metadata: No valid ERC record found or ERC record contains unallowed labels.");
                         }
+                        
+                        unset($record['erc']);
 
                         $this->data['metadata'] = [];
                         foreach ($record as $label => $value) {
