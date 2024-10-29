@@ -66,3 +66,6 @@
 [24-Oct-2024 16:52:51 Europe/Zurich] PHP Fatal error:  'break' not in the 'loop' or 'switch' context in /home/heiraterei/sites/ams-reloaded/app/Ams/Metadata.php on line 36
 [24-Oct-2024 17:07:47 Europe/Zurich] PHP Deprecated:  Optional parameter $type declared before required parameter $data is implicitly treated as a required parameter in /home/heiraterei/sites/ams-reloaded/app/Ams/Metadata.php on line 17
 [24-Oct-2024 17:13:39 Europe/Zurich] PHP Deprecated:  Optional parameter $type declared before required parameter $data is implicitly treated as a required parameter in /home/heiraterei/sites/ams-reloaded/app/Ams/Metadata.php on line 17
+[29-Oct-2024 15:29:14 Europe/Zurich] PHP Deprecated:  Optional parameter $type declared before required parameter $data is implicitly treated as a required parameter in /home/heiraterei/sites/ams-reloaded/app/Ams/Metadata.php on line 17
+[29-Oct-2024 15:48:51 Europe/Zurich] PHP Deprecated:  Optional parameter $type declared before required parameter $data is implicitly treated as a required parameter in /home/heiraterei/sites/ams-reloaded/app/Ams/Metadata.php on line 17
+[29-Oct-2024 16:04:45 Europe/Zurich] PHP Deprecated:  Optional parameter $type declared before required parameter $data is implicitly treated as a required parameter in /home/heiraterei/sites/ams-reloaded/app/Ams/Metadata.php on line 17

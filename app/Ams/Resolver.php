@@ -29,7 +29,12 @@ class Resolver
        /** If ARK could be retrieved process request */
         if ($ark) {
 
-            $uri = $ark->uri . '/' . $components['suffixes'];
+            $uri = $ark->uri;
+
+            /** Suffix Passthrough */
+            if(strlen(trim($components['suffixes'])) > 0){
+                $uri = $uri. '/' . $components['suffixes'];
+            }
 
             /** Return metadata when inflection is present */
             if(in_array(array_key_first($request->query()), ['?', 'info'])){
