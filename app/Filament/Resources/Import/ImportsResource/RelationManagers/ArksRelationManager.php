@@ -33,11 +33,6 @@ class ArksRelationManager extends RelationManager
                 ExportAction::make()
                     ->exporter(ImportExporter::class)
                     ->label('Export List')
-            ])
-            ->bulkActions([
-                ExportBulkAction::make()
-                    ->exporter(ImportExporter::class)
-                    ->label('Export ARKs')
             ]);
     }
 }
