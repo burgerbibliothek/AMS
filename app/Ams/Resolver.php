@@ -23,7 +23,7 @@ class Resolver
         $ark = Ark::normalize($request->fullUrl());
         $components = Ark::splitIntoComponents($ark);
 
-        /** Try to retrive ARK from database  */
+        /** Try to retrieve ARK from database  */
         $ark = ArkModel::where('ark', $components['checkZone'])->first();
 
        /** If ARK could be retrieved process request */
