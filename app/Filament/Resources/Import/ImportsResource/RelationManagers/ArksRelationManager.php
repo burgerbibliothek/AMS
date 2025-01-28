@@ -5,18 +5,18 @@ namespace App\Filament\Resources\Import\ImportsResource\RelationManagers;
 use App\Filament\Exports\ImportExporter;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables;
-use Filament\Tables\Table;
 use Filament\Tables\Actions\ExportAction;
-use Filament\Tables\Actions\ExportBulkAction;
+use Filament\Tables\Table;
 
 class ArksRelationManager extends RelationManager
 {
     protected static ?string $title = 'Imported / Minted ARKs';
+
     protected static string $relationship = 'successfullImportRows';
 
     public function table(Table $table): Table
     {
-                
+
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('ark')
@@ -27,12 +27,12 @@ class ArksRelationManager extends RelationManager
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('created_at')
-                    ->sortable()
+                    ->sortable(),
             ])
             ->headerActions([
                 ExportAction::make()
                     ->exporter(ImportExporter::class)
-                    ->label('Export List')
+                    ->label('Export List'),
             ]);
     }
 }

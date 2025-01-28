@@ -24,9 +24,10 @@ class EditNaan extends EditRecord
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $data['shoulders'] = $data['shoulders'] ? $data['shoulders'] : null;
-        
+
         /** Add trailing slash to nma */
-        $data['nma'] = rtrim($data['nma'],"/").'/';
+        $data['nma'] = rtrim($data['nma'], '/').'/';
+
         return $data;
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 return [
     '400' => 'Bad Request',
     '401' => 'Unauthorized',
@@ -10,5 +11,5 @@ return [
     '429' => 'Too Many Requests',
     '451' => 'Ressource is unavailable for Legal Reasons',
     '500' => 'Internal Server Error',
-    '503' => 'Service Unavailable'
+    '503' => 'Service Unavailable',
 ];

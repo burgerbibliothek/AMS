@@ -3,22 +3,18 @@
 namespace App\Filament\Resources\Import\ImportsResource\Pages;
 
 use App\Filament\Resources\Import\ImportsResource;
-use App\Models\SuccessfullImportRow;
-use Filament\Resources\Pages\ViewRecord;
-use Filament\Resources\Pages\ListRecords;
 use Filament\Infolists;
-use Filament\Infolists\Infolist;
-
-use Filament\Infolists\Components\Section;
-use Filament\Infolists\Components\Split;
-use Filament\Infolists\Components\TextEntry;
-use Filament\Support\Enums\FontWeight;
 use Filament\Infolists\Components\Grid;
+use Filament\Infolists\Components\Section;
+use Filament\Infolists\Components\TextEntry;
+use Filament\Infolists\Infolist;
+use Filament\Resources\Pages\ViewRecord;
+use Filament\Support\Enums\FontWeight;
 
 class ListImportsDetails extends ViewRecord
 {
     protected static string $resource = ImportsResource::class;
-    
+
     public function infolist(Infolist $infolist): Infolist
     {
         return $infolist
@@ -39,10 +35,10 @@ class ListImportsDetails extends ViewRecord
                         TextEntry::make('created_at')
                             ->dateTime('d.m.Y H:i:s')
                             ->weight(FontWeight::Bold),
-                            TextEntry::make('completed_at')
+                        TextEntry::make('completed_at')
                             ->dateTime('d.m.Y H:i:s')
                             ->weight(FontWeight::Bold),
-                    ])
+                    ]),
                 ]),
 
                 /*
@@ -54,6 +50,4 @@ class ListImportsDetails extends ViewRecord
                     */
             ]);
     }
-    
-
 }

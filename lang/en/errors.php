@@ -1,4 +1,5 @@
 <?php
+
 return [
     'error' => 'Error',
     'title400' => 'Error 400',
@@ -18,5 +19,5 @@ return [
     'invalidARK' => 'invalid ARK',
     'notFoundARK' => 'ARK not found',
     'ressourceGone' => 'Ressource is no longer available',
-    'ressourceLegalReasons' => 'Ressource is unavailable for Legal Reasons'
+    'ressourceLegalReasons' => 'Ressource is unavailable for Legal Reasons',
 ];

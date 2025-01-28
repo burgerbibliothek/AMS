@@ -13,5 +13,4 @@ class ArkRevision extends Model
             'revision' => ArkRevisionCast::class,
         ];
     }
-
 }

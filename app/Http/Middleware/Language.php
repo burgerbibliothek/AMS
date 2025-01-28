@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 class Language
 {
-    
     /**
      * Handle an incoming request.
      *
@@ -18,16 +17,16 @@ class Language
      */
     public function handle(Request $request, Closure $next): Response
     {
-        
+
         $header_lang = explode(',', $request->server('HTTP_ACCEPT_LANGUAGE'));
 
-        foreach($header_lang as $lang){
-            if(in_array(substr($lang, 0, 2), Config::get('app'))){
+        foreach ($header_lang as $lang) {
+            if (in_array(substr($lang, 0, 2), Config::get('app'))) {
                 App::setLocale($lang);
                 break;
-            };      
-        } 
-        
+            }
+        }
+
         return $next($request);
     }
 }

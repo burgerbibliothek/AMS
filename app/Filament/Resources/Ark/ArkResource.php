@@ -2,31 +2,34 @@
 
 namespace App\Filament\Resources\Ark;
 
-use Burgerbibliothek\ArkManagementTools\Erc;
 use App\Filament\Exports\ArkExporter;
 use App\Filament\Resources\Ark\ArkResource\Pages;
 use App\Filament\Resources\Ark\ArkResource\RelationManagers;
 use App\Models\Ark as ArkModel;
 use App\Models\Naan as NaanModel;
 use App\Models\Status as StatusModel;
-use Filament\Forms\Form;
-use Filament\Forms\Get;
+use Burgerbibliothek\ArkManagementTools\Erc;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
-use Filament\Tables\Table;
 use Filament\Tables\Actions\ExportBulkAction;
-
+use Filament\Tables\Table;
 
 class ArkResource extends Resource
 {
     protected static ?string $model = ArkModel::class;
+
     protected static ?string $navigationIcon = 'heroicon-s-key';
+
     protected static ?string $navigationLabel = 'ARKs';
+
     protected static ?string $label = 'ARKs';
+
     protected static ?string $slug = 'arks';
 
     public static function form(Form $form): Form
@@ -38,19 +41,19 @@ class ArkResource extends Resource
                         Select::make('naan')
                             ->label(__('ams.ark_resource_naan'))
                             ->options(NaanModel::all()->whereNotNull('minter_settings_id')->pluck('naan', 'naan'))
-                            ->visible(fn(Get $get): bool => is_null($get('ark')))
+                            ->visible(fn (Get $get): bool => is_null($get('ark')))
                             ->rules(['exists:naans,naan'])
                             ->required()
                             ->live(),
                         Select::make('shoulder')
                             ->label(__('ams.ark_resource_shoulders'))
-                            ->options(fn(Get $get): array => NaanModel::shoulders($get('naan')))
-                            ->visible(fn(Get $get): bool => is_null($get('ark')) && NaanModel::hasShoulder($get('naan'))),
+                            ->options(fn (Get $get): array => NaanModel::shoulders($get('naan')))
+                            ->visible(fn (Get $get): bool => is_null($get('ark')) && NaanModel::hasShoulder($get('naan'))),
                         TextInput::make('ark')
                             ->label(__('ams.ark_resource_ark'))
                             ->unique(ignoreRecord: true)
                             ->disabled()
-                            ->visible(fn(Get $get): bool => !is_null($get('ark'))),
+                            ->visible(fn (Get $get): bool => ! is_null($get('ark'))),
                         TextInput::make('uri')
                             ->label(__('ams.ark_resource_uri'))
                             ->activeUrl()
@@ -110,7 +113,7 @@ class ArkResource extends Resource
                                         'coverage' => 'coverage (h514)',
                                         'rights' => 'rights (h515)',
                                         'note' => 'note (h601)',
-                                        'in' => 'in (h602)'
+                                        'in' => 'in (h602)',
                                     ])
                                     ->required()
                                     ->searchable(),
@@ -126,12 +129,12 @@ class ArkResource extends Resource
                                         '(:null)',
                                         '(:tba)',
                                         '(:etal)',
-                                        '(:at)'
+                                        '(:at)',
                                     ])
                                     ->required(),
                             ])
                             ->reorderableWithButtons()
-                            ->columns(2)
+                            ->columns(2),
                     ]),
 
             ])->columns(1);
@@ -147,18 +150,19 @@ class ArkResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('uri')
                     ->label(__('ams.ark_resource_uri_list'))
-                    ->searchable()
+                    ->searchable(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
                     ->using(function (Model $record, array $data): Model {
                         $record->update($data);
+
                         return $record;
                     }),
             ])
             ->bulkActions([
                 ExportBulkAction::make()
-                    ->exporter(ArkExporter::class)
+                    ->exporter(ArkExporter::class),
             ]);
     }
 

@@ -2,23 +2,27 @@
 
 namespace App\Ams;
 
+use App\Models\Ark as ArkModel;
+use App\Models\Minter as MinterModel;
+use App\Models\Naan as NaanModel;
+use App\Models\Status as StatusModel;
 use Burgerbibliothek\ArkManagementTools\Ark;
 use Burgerbibliothek\ArkManagementTools\Erc;
 use Burgerbibliothek\ArkManagementTools\Ncda;
 use Burgerbibliothek\ArkManagementTools\Validator;
-use App\Ams\Metadata;
-use App\Models\Ark as ArkModel;
-use App\Models\Naan as NaanModel;
-use App\Models\Minter as MinterModel;
-use App\Models\Status as StatusModel;
-
+use Illuminate\Http\Request;
 
 class Resolver
 {
-
-    public static function resolve($request, $naan)
+    /**
+     * Resolve incoming ARK.
+     * @param Request $request
+     * @param string $naan
+     * @return mixed
+     */
+    public static function resolve(Request $request, string $naan): mixed
     {
-        
+
         /** Normalize incoming request */
         $ark = Ark::normalize($request->fullUrl());
         $components = Ark::splitIntoComponents($ark);
@@ -26,23 +30,18 @@ class Resolver
         /** Try to retrieve ARK from database  */
         $ark = ArkModel::where('ark', $components['checkZone'])->first();
 
-       /** If ARK could be retrieved process request */
+        /** If ARK could be retrieved process request */
         if ($ark) {
 
             $uri = $ark->uri;
 
-            /** Suffix Passthrough */
-            if(strlen(trim($components['suffixes'])) > 0){
-                $uri = $uri. '/' . $components['suffixes'];
-            }
-
             /** Return metadata when inflection is present */
-            if(in_array(array_key_first($request->query()), ['?', 'info'])){
-                
-                if(empty($ark->metadata)){
+            if (in_array(array_key_first($request->query()), ['?', 'info'])) {
+
+                if (empty($ark->metadata)) {
                     return response('erc: (:tba) | (:tba) | (:tba) | (:tba)')->header('Content-Type', 'text/plain');
                 }
-                
+
                 $erc = new Erc;
                 $erc->record = Metadata::deserialize($ark->metadata, 1);
 
@@ -62,6 +61,11 @@ class Resolver
                 return abort($code);
             }
 
+            /** Suffix Passthrough */
+            if (strlen(trim($components['suffixes'])) > 0) {
+                $uri = $uri.'/'.$components['suffixes'];
+            }
+
             /** Redirect */
             return redirect()->away($uri, 302);
 
@@ -75,11 +79,12 @@ class Resolver
             /** Check if NAAN is present in database */
             $naan = NaanModel::where('naan', $components['naan'])->first();
 
+            /** If NAAN ist present in database but no ARK is found */
             if ($naan) {
 
                 /** Check ARK for transcription errors */
                 $minter = MinterModel::firstWhere('id', $naan->minter_settings_id);
-                
+
                 if (!Ncda::verify($components['checkZone'], $minter->xdigits)) {
                     abort(400, __('errors.invalidARK'));
                 }
@@ -89,7 +94,7 @@ class Resolver
             }
 
             /** Redirect to global resolver. */
-            return redirect()->away('https://n2t.net/ark:' .  $components['checkZone'] . '/' . $components['suffixes'] , 301);
+            return redirect()->away('https://n2t.net/ark:'.$components['checkZone'].'/'.$components['suffixes'], 301);
         }
     }
 }

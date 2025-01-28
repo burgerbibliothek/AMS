@@ -100,11 +100,11 @@ return [
     'status_resource_code_help' => 'Codes as defined by RFC 9110',
     'status_resource_message' => 'Message',
     'status_resource_message_help' => 'Message which will be displayed on error page.',
-    
+
     /*
      * Import Resource
      */
     'import_resource_navigationlabel' => 'Importations',
-    'ams.navigation_settings' => 'Settings'
+    'ams.navigation_settings' => 'Settings',
 
 ];

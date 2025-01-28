@@ -4,7 +4,4 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FailedImportRow extends Model
-{
-
-}
+class FailedImportRow extends Model {}

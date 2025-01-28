@@ -18,9 +18,6 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 
-use Filament\Pages\Dashboard;
-use Filament\Navigation\NavigationItem;
-
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -44,7 +41,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->navigationGroups([
                 NavigationGroup::make()
-                    ->label(fn (): string => __('ams.navigation_settings'))
+                    ->label(fn (): string => __('ams.navigation_settings')),
 
             ])
             ->collapsibleNavigationGroups(false)

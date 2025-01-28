@@ -5,8 +5,8 @@ namespace App\Filament\Resources\Ark\ArkResource\Pages;
 use App\Ams\Metadata;
 use App\Filament\Resources\Ark\ArkResource;
 use App\Models\Ark as ArkModel;
-use App\Models\Status as StatusModel;
 use App\Models\ArkRevision;
+use App\Models\Status as StatusModel;
 use Filament\Actions;
 use Filament\Resources\Pages\EditRecord;
 
@@ -36,28 +36,29 @@ class EditArk extends EditRecord
         if ($data['metadata']) {
             $data['metadata'] = Metadata::deserialize($data['metadata']);
         }
+
         return $data;
     }
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
         $data['metadata'] = Metadata::serialize('erc', $data['metadata']);
-        
+
         /** Save current data as revision. */
         $change = ArkModel::hasChanged($this->data['id'], [
-            'ark' => $this->data['ark'], 
+            'ark' => $this->data['ark'],
             'uri' => $this->data['uri'],
             'status_id' => $this->data['status_id'],
-            'metadata' => $data['metadata']
+            'metadata' => $data['metadata'],
         ]);
-        
-        if($change){
+
+        if ($change) {
 
             $currentData = ArkModel::find($this->data['id']);
 
             /** Get status label */
             $currentStatus = null;
-            if($currentData->status_id){
+            if ($currentData->status_id) {
                 $currentStatus = StatusModel::find($currentData->status_id)->label;
             }
 

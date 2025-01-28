@@ -3,7 +3,6 @@
 namespace App\Filament\Resources\Settings\NaanResource\Pages;
 
 use App\Filament\Resources\Settings\NaanResource;
-use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateNaan extends CreateRecord
@@ -12,11 +11,12 @@ class CreateNaan extends CreateRecord
 
     protected function mutateFormDataBeforeCreate(array $data): array
     {
-       
+
         $data['shoulders'] = $data['shoulders'] ? $data['shoulders'] : null;
-        
+
         /** Add trailing slash to nma */
-        $data['nma'] = rtrim($data['nma'],"/").'/';
+        $data['nma'] = rtrim($data['nma'], '/').'/';
+
         return $data;
     }
 }

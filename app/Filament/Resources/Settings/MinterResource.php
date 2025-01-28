@@ -2,41 +2,45 @@
 
 namespace App\Filament\Resources\Settings;
 
-use Burgerbibliothek\ArkManagementTools\Validator;
 use App\Filament\Resources\Settings\MinterResource\Pages;
 use App\Models\Minter as MinterModel;
+use Burgerbibliothek\ArkManagementTools\Validator;
 use Closure;
-use Filament\Forms\Form;
-use Filament\Forms\Get;
-use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Section;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
+use Filament\Forms\Get;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
-
 class MinterResource extends Resource
 {
     protected static ?string $model = MinterModel::class;
+
     protected static ?string $slug = 'settings/minters';
+
     protected static ?string $navigationIcon = 'heroicon-o-calculator';
+
     protected static ?string $navigationLabel = 'Minter';
+
     protected static ?string $label = 'Minter';
 
     public static function getNavigationGroup(): ?string
     {
         return __('ams.navigation_settings');
     }
-    
+
     /** Remove duplicates from and sort string. */
     public static function arkCharacterRepetoire($xdigits)
     {
         $xdigits = array_unique(str_split($xdigits));
         sort($xdigits);
+
         return implode('', $xdigits);
     }
-    
+
     public static function form(Form $form): Form
     {
         return $form
@@ -55,7 +59,7 @@ class MinterResource extends Resource
                             ->rules([
                                 fn (): Closure => function (string $attribute, $value, Closure $fail) {
                                     /** Check if conttains only valid ARK characters. */
-                                    if(!Validator::followsArkCharacterRepetoire($value)){
+                                    if (! Validator::followsArkCharacterRepetoire($value)) {
                                         $fail(__('ams.minter_resource_xdigits_error'));
                                     }
                                 },
@@ -73,7 +77,7 @@ class MinterResource extends Resource
                                     /** Check if id-length does not exceed length of character repetoire. */
                                     $xdigitsArr = array_unique(str_split($get('xdigits')));
                                     $xdigitsArrLength = count($xdigitsArr);
-                                    
+
                                     if ($get('ncda') && $value > $xdigitsArrLength) {
                                         $fail(__('ams.minter_resource_lenght_error', ['number' => $xdigitsArrLength]));
                                     }
@@ -82,9 +86,9 @@ class MinterResource extends Resource
                             ->required(),
                         Checkbox::make('ncda')
                             ->label(__('ams.minter_resource_ncda'))
-                            ->helperText(__('ams.minter_resource_ncda_help'))
-                    ])
-                ])->columns(1);
+                            ->helperText(__('ams.minter_resource_ncda_help')),
+                    ]),
+            ])->columns(1);
     }
 
     public static function table(Table $table): Table
@@ -92,8 +96,8 @@ class MinterResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                ->label(__('ams.minter_resource_name'))
-                ->sortable()
+                    ->label(__('ams.minter_resource_name'))
+                    ->sortable(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

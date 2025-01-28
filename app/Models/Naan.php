@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Models\Minter;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
@@ -17,7 +16,6 @@ class Naan extends Model
         ];
     }
 
-
     public function minter(): HasOne
     {
         return $this->hasOne(Minter::class, 'id', 'minter_id');
@@ -25,17 +23,18 @@ class Naan extends Model
 
     /**
      * Retrieve Shoulders for a NAAN.
-     * @param $naan string
+     *
+     * @param  $naan  string
      * @return array
      */
-    public static function shoulders($naan)
+    public static function shoulders($naan): array
     {
-        $options  = [];
+        $options = [];
         $shoulders = self::where('naan', $naan)->first()->shoulders;
         foreach ($shoulders as $shoulder) {
             $options[$shoulder['shoulder']] = "{$shoulder['shoulder']} ({$shoulder['description']})";
         }
-        
+
         return $options;
     }
 

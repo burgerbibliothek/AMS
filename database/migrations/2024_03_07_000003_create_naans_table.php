@@ -1,9 +1,9 @@
 <?php
 
+use App\Models\Naan;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Naan;
 
 return new class extends Migration
 {
@@ -28,7 +28,7 @@ return new class extends Migration
             ['naan' => '99166', 'nma' => 'http://n2t.net/', 'description' => 'Agents', 'minter_id' => '7'],
             ['naan' => '99999', 'nma' => 'http://n2t.net/', 'description' => 'Test IDs', 'minter_id' => '8'],
         ];
-        
+
         Naan::insert($defaultNAANItems);
 
     }
