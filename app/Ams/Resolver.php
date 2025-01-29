@@ -58,17 +58,16 @@ class Resolver
                     return redirect()->away($uri, $code);
                 }
 
-                return abort($code);
+                return abort($code, __('errors.message410', ['pid' => 'ark:/'.$ark->ark]));
             }
 
             /** Suffix Passthrough */
             if (strlen(trim($components['suffixes'])) > 0) {
-                $uri = $uri.'/'.$components['suffixes'];
+                $uri = $uri . '/' . $components['suffixes'];
             }
 
             /** Redirect */
             return redirect()->away($uri, 302);
-
         } else {
 
             /** Check if NAAN is valid  */
@@ -94,7 +93,7 @@ class Resolver
             }
 
             /** Redirect to global resolver. */
-            return redirect()->away('https://n2t.net/ark:'.$components['checkZone'].'/'.$components['suffixes'], 301);
+            return redirect()->away('https://n2t.net/ark:' . $components['checkZone'] . '/' . $components['suffixes'], 301);
         }
     }
 }

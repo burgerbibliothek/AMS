@@ -16,11 +16,11 @@ class ArksRelationManager extends RelationManager
 
     public function table(Table $table): Table
     {
-
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('ark')
                     ->label('ARK')
+                    ->url(fn ($record): string => route('filament.admin.resources.arks.edit', ['record' => $record]))
                     ->searchable(),
                 Tables\Columns\TextColumn::make('uri')
                     ->label('URI')

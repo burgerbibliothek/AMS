@@ -45,7 +45,9 @@
         }
     </style>
 </head>
-<body>  
-    @yield('content')
+<body>
+    <main>
+        @yield('content')
+    </main>
 </body>
 </html>
