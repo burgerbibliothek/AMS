@@ -8,6 +8,7 @@ use Filament\Tables;
 use Filament\Tables\Actions\ExportAction;
 use Filament\Tables\Table;
 
+
 class ArksRelationManager extends RelationManager
 {
     protected static ?string $title = 'Imported / Minted ARKs';
@@ -32,7 +33,7 @@ class ArksRelationManager extends RelationManager
             ->headerActions([
                 ExportAction::make()
                     ->exporter(ImportExporter::class)
-                    ->label('Export List'),
+                    ->label(__('ams.import_resource_export_list'))
             ]);
     }
 }

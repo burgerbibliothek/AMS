@@ -2,9 +2,12 @@
 
 namespace App\Filament\Exports;
 
+use App\Models\Naan;
 use Filament\Actions\Exports\ExportColumn;
 use Filament\Actions\Exports\Exporter;
 use Filament\Actions\Exports\Models\Export;
+use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\Select;
 
 class ImportExporter extends Exporter
 {
@@ -13,8 +16,18 @@ class ImportExporter extends Exporter
     public static function getColumns(): array
     {
         return [
-            ExportColumn::make('ark'),
+            ExportColumn::make('ark')
+                ->prefix(fn(array $options) => $options['nma'] ?? 'https://n2t.org/'),
             ExportColumn::make('uri'),
+        ];
+    }
+
+    public static function getOptionsFormComponents(): array
+    {
+        return [
+            Select::make('nma')
+                ->label('Name Mapping Authority (Default: https://n2t.org/)')
+                ->options(Naan::nmas()->pluck('nma', 'nma'))
         ];
     }
 

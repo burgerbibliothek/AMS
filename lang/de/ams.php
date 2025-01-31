@@ -26,4 +26,9 @@ return [
     'ark_resource_erc_where' => 'Where',
     'ark_resource_erc_note' => 'Note',
 
+    /*
+     * Imports
+     */
+    'imports_resources_export_list' => 'Export List'
+
 ];

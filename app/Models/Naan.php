@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Collection;
 
 class Naan extends Model
 {
@@ -19,6 +20,12 @@ class Naan extends Model
     public function minter(): HasOne
     {
         return $this->hasOne(Minter::class, 'id', 'minter_id');
+    }
+
+
+    public static function nmas(): Collection
+    {
+        return self::whereNotNull('nma')->distinct()->get('nma');
     }
 
     /**

@@ -105,6 +105,7 @@ return [
      * Import Resource
      */
     'import_resource_navigationlabel' => 'Importations',
+    'import_resource_export_list' => 'Export List',
     'ams.navigation_settings' => 'Settings',
 
 ];
