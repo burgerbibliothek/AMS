@@ -12,20 +12,9 @@ Route::get('/', function () {
 });
 
 /** Resolve incoming ARKs */
-Route::get('/ark:{naan}/{baseNameAndSuffixes}', function (Request $request, string $naan, string $baseNameAndSuffixes) {
-
-    return Resolver::resolve($request, $naan, $baseNameAndSuffixes);
-
-})->where('baseNameAndSuffixes', '.*')->middleware(Language::class);
-
-/** Redirect ark:/{naan}/{baseNameAndSuffixes} to ark:{naan}/{baseNameAndSuffixes} */
-Route::get('/ark:/{naan}/{baseNameAndSuffixes}', function (Request $request, string $naan, string $baseNameAndSuffixes) {
-
-    $query = array_map(fn ($value): string => $value ? $value : '', $request->query());
-
-    return redirect('/ark:'.$naan.'/'.$baseNameAndSuffixes.'?'.http_build_query($query));
-
-})->where('baseNameAndSuffixes', '.*');
+Route::get('/{label}{naan}/{baseNameAndSuffixes}', function (Request $request, string $naan, string $baseNameAndSuffixes) {
+       return Resolver::resolve($request, $naan, $baseNameAndSuffixes);
+    })->where(['label' => '[Aa][Rr][Kk]:\/?', 'baseNameAndSuffixes' => '.*'])->middleware(Language::class);
 
 /** Search ARK via URI */
 Route::get('/search/uri/{uri}', function (string $uri) {
