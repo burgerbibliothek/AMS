@@ -25,6 +25,7 @@ class Resolver
 
         /** Normalize incoming request */
         $ark = Ark::normalize($request->fullUrl());
+        dump($ark);
         $components = Ark::splitIntoComponents($ark);
 
         /** Try to retrieve ARK from database  */
@@ -82,7 +83,7 @@ class Resolver
             if ($naan) {
 
                 /** Check ARK for transcription errors */
-                $minter = MinterModel::firstWhere('id', $naan->minter_settings_id);
+                $minter = MinterModel::firstWhere('id', $naan->minter_id);
 
                 if (!Ncda::verify($components['checkZone'], $minter->xdigits)) {
                     abort(400, __('errors.invalidARK'));
@@ -93,7 +94,7 @@ class Resolver
             }
 
             /** Redirect to global resolver. */
-            return redirect()->away('https://n2t.net/ark:' . $components['checkZone'] . '/' . $components['suffixes'], 301);
+            return redirect()->away('https://n2t.net/' . $components['baseCompactName'] . '/' . $components['suffixes'], 302);
         }
     }
 }
