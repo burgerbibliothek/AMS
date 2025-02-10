@@ -14,4 +14,6 @@ class ResolverTest extends TestCase
         $response = $this->get('/ark:99999/test');
         $response->assertStatus(400);
     }
+
+
 }

@@ -25,28 +25,34 @@ class Resolver
 
         /** Normalize incoming request */
         $ark = Ark::normalize($request->fullUrl());
-        dump($ark);
         $components = Ark::splitIntoComponents($ark);
 
-        /** Try to retrieve ARK from database  */
-        $ark = ArkModel::where('ark', $components['checkZone'])->first();
+        /** Try to retrieve ARK from database */
+        $ark = ArkModel::where('ark', $components['baseCompactName'])->first();
 
         /** If ARK could be retrieved process request */
         if ($ark) {
 
             $uri = $ark->uri;
+            dump($components);
 
             /** Return metadata when inflection is present */
-            if (in_array(array_key_first($request->query()), ['?', 'info'])) {
+            if (substr($components['suffixes'], -2) === '??' || substr($components['suffixes'], -5) === '?info') {
 
-                if (empty($ark->metadata)) {
-                    return response('erc: (:tba) | (:tba) | (:tba) | (:tba)')->header('Content-Type', 'text/plain');
+                $lastModified = $ark->updated_at;
+
+                if ($ark->metadata) {
+                    $erc = new Erc;
+                    $erc->record = Metadata::deserialize($ark->metadata, 1);
+                    $metadata = $erc->record();
+                } else {
+                    $metadata = 'erc: (:tba) | (:tba) | (:tba) | (:tba)';
                 }
 
-                $erc = new Erc;
-                $erc->record = Metadata::deserialize($ark->metadata, 1);
-
-                return response($erc->record())->header('Content-Type', 'text/plain');
+                return response($metadata)->withHeaders([
+                    'Content-Type' => 'text/plain',
+                    'Last-Modified'=> date_format($lastModified, 'r')
+                ]);
             }
 
             /** Return status if present */
@@ -67,8 +73,10 @@ class Resolver
                 $uri = $uri . '/' . $components['suffixes'];
             }
 
+            return null;
+
             /** Redirect */
-            return redirect()->away($uri, 302);
+            // return redirect()->away($uri, 302);
         } else {
 
             /** Check if NAAN is valid  */

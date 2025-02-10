@@ -26,3 +26,13 @@ Route::get('/search/uri/{uri}', function (string $uri) {
     return view('search.base', ['results' => $result, 'uri' => $uri]);
 })->where('uri', '.*');
 
+
+Route::get('/test', function () {
+
+    dump(ArkManagement::splitIntoComponents('https://exampleaark:/99999/a1bark2c3d4e5f6g??&aa=bb#skip'));
+    dump(ArkManagement::splitIntoComponents('ark:/99999/a1bark2c3d4e5f6g??&aa=bb#skip'));
+    dump(ArkManagement::splitIntoComponents('ark:/99999/a1bark2c3d/4e5f6g?info#skip'));
+    dump(ArkManagement::splitIntoComponents('ark:/99999/a1bark2c3d/4e5f6g?info'));
+    dump(ArkManagement::splitIntoComponents('ark:/99999/a1bark2c3d'));
+
+});
