@@ -91,10 +91,9 @@ class ArkImporter extends Importer
         if ($this->options['skipExistingUri'] ?? false) {
 
             /** Search for ARK with given URI */
-            $uri = ArkModel::select('ark')
-                ->where([
-                    ['uri', '=', $this->data['uri']],
-                ])->first();
+            $uri = ArkModel::select('ark')->query()
+                ->select('ark')
+                ->firstWhere('uri', $this->data['uri']);
 
             if ($uri && explode('/', $uri->ark)[0] === $this->options['naan']) {
                 throw new RowImportFailedException("Option to skip existing URIs has been set and URI already has at least one corresponding ARK: {$uri->ark}.");
@@ -105,9 +104,12 @@ class ArkImporter extends Importer
         if (empty($this->data['ark'])) {
 
             /** Get minter settings */
-            $minterSettings = Naan::firstWhere('naan', $this->options['naan'])->minter;
+            $minterSettings = Naan::query()
+                ->select('naan', 'minter_id')
+                ->with('minter:id,length,xdigits,ncda')
+                ->firstWhere('naan', $this->options['naan']);
 
-            if (! $minterSettings) {
+            if ($minterSettings === null) {
                 throw new RowImportFailedException('There is no minter associated with this NAAN.');
             }
 
@@ -117,10 +119,10 @@ class ArkImporter extends Importer
             for ($i = 1; $i <= 3; $i++) {
 
                 /** Allocate new ARK */
-                $this->data['ark'] = Ark::generate($this->options['naan'], $minterSettings->xdigits, $minterSettings->length, $this->options['shoulder'], $minterSettings->ncda);
+                $this->data['ark'] = Ark::generate($minterSettings->naan, $minterSettings->minter->xdigits, $minterSettings->minter->length, $this->options['shoulder'], $minterSettings->minter->ncda);
 
                 /** Check if allocated ARK not already existing */
-                if (! ArkModel::firstWhere('ark', '=', $this->data['ark'])) {
+                if (ArkModel::query()->select('ark')->firstWhere('ark', '=', $this->data['ark']) === null) {
                     break;
                 } elseif ($i >= 3) {
                     throw new RowImportFailedException('Failed allocating new ARK.');

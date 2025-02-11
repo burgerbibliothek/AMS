@@ -82,9 +82,12 @@ return [
      */
     'naan_resource_section_minter' => 'Basic Settings',
     'naan_resource_naan' => 'Name Assigning Authority Number (NAAN)',
+    'naan_resource_naan_helpertext' => 'Details on how to obtain a NAAN can be found on the *[arks.org](https://arks.org/about/ark-naans-and-systems/)* website',
     'naan_resource_nma' => 'Name Mapping Authority (NMA)',
+    'naan_resource_nma_helpertext' => 'e.g. https://n2t.net/',
     'naan_resource_naan_list' => 'NAAN',
     'naan_resource_desc' => 'Description',
+    'naan_resource_desc_helpertext' => 'Label for internal purposes',
     'naan_resource_minter' => 'Minter',
     'naan_resource_shoulders' => 'Shoulders',
     'naan_resource_shoulder' => 'Shoulder',

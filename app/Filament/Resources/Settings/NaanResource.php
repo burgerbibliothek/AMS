@@ -41,13 +41,17 @@ class NaanResource extends Resource
                         TextInput::make('naan')
                             ->label(__('ams.naan_resource_naan'))
                             ->unique(ignoreRecord: true)
+                            ->helperText(str(__('ams.naan_resource_naan_helpertext'))->inlineMarkdown()->toHtmlString())
                             ->required(),
                         TextInput::make('nma')
                             ->label(__('ams.naan_resource_nma'))
+                            ->default('https://n2t.net/')
+                            ->helperText(__('ams.naan_resource_nma_helpertext'))
                             ->activeUrl()
                             ->required(),
                         TextInput::make('description')
                             ->label(__('ams.naan_resource_desc'))
+                            ->helperText(__('ams.naan_resource_desc_helpertext'))
                             ->required(),
                         Select::make('minter_id')
                             ->label(__('ams.naan_resource_minter'))

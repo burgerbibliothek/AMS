@@ -20,7 +20,7 @@
     ],
     "require": {
         "php": "^8.3",
-        "burgerbibliothek/ark-management-tools": ">=0.0.9",
+        "burgerbibliothek/ark-management-tools": ">=0.0.10",
         "filament/filament": "^3.2",
         "filament/notifications": "^3.2",
         "guzzlehttp/guzzle": "^7.2",
