@@ -19,7 +19,4 @@ class SuccessfullImportRow extends Model
     {
         return $this->BelongsTo(Imports::class, 'id', 'import_id');
     }
-
-
-
 }

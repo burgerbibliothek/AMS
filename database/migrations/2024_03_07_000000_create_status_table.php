@@ -1,9 +1,9 @@
 <?php
 
+use App\Models\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Status;
 
 return new class extends Migration
 {
@@ -25,9 +25,9 @@ return new class extends Migration
             ['code' => 403, 'message' => 'Forbidden'],
             ['code' => 406, 'message' => 'Not Acceptable'],
             ['code' => 410, 'message' => 'Gone'],
-            ['code' => 451, 'message' => 'Unavailable For Legal Reasons']
+            ['code' => 451, 'message' => 'Unavailable For Legal Reasons'],
         ];
-        
+
         Status::insert($defaultStatusCodes);
     }
 

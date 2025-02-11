@@ -16,5 +16,4 @@ class Kernel extends ConsoleKernel
             ->everyMinute()
             ->withoutOverlapping();
     }
-
 }

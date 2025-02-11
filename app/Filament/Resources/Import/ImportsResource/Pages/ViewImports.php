@@ -13,7 +13,7 @@ use Filament\Tables\Table;
 class ViewImports extends ListRecords
 {
     protected static string $resource = ImportsResource::class;
-    
+
     public function infolist(Infolist $infolist): Infolist
     {
         return $infolist

@@ -1,4 +1,5 @@
 <?php
+
 return [
     'error' => 'Error',
     'title400' => 'Error 400',
@@ -8,7 +9,8 @@ return [
     'title404' => 'Error 404: Not found',
     'message404' => 'Resource not found.',
     'title406' => 'Error: Not Acceptable',
-    'title410' => 'Error: Gone',
+    'title410' => 'Resource does not exist anymore',
+    'message410' => 'The dataset with the identifier :pid is no longer attached to any meaningful content.',
     'title419' => 'Error: Page Expired',
     'title429' => 'Error: Too Many Requests',
     'title451' => 'Error: Unavailable For Legal Reasons',
@@ -18,5 +20,5 @@ return [
     'invalidARK' => 'invalid ARK',
     'notFoundARK' => 'ARK not found',
     'ressourceGone' => 'Ressource is no longer available',
-    'ressourceLegalReasons' => 'Ressource is unavailable for Legal Reasons'
+    'ressourceLegalReasons' => 'Ressource is unavailable for Legal Reasons',
 ];

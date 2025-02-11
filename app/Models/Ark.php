@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Ark extends Model
 {
-    protected $guarded = ['id','created_at'];
+    protected $guarded = ['id', 'created_at'];
 
     public function status(): HasOne
     {
@@ -32,7 +32,7 @@ class Ark extends Model
         $result = [];
 
         foreach ($attributes as $attr => $value) {
-            $result[] = $current->$attr === $value;
+            $result[] = $value === $current->$attr;
         }
 
         $result = in_array(false, $result, 1) ? true : false;
@@ -40,6 +40,4 @@ class Ark extends Model
         return $result;
 
     }
-
-    
 }

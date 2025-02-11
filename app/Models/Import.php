@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Import extends Model
 {
-
     use HasFactory;
 
     public function failedImportRows(): HasMany
@@ -20,7 +19,7 @@ class Import extends Model
     public function successfullImportRows(): HasManyThrough
     {
         return $this->HasManyThrough(
-            Ark::class, 
+            Ark::class,
             SuccessfullImportRow::class,
             'import_id',
             'id',
@@ -28,5 +27,4 @@ class Import extends Model
             'ark_id'
         );
     }
-
 }

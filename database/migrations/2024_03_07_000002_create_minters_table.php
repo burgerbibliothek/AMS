@@ -29,9 +29,9 @@ return new class extends Migration
             ['name' => 'Betanumeric', 'length' => '7', 'xdigits' => '0123456789abcdefghijklmnopqrstuvwxyz', 'ncda' => 1],
             ['name' => 'Betanumeric (w/o vowels)', 'length' => '7', 'xdigits' => '0123456789bcdfghjklmnpqrstvwxz', 'ncda' => 1],
             ['name' => 'Betanumeric (w/o vowels and l)', 'length' => '7', 'xdigits' => '0123456789bcdfghjkmnpqrstvwxz', 'ncda' => 1],
-            ['name' => 'Alphanumeric (w/ =~*+@_$)', 'length' => '7', 'xdigits' => '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvxyz=~*+@_$', 'ncda' => 1]
+            ['name' => 'Alphanumeric (w/ =~*+@_$)', 'length' => '7', 'xdigits' => '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvxyz=~*+@_$', 'ncda' => 1],
         ];
-        
+
         Minter::insert($defaultMinter);
 
     }

@@ -3,14 +3,14 @@
 namespace App\Filament\Resources\Settings;
 
 use App\Filament\Resources\Settings\NaanResource\Pages;
-use App\Models\Naan as NaanModel;
 use App\Models\Minter as MinterModel;
+use App\Models\Naan as NaanModel;
 use App\Rules\UniqueShoulder;
-use Filament\Forms\Form;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -18,9 +18,13 @@ use Filament\Tables\Table;
 class NaanResource extends Resource
 {
     protected static ?string $model = NaanModel::class;
+
     protected static ?string $slug = 'settings/naans';
+
     protected static ?string $navigationIcon = 'heroicon-o-building-library';
+
     protected static ?string $label = 'NAAN';
+
     protected static ?string $pluralLabel = 'NAANs';
 
     public static function getNavigationGroup(): ?string
@@ -69,8 +73,8 @@ class NaanResource extends Resource
                             ->collapsed()
                             ->addActionLabel('Create Shoulder')
                             ->itemLabel(fn (array $state): ?string => $state['description'].' ('.$state['shoulder'].')' ?? null)
-                            ->defaultItems(0)
-                ])                    
+                            ->defaultItems(0),
+                    ]),
             ]);
     }
 
@@ -84,7 +88,7 @@ class NaanResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('description')
                     ->label(__('ams.naan_resource_desc'))
-                    ->searchable()
+                    ->searchable(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -104,5 +108,4 @@ class NaanResource extends Resource
             'edit' => Pages\EditNaan::route('/edit/{record}'),
         ];
     }
-    
 }
