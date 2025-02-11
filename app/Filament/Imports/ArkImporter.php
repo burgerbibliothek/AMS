@@ -91,14 +91,17 @@ class ArkImporter extends Importer
         if ($this->options['skipExistingUri'] ?? false) {
 
             /** Search for ARK with given URI */
-            $uri = ArkModel::select('ark')->query()
+            $uri = ArkModel::query()
                 ->select('ark')
                 ->firstWhere('uri', $this->data['uri']);
 
+            /** Throw error if same uri under the same naan is present */
             if ($uri && explode('/', $uri->ark)[0] === $this->options['naan']) {
                 throw new RowImportFailedException("Option to skip existing URIs has been set and URI already has at least one corresponding ARK: {$uri->ark}.");
             }
         }
+
+
 
         /** Allocate new ARK if no ARK is provided by import. */
         if (empty($this->data['ark'])) {
@@ -167,9 +170,12 @@ class ArkImporter extends Importer
 
         /** Add "where" story w/ ARK */
         if ($this->options['ercWhere']) {
+
             $naan = explode('/', $this->data['ark']);
-            $nma = Naan::firstWhere('naan', '=', $naan[0])->nma;
+            preg_match('/(?<=ark:|\/)[0-9]{5,25}(?=\/)/', $this->data['ark'], $naan);
+            $nma = Naan::query()->select('nma')->firstWhere('naan', '=', $naan);
             $this->data['metadata'][] = ['label' => 'where', 'value' => $nma.'ark:'.$this->data['ark']];
+
         }
 
         /** Serialize Metadata if present */
