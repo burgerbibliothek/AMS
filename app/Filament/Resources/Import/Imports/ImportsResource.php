@@ -33,7 +33,8 @@ class ImportsResource extends Resource
                 TextColumn::make('created_at')
                     ->since()
                     ->sortable(),
-            ]);
+            ])
+            ->defaultSort('created_at', direction: 'desc');
     }
 
     public static function getRelations(): array
