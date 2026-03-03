@@ -2,12 +2,12 @@
 
 namespace App\Filament\Imports;
 
-use Filament\Schemas\Components\Utilities\Get;
 use App\Ams\Metadata;
 use App\Models\Ark as ArkModel;
 use App\Models\ArkRevision;
 use App\Models\Naan;
 use App\Models\SuccessfullImportRow;
+use App\Rules\NaanInDatabase;
 use App\Rules\ValidArk;
 use Burgerbibliothek\ArkManagementTools\Ark;
 use Burgerbibliothek\ArkManagementTools\Erc;
@@ -17,6 +17,7 @@ use Filament\Actions\Imports\Importer;
 use Filament\Actions\Imports\Models\Import;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\Select;
+use Filament\Schemas\Components\Utilities\Get;
 
 class ArkImporter extends Importer
 {
@@ -65,7 +66,7 @@ class ArkImporter extends Importer
             ImportColumn::make('ark')
                 ->label('ARK')
                 ->example('12345/abc1337')
-                ->rules([new ValidArk()]),
+                ->rules([new NaanInDatabase()]),
             ImportColumn::make('uri')
                 ->label('URI')
                 ->example('https://burgerbib.ch')
@@ -91,10 +92,7 @@ class ArkImporter extends Importer
         if ($this->options['skipExistingUri'] ?? false) {
 
             /** Search for ARK with given URI */
-            $uri = ArkModel::select('ark')
-                ->where([
-                    ['uri', '=', $this->data['uri']],
-                ])->first();
+            $uri = ArkModel::select('ark')->firstWhere('uri', $this->data['uri']);
 
             if ($uri && explode('/', $uri->ark)[0] === $this->options['naan']) {
                 throw new RowImportFailedException("Option to skip existing URIs has been set and URI already has at least one corresponding ARK: {$uri->ark}.");
@@ -105,9 +103,11 @@ class ArkImporter extends Importer
         if (empty($this->data['ark'])) {
 
             /** Get minter settings */
-            $minterSettings = Naan::firstWhere('naan', $this->options['naan'])->minter;
+            $minterSettings = Naan::select('naan', 'minter_id')
+                ->with('minter:id,length,xdigits,ncda')
+                ->firstWhere('naan', $this->options['naan']);
 
-            if (! $minterSettings) {
+            if ($minterSettings === null) {
                 throw new RowImportFailedException('There is no minter associated with this NAAN.');
             }
 
@@ -117,10 +117,10 @@ class ArkImporter extends Importer
             for ($i = 1; $i <= 3; $i++) {
 
                 /** Allocate new ARK */
-                $this->data['ark'] = Ark::generate($this->options['naan'], $minterSettings->xdigits, $minterSettings->length, $this->options['shoulder'], $minterSettings->ncda);
+                $this->data['ark'] = Ark::generate($minterSettings->naan, $minterSettings->minter->xdigits, $minterSettings->minter->length, $this->options['shoulder'], $minterSettings->minter->ncda);
 
                 /** Check if allocated ARK not already existing */
-                if (! ArkModel::firstWhere('ark', '=', $this->data['ark'])) {
+                if (ArkModel::query()->select('ark')->firstWhere('ark', '=', $this->data['ark']) === null) {
                     break;
                 } elseif ($i >= 3) {
                     throw new RowImportFailedException('Failed allocating new ARK.');
