@@ -17,7 +17,7 @@ class ListImportsDetails extends ViewRecord
 
     public function infolist(Schema $schema): Schema
     {
-        return $infolist
+        return $schema
             ->schema([
                 Section::make([
                     Grid::make([
@@ -40,14 +40,6 @@ class ListImportsDetails extends ViewRecord
                             ->weight(FontWeight::Bold),
                     ]),
                 ]),
-
-                /*
-                Infolists\Components\TextEntry::make('file_name'),
-                Infolists\Components\TextEntry::make('file_path'),
-                Infolists\Components\TextEntry::make('total_rows'),
-                Infolists\Components\TextEntry::make('successful_rows')
-                    ->columnSpanFull(),
-                    */
             ]);
     }
 }
