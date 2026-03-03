@@ -93,8 +93,9 @@ class ArkImporter extends Importer
 
             /** Search for ARK with given URI */
             $uri = ArkModel::select('ark')->firstWhere('uri', $this->data['uri']);
+            $naan = (string)Ark::splitIntoComponents($uri->ark)['naan'];
 
-            if ($uri && explode('/', $uri->ark)[0] === $this->options['naan']) {
+            if ($uri && (string)$naan === (string)$this->options['naan']) {
                 throw new RowImportFailedException("Option to skip existing URIs has been set and URI already has at least one corresponding ARK: {$uri->ark}.");
             }
         }
@@ -128,6 +129,8 @@ class ArkImporter extends Importer
             }
         }
 
+        $arkComponents = Ark::splitIntoComponents($this->data['ark']);
+
         /** Validate and preprocess metadata */
         if (! empty($this->data['metadata'])) {
 
@@ -146,6 +149,7 @@ class ArkImporter extends Importer
                         unset($record['erc']);
 
                         $this->data['metadata'] = [];
+
                         foreach ($record as $label => $value) {
                             $this->data['metadata'][] = ['label' => $label, 'value' => $value];
                         }
@@ -165,9 +169,8 @@ class ArkImporter extends Importer
 
         /** Add "where" story w/ ARK */
         if ($this->options['ercWhere']) {
-            $naan = explode('/', $this->data['ark']);
-            $nma = Naan::firstWhere('naan', '=', $naan[0])->nma;
-            $this->data['metadata'][] = ['label' => 'where', 'value' => $nma.'ark:'.$this->data['ark']];
+            $nma = Naan::firstWhere('naan', '=', $arkComponents['naan'])->nma;
+            $this->data['metadata'][] = ['label' => 'where', 'value' => $nma.$arkComponents['baseCompactName']];
         }
 
         /** Serialize Metadata if present */
