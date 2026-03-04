@@ -13,9 +13,9 @@ The ARK Management System (AMS) is open source and developed with the [Laravel F
 
 ### Requirements
 AMS needs the following to run:
-* PHP 8.3
-* Meets the [Laravel Server Requirements](https://laravel.com/docs/11.x/deployment#server-requirements)
-* A relational [database](https://laravel.com/docs/11.x/database#introduction)
+* PHP >= 8.3
+* Meets the [Laravel Server Requirements](https://laravel.com/docs/12.x/deployment)
+* A relational [database](https://laravel.com/docs/12.x/database)
 
 ### Clone Repository
 ```bash
