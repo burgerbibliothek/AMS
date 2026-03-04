@@ -1,6 +1,8 @@
 # ARK Management System
 The ARK Management System (AMS) is open source and developed with the [Laravel Framework](https://laravel.com/) and [Filament](https://filamentphp.com/).
 
+<img width="2880" height="1914" alt="Bildschirmfoto am 2026-03-04 um 10 09 22" src="https://github.com/user-attachments/assets/296ea2cd-fa05-4bbf-b175-6d932b041dda" />
+
 ## Features of AMS
 * Create minters and mint ARKs.
 * Manage different NAANs in one installation.
