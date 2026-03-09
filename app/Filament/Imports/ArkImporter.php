@@ -8,7 +8,6 @@ use App\Models\ArkRevision;
 use App\Models\Naan;
 use App\Models\SuccessfullImportRow;
 use App\Rules\NaanInDatabase;
-use App\Rules\ValidArk;
 use Burgerbibliothek\ArkManagementTools\Ark;
 use Burgerbibliothek\ArkManagementTools\Erc;
 use Filament\Actions\Imports\Exceptions\RowImportFailedException;
@@ -93,9 +92,9 @@ class ArkImporter extends Importer
 
             /** Search for ARK with given URI */
             $uri = ArkModel::select('ark')->firstWhere('uri', $this->data['uri']);
-            $naan = (string)Ark::splitIntoComponents($uri->ark)['naan'];
-
-            if ($uri && (string)$naan === (string)$this->options['naan']) {
+            
+            /** Throw error if the URI exists for the same naan */
+            if ($uri && (string)Ark::splitIntoComponents($uri->ark)['naan'] === (string)$this->options['naan']) {
                 throw new RowImportFailedException("Option to skip existing URIs has been set and URI already has at least one corresponding ARK: {$uri->ark}.");
             }
         }
@@ -116,12 +115,12 @@ class ArkImporter extends Importer
 
             /** Allocate new ARK, retry three times */
             for ($i = 1; $i <= 3; $i++) {
-
+                
                 /** Allocate new ARK */
                 $this->data['ark'] = Ark::generate($minterSettings->naan, $minterSettings->minter->xdigits, $minterSettings->minter->length, $this->options['shoulder'], $minterSettings->minter->ncda);
 
-                /** Check if allocated ARK not already existing */
-                if (ArkModel::query()->select('ark')->firstWhere('ark', '=', $this->data['ark']) === null) {
+                /** Check if allocated ARK does not already exist */
+                if (ArkModel::select('ark')->firstWhere('ark', '=', $this->data['ark']) === null) {
                     break;
                 } elseif ($i >= 3) {
                     throw new RowImportFailedException('Failed allocating new ARK.');

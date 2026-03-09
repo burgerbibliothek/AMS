@@ -12,14 +12,12 @@ use Filament\Actions\DeleteBulkAction;
 use App\Filament\Resources\Settings\Minters\Pages\ListMinters;
 use App\Filament\Resources\Settings\Minters\Pages\CreateMinter;
 use App\Filament\Resources\Settings\Minters\Pages\EditMinter;
-use App\Filament\Resources\Settings\MinterResource\Pages;
 use App\Models\Minter as MinterModel;
 use Burgerbibliothek\ArkManagementTools\Validator;
 use Closure;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
 
 class MinterResource extends Resource
@@ -64,10 +62,18 @@ class MinterResource extends Resource
                             ->helperText(__('ams.minter_resource_xdigits_help'))
                             ->placeholder(__('ams.minter_resource_xdigits_placeholder'))
                             ->rules([
-                                fn (): Closure => function (string $attribute, $value, Closure $fail) {
+                                fn (Get $get): Closure => function (string $attribute, $value, Closure $fail) use ($get) {
                                     /** Check if conttains only valid ARK characters. */
                                     if (! Validator::followsArkCharacterRepetoire($value)) {
                                         $fail(__('ams.minter_resource_xdigits_error'));
+                                    }
+
+                                    $charRepetoireLen = count(array_unique(str_split($value)));
+                                    // CheckZone has always a NAAN which is 5 characters long
+                                    $idLen = (int)$get('length') + 6;
+
+                                    if ($get('ncda') === true && $charRepetoireLen <= $idLen) {
+                                        $fail(__('ams.minter_resource_xdigits_length_error', ['number' => $idLen]));
                                     }
                                 },
                             ])
@@ -85,7 +91,7 @@ class MinterResource extends Resource
                                     $xdigitsArr = array_unique(str_split($get('xdigits')));
                                     $xdigitsArrLength = count($xdigitsArr);
 
-                                    if ($get('ncda') && $value > $xdigitsArrLength) {
+                                    if ($get('ncda') && $value >= $xdigitsArrLength) {
                                         $fail(__('ams.minter_resource_lenght_error', ['number' => $xdigitsArrLength]));
                                     }
                                 },

@@ -5,12 +5,11 @@ namespace App\Filament\Resources\Import\Imports;
 use App\Filament\Resources\Import\Imports\RelationManagers\ArksRelationManager;
 use App\Filament\Resources\Import\Imports\Pages\ListImports;
 use App\Filament\Resources\Import\Imports\Pages\ListImportsDetails;
-use App\Filament\Resources\Import\ImportsResource\Pages;
-use App\Filament\Resources\Import\ImportsResource\RelationManagers;
 use App\Models\Import;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Actions\DeleteBulkAction;
 
 class ImportsResource extends Resource
 {
@@ -25,6 +24,9 @@ class ImportsResource extends Resource
     public static function table(Table $table): Table
     {
         return $table
+            ->toolbarActions([
+                DeleteBulkAction::make(),
+            ])
             ->columns([
                 TextColumn::make('file_name')
                     ->sortable(),

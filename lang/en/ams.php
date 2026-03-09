@@ -68,6 +68,7 @@ return [
     'minter_resource_xdigits_help' => 'Allowed characters are letters, numbers or the following characters: = ~ * + @ _ $. Duplicate characters are removed upon saving. The characters are saved sorted.',
     'minter_resource_xdigits_placeholder' => 'E. g. 0123456789bcdfghjkmnpqrstvwxz',
     'minter_resource_xdigits_error' => 'Detected invalid characters.',
+    'minter_resource_xdigits_length_error' => 'In order for the NCDA to work the character repetoire must have at least :number characters.',
     'minter_resource_length' => 'ID-Length',
     'minter_resource_length_help' => 'The ID length should not exceed the number of characters in the character repetoire for the NCDA to work.',
     'minter_resource_lenght_error' => 'In order for the NCDA to work the ID-length must not exceed :number',
@@ -109,6 +110,10 @@ return [
      */
     'import_resource_navigationlabel' => 'Importations',
     'import_resource_export_list' => 'Export List',
+    'import_resource_dialog_delete_heading' => 'Are you sure?',
+    'import_resource_dialog_delete_desc' => 'This will delete the Import entries permanently and cannot be undone.',
+    'import_resource_dialog_delete_submit' => 'Yes, I\'m sure.',
     'ams.navigation_settings' => 'Settings',
+
 
 ];
