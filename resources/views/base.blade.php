@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="generator" content="ARK Management System">
+    <link rel="icon" href="https://ark.diani.xyz/favicon.svg" />
     <title>@yield('title')</title>
     <style>
         *,
