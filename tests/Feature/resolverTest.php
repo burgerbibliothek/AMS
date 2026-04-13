@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class resolverTest extends TestCase
@@ -34,6 +32,4 @@ class resolverTest extends TestCase
         $response = $this->get('ark:12148/btv1b8449691v/f29');
         $response->assertStatus(302);
     }
-
-
 }
