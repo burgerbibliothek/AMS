@@ -25,19 +25,14 @@ class ListImportsDetails extends ViewRecord
                 ->modalSubmitActionLabel(__('ams.import_resource_dialog_delete_submit')),
         ];
     }
-
+    
     public function infolist(Schema $schema): Schema
     {
         return $schema
             ->schema([
                 Section::make([
                     Grid::make([
-                        'default' => 4,
-                        'sm' => 4,
-                        'md' => 4,
-                        'lg' => 4,
-                        'xl' => 4,
-                        '2xl' => 4,
+                        'default' => 4
                     ])->schema([
                         TextEntry::make('total_rows')
                             ->weight(FontWeight::Bold),

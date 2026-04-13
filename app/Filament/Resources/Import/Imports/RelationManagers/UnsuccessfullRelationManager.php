@@ -9,11 +9,11 @@ use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Table;
 
 
-class ArksRelationManager extends RelationManager
+class UnsuccessfullRelationManager extends RelationManager
 {
     protected static ?string $title = 'Imported / Minted ARKs';
 
-    protected static string $relationship = 'successfullImportRows';
+    protected static string $relationship = 'unsuccessfullImportRows';
 
     public function table(Table $table): Table
     {
