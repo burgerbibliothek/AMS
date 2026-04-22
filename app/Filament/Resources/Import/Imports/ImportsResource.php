@@ -39,6 +39,13 @@ class ImportsResource extends Resource
             ->defaultSort('created_at', direction: 'desc');
     }
 
+    public static function getWidgets(): array
+    {
+        return [
+            FailedImportRows::class,
+        ];
+    }
+
     public static function getRelations(): array
     {
         return [

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Filament\Imports;
 
 use App\Ams\Metadata;
@@ -39,8 +38,8 @@ class ArkImporter extends Importer
                 ->label(__('ams.ark_resource_import_shoulder'))
                 ->helperText(__('ams.ark_resource_import_shoulder_helptext'))
                 ->placeholder('−')
-                ->options(fn (Get $get): array => Naan::shoulders($get('naan')))
-                ->visible(fn (Get $get): bool => Naan::hasShoulder($get('naan')))
+                ->options(fn(Get $get): array => Naan::shoulders($get('naan')))
+                ->visible(fn(Get $get): bool => Naan::hasShoulder($get('naan')))
                 ->live(),
             Checkbox::make('skipExistingUri')
                 ->default('true')
@@ -92,7 +91,7 @@ class ArkImporter extends Importer
 
             /** Search for ARK with given URI */
             $uri = ArkModel::select('ark')->firstWhere('uri', $this->data['uri']);
-            
+
             /** Throw error if the URI exists for the same naan */
             if ($uri && (string)Ark::splitIntoComponents($uri->ark)['naan'] === (string)$this->options['naan']) {
                 throw new RowImportFailedException("Option to skip existing URIs has been set and URI already has at least one corresponding ARK: {$uri->ark}.");
@@ -115,9 +114,15 @@ class ArkImporter extends Importer
 
             /** Allocate new ARK, retry three times */
             for ($i = 1; $i <= 3; $i++) {
-                
+
                 /** Allocate new ARK */
-                $this->data['ark'] = Ark::generate($minterSettings->naan, $minterSettings->minter->xdigits, $minterSettings->minter->length, $this->options['shoulder'], $minterSettings->minter->ncda);
+                $this->data['ark'] = Ark::generate(
+                    naan: $minterSettings->naan,
+                    xdigits: $minterSettings->minter->xdigits,
+                    length: $minterSettings->minter->length,
+                    shoulder: $this->options['shoulder'],
+                    ncda: $minterSettings->minter->ncda
+                );
 
                 /** Check if allocated ARK does not already exist */
                 if (ArkModel::select('ark')->firstWhere('ark', '=', $this->data['ark']) === null) {
@@ -169,7 +174,7 @@ class ArkImporter extends Importer
         /** Add "where" story w/ ARK */
         if ($this->options['ercWhere']) {
             $nma = Naan::firstWhere('naan', '=', $arkComponents['naan'])->nma;
-            $this->data['metadata'][] = ['label' => 'where', 'value' => $nma.$arkComponents['baseCompactName']];
+            $this->data['metadata'][] = ['label' => 'where', 'value' => $nma . $arkComponents['baseCompactName']];
         }
 
         /** Serialize Metadata if present */
@@ -208,10 +213,10 @@ class ArkImporter extends Importer
 
     public static function getCompletedNotificationBody(Import $import): string
     {
-        $body = 'Your ARK import has completed and '.number_format($import->successful_rows).' '.str('row')->plural($import->successful_rows).' imported.';
+        $body = 'Your ARK import has completed and ' . number_format($import->successful_rows) . ' ' . str('row')->plural($import->successful_rows) . ' imported.';
 
         if ($failedRowsCount = $import->getFailedRowsCount()) {
-            $body .= ' '.number_format($failedRowsCount).' '.str('row')->plural($failedRowsCount).' failed to import.';
+            $body .= ' ' . number_format($failedRowsCount) . ' ' . str('row')->plural($failedRowsCount) . ' failed to import.';
         }
 
         return $body;

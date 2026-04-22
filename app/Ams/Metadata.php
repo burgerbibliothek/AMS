@@ -14,7 +14,7 @@ class Metadata
      * @param  array  $data  Data elements.
      * @return string Returns a JSON encoded string.
      */
-    public static function serialize(string $type, array $data): string
+    public static function serialize(string $type, array $data): ?string
     {
 
         if (empty($data)) {
