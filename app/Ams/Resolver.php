@@ -29,7 +29,7 @@ class Resolver
         /** Try to retrieve ARK from database */
         $ark = ArkModel::query()
             ->select('ark', 'uri', 'updated_at', 'metadata', 'status_id')
-            ->where('ark', $components['checkZone'])
+            ->where('ark', $components['baseCompactName'])
             ->first();
         
         /** If ARK could be retrieved process request */
