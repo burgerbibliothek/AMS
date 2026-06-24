@@ -123,6 +123,7 @@ return [
         'English' => 'en',
         'German' => 'de',
         'French' => 'fr',
+        'Italian' => 'it',
     ],
 
     /*

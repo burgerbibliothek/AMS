@@ -33,7 +33,7 @@ return [
     'ark_resource_erc_where' => 'Where',
     'ark_resource_erc_where_help' => 'A location or system-oriented identifier.',
     'ark_resource_erc_note' => 'Note',
-    'ark_resource_erc_note_help' => 'A location or system-oriented identifier.',
+    'ark_resource_erc_note_help' => 'A free text note about the record.',
     'ark_resource_dialog_delete_heading' => 'Are you sure?',
     'ark_resource_dialog_delete_desc' => 'This will delete the ARK permanently and cannot be undone.',
     'ark_resource_dialog_delete_submit' => 'Yes, I\'m sure.',

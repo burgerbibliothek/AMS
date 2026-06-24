@@ -16,11 +16,13 @@ use App\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use App\Http\Middleware\Authenticate;
+use App\Http\Middleware\Language;
 use Illuminate\Auth\Middleware\AuthenticateWithBasicAuth;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Http\Middleware\SetCacheHeaders;
 use Illuminate\Auth\Middleware\Authorize;
 use App\Http\Middleware\RedirectIfAuthenticated;
+use App\Http\Middleware\SetLocale;
 use Illuminate\Auth\Middleware\RequirePassword;
 use Illuminate\Foundation\Http\Middleware\HandlePrecognitiveRequests;
 use App\Http\Middleware\ValidateSignature;
@@ -44,6 +46,7 @@ class Kernel extends HttpKernel
         ValidatePostSize::class,
         TrimStrings::class,
         ConvertEmptyStringsToNull::class,
+        SetLocale::class        
     ];
 
     /**

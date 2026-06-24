@@ -85,3 +85,142 @@
 [22-Apr-2026 16:17:30 Europe/Zurich] PHP Fatal error:  'break' not in the 'loop' or 'switch' context in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Ark/Arks/Pages/CreateArk.php on line 19
 [22-Apr-2026 16:17:42 Europe/Zurich] PHP Fatal error:  A function with return type must return a value in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Ark/Arks/Pages/CreateArk.php on line 19
 [22-Apr-2026 16:17:44 Europe/Zurich] PHP Fatal error:  A function with return type must return a value in /home/heiraterei/sites/ams-reloaded/app/Filament/Resources/Ark/Arks/Pages/CreateArk.php on line 19
+[24-Jun-2026 09:25:24 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "return" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 61
+[24-Jun-2026 09:25:25 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "return" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 61
+[24-Jun-2026 09:25:26 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "return" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 61
+[24-Jun-2026 09:25:28 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "return" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 61
+[24-Jun-2026 09:25:28 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "return" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 61
+[24-Jun-2026 09:25:29 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "return" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 61
+[24-Jun-2026 09:25:34 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(44): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:25:36 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(44): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:25:36 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(44): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:26:59 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "return" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 61
+[24-Jun-2026 09:27:00 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "return" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 61
+[24-Jun-2026 09:27:00 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "return" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 61
+[24-Jun-2026 09:27:01 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "return" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 61
+[24-Jun-2026 09:27:06 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(47): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:27:07 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(47): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:27:07 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(47): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:27:07 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(47): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:27:07 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(47): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:27:09 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(47): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:27:46 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "->" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 17
+[24-Jun-2026 09:27:47 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "->" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 17
+[24-Jun-2026 09:27:48 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "->" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 17
+[24-Jun-2026 09:32:42 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(55): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:47:04 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(56): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:48:56 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(56): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:50:52 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(57): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:50:53 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(57): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:50:54 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(57): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:51:51 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(57): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:51:57 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(57): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:51:58 Europe/Zurich] PHP Fatal error:  Uncaught BadMethodCallException: Method Illuminate\Foundation\Application::withMiddleware does not exist. in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php:117
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/bootstrap/app.php(57): Illuminate\Foundation\Application->__call()
+#1 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once('/home/heiratere...')
+#2 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/vendor/laravel/framework/src/Illuminate/Macroable/Traits/Macroable.php on line 117
+[24-Jun-2026 09:52:35 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "->" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 18
+[24-Jun-2026 09:55:06 Europe/Zurich] PHP Fatal error:  Uncaught Error: Call to a member function withMiddleware() on string in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php:18
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once()
+#1 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 18
+[24-Jun-2026 09:55:07 Europe/Zurich] PHP Fatal error:  Uncaught Error: Call to a member function withMiddleware() on string in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php:18
+Stack trace:
+#0 /home/heiraterei/sites/ams-reloaded/public/index.php(47): require_once()
+#1 {main}
+  thrown in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 18
+[24-Jun-2026 10:01:48 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "->" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 14
+[24-Jun-2026 10:01:49 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "->" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 14
+[24-Jun-2026 10:01:51 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "->" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 14
+[24-Jun-2026 10:03:10 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "->" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 15
+[24-Jun-2026 10:03:11 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "->" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 15
+[24-Jun-2026 10:03:12 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "->" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 15
+[24-Jun-2026 10:03:13 Europe/Zurich] PHP Parse error:  syntax error, unexpected token "->" in /home/heiraterei/sites/ams-reloaded/bootstrap/app.php on line 15

@@ -8,20 +8,19 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Symfony\Component\HttpFoundation\Response;
 
-class Language
+class SetLocale
 {
     /**
      * Handle an incoming request.
      *
-     * @param Closure(Request):Response $next
+     * @param  Closure(Request): (Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
     {
-
         $header_lang = explode(',', $request->server('HTTP_ACCEPT_LANGUAGE'));
-
         foreach ($header_lang as $lang) {
-            if (in_array(substr($lang, 0, 2), Config::get('app'))) {
+            $lang = explode('-', $lang)[0];
+            if (in_array($lang, Config::get('app'))) {
                 App::setLocale($lang);
                 break;
             }
@@ -30,3 +29,4 @@ class Language
         return $next($request);
     }
 }
+
