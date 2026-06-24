@@ -1,7 +1,7 @@
 # ARK Management System
 The ARK Management System (AMS) is open source and developed with the [Laravel Framework](https://laravel.com/) and [Filament](https://filamentphp.com/).
 
-<img width="2880" height="1914" alt="Bildschirmfoto am 2026-03-04 um 10 09 22" src="https://github.com/user-attachments/assets/296ea2cd-fa05-4bbf-b175-6d932b041dda" />
+<img width="1219" height="952" alt="Screenshot AMS." src="https://github.com/user-attachments/assets/243c1a04-ab7c-4257-b3d0-172a6a1dd02b" />
 
 ## Features of AMS
 * Create minters and mint ARKs.
@@ -32,7 +32,7 @@ The following configurations are intended for setting up the application in a pr
 3. Enter the details of your database connection in the .env file. Further possible database configuration options can be found in the official Laravel [documentation](https://laravel.com/docs/11.x/installation#databases-and-migrations).
 4. Initialize the database using the command `php artisan migrate`.
 5. Create a user via the following command `php artisan make:filament-user`
-
+6. Login to the system with your created user under /ams
 
 ## License
 [MIT license](https://opensource.org/licenses/MIT).
