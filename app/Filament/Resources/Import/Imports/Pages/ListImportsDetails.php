@@ -31,7 +31,9 @@ class ListImportsDetails extends ViewRecord
         return $schema->schema([
             Section::make([
                 Grid::make([
-                    'default' => 4
+                    'sm' => 1,
+                    'md' => 2,
+                    'lg' => 4,
                 ])->schema([
                     TextEntry::make('total_rows')
                         ->weight(FontWeight::Bold)
