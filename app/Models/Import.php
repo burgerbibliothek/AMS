@@ -11,11 +11,6 @@ class Import extends Model
 {
     use HasFactory;
 
-    public function failedImportRows(): HasMany
-    {
-        return $this->hasMany(FailedImportRow::class);
-    }
-
     public function successfullImportRows(): HasManyThrough
     {
         return $this->HasManyThrough(
@@ -26,5 +21,10 @@ class Import extends Model
             'id',
             'ark_id'
         );
+    }
+
+    public function unsuccessfullImportRows(): HasMany
+    {
+        return $this->hasMany(FailedImportRow::class);
     }
 }

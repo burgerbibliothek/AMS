@@ -28,24 +28,23 @@ class ListImportsDetails extends ViewRecord
     
     public function infolist(Schema $schema): Schema
     {
-        return $schema
-            ->schema([
-                Section::make([
-                    Grid::make([
-                        'default' => 4
-                    ])->schema([
-                        TextEntry::make('total_rows')
-                            ->weight(FontWeight::Bold),
-                        TextEntry::make('successful_rows')
-                            ->weight(FontWeight::Bold),
-                        TextEntry::make('created_at')
-                            ->dateTime('d.m.Y H:i:s')
-                            ->weight(FontWeight::Bold),
-                        TextEntry::make('completed_at')
-                            ->dateTime('d.m.Y H:i:s')
-                            ->weight(FontWeight::Bold),
-                    ]),
+        return $schema->schema([
+            Section::make([
+                Grid::make([
+                    'default' => 4
+                ])->schema([
+                    TextEntry::make('total_rows')
+                        ->weight(FontWeight::Bold),
+                    TextEntry::make('successful_rows')
+                        ->weight(FontWeight::Bold),
+                    TextEntry::make('created_at')
+                        ->dateTime('d.m.Y H:i:s')
+                        ->weight(FontWeight::Bold),
+                    TextEntry::make('completed_at')
+                        ->dateTime('d.m.Y H:i:s')
+                        ->weight(FontWeight::Bold),
                 ]),
-            ]);
+            ]),
+        ]);
     }
 }

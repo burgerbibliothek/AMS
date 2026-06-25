@@ -2,14 +2,19 @@
 
 namespace App\Filament\Resources\Import\Imports;
 
-use App\Filament\Resources\Import\Imports\RelationManagers\ArksRelationManager;
+
 use App\Filament\Resources\Import\Imports\Pages\ListImports;
 use App\Filament\Resources\Import\Imports\Pages\ListImportsDetails;
+use App\Filament\Resources\Import\Imports\Pages\ViewFailedImportRows;
+use App\Filament\Resources\Import\Imports\RelationManagers\ArksRelationManager;
+use App\Filament\Resources\Import\Imports\RelationManagers\UnsuccessfullRelationManager;
 use App\Models\Import;
 use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Resources\Pages\Page;
+use Filament\Pages\Enums\SubNavigationPosition;
 
 class ImportsResource extends Resource
 {
@@ -50,6 +55,7 @@ class ImportsResource extends Resource
     {
         return [
             ArksRelationManager::class,
+            UnsuccessfullRelationManager::class
         ];
     }
 
@@ -58,6 +64,10 @@ class ImportsResource extends Resource
         return [
             'index' => ListImports::route('/'),
             'view' => ListImportsDetails::route('/view/{record}'),
+            'view-failed' => ViewFailedImportRows::route('/failed/{record}')
         ];
     }
+
+
+
 }
