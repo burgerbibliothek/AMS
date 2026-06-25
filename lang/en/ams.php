@@ -108,11 +108,20 @@ return [
     /*
      * Import Resource
      */
-    'import_resource_navigationlabel' => 'Importations',
+    'import_resource_navigationlabel' => 'Imports',
     'import_resource_export_list' => 'Export List',
     'import_resource_dialog_delete_heading' => 'Are you sure?',
     'import_resource_dialog_delete_desc' => 'This will delete the Import entries permanently and cannot be undone.',
     'import_resource_dialog_delete_submit' => 'Yes, I\'m sure.',
+    'import_resource_successfull_title' => 'Imported rows',
+    'import_resource_unsuccessfull_title' => 'Failed rows',
+    'import_resource_unsuccessfull_table_data' => 'Dataset',
+    'import_resource_unsuccessfull_table_error' => 'Error Message',
+    'import_resource_unsuccessfull_table_created_at' => 'Created at',
+    'import_resource_details_total_rows' => 'Total rows',
+    'import_resource_details_successfull_rows' => 'Successfull rows',
+    'import_resource_details_created_at' => 'Created at',
+    'import_resource_details_completed_at' => 'Completed at',
     'ams.navigation_settings' => 'Settings',
 
 

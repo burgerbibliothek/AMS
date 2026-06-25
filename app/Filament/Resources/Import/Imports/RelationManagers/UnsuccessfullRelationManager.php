@@ -7,25 +7,31 @@ use Filament\Actions\ExportAction;
 use App\Filament\Exports\UnsuccessfullImportExporter;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 
 class UnsuccessfullRelationManager extends RelationManager
 {
-    protected static ?string $title = 'Unsuccessfull Rows';
-
+    
     protected static string $relationship = 'unsuccessfullImportRows';
 
+    public static function getTitle(Model $ownerRecord, string $pageClass): string
+    {
+        return __('ams.import_resource_unsuccessfull_title');
+    }
+    
     public function table(Table $table): Table
     {
         return $table
             ->columns([
                 TextColumn::make('data')
-                    ->label('Data')
+                    ->label(__('ams.import_resource_unsuccessfull_table_data'))
                     ->sortable(),
                 TextColumn::make('validation_error')
-                    ->label('Error Message')
+                    ->label(__('ams.import_resource_unsuccessfull_table_error'))
                     ->sortable(),
                 TextColumn::make('created_at')
+                    ->label(__('ams.import_resource_unsuccessfull_table_created_at'))
                     ->sortable(),
             ])
             ->headerActions([

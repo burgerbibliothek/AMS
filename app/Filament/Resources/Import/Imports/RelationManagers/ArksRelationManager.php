@@ -7,11 +7,15 @@ use Filament\Actions\ExportAction;
 use App\Filament\Exports\ImportExporter;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Tables\Table;
+use Illuminate\Database\Eloquent\Model;
 
 
 class ArksRelationManager extends RelationManager
 {
-    protected static ?string $title = 'Imported / Minted ARKs';
+    public static function getTitle(Model $ownerRecord, string $pageClass): string
+    {
+        return __('ams.import_resource_successfull_title');
+    }
 
     protected static string $relationship = 'successfullImportRows';
 

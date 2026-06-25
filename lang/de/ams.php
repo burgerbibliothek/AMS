@@ -113,6 +113,15 @@ return [
     'import_resource_dialog_delete_heading' => 'Sind Sie sicher?',
     'import_resource_dialog_delete_desc' => 'Dadurch werden die Importeinträge dauerhaft gelöscht und können nicht rückgängig gemacht werden.',
     'import_resource_dialog_delete_submit' => 'Ja, ich bin sicher.',
+    'import_resource_successfull_title' => 'Erfolreiche Verarbeitungen',
+    'import_resource_unsuccessfull_title' => 'Fehlschlagene Verarbeitungen',
+    'import_resource_unsuccessfull_table_data' => 'Datensatz',
+    'import_resource_unsuccessfull_table_error' => 'Fehlermeldung',
+    'import_resource_unsuccessfull_table_created_at' => 'Erstellt am',
+    'import_resource_details_total_rows' => 'Total Verarbeitungen',
+    'import_resource_details_successfull_rows' => 'Erfolgreiche Verarbeitungen',
+    'import_resource_details_created_at' => 'Gestartet am',
+    'import_resource_details_completed_at' => 'Beendet am',
     'ams.navigation_settings' => 'Einstellungen',
 
 

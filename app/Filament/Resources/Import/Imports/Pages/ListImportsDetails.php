@@ -34,17 +34,21 @@ class ListImportsDetails extends ViewRecord
                     'default' => 4
                 ])->schema([
                     TextEntry::make('total_rows')
-                        ->weight(FontWeight::Bold),
+                        ->weight(FontWeight::Bold)
+                        ->label(__('ams.import_resource_details_total_rows')),
                     TextEntry::make('successful_rows')
-                        ->weight(FontWeight::Bold),
+                        ->weight(FontWeight::Bold)
+                        ->label(__('ams.import_resource_details_successfull_rows')),
                     TextEntry::make('created_at')
                         ->dateTime('d.m.Y H:i:s')
-                        ->weight(FontWeight::Bold),
+                        ->weight(FontWeight::Bold)
+                        ->label(__('ams.import_resource_details_created_at')),
                     TextEntry::make('completed_at')
                         ->dateTime('d.m.Y H:i:s')
-                        ->weight(FontWeight::Bold),
+                        ->weight(FontWeight::Bold)
+                        ->label(__('ams.import_resource_details_completed_at')),
                 ]),
-            ]),
+            ])->columnSpanFull(),
         ]);
     }
 }
