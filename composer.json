@@ -9,15 +9,6 @@
         "ark"
     ],
     "license": "MIT",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../ark-management-tools",
-            "options": {
-                "symlink": true
-            }
-        }
-    ],
     "require": {
         "php": "^8.3",
         "burgerbibliothek/ark-management-tools": ">=0.0.17",
