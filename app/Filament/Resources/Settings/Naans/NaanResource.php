@@ -11,7 +11,6 @@ use Filament\Actions\DeleteBulkAction;
 use App\Filament\Resources\Settings\Naans\Pages\ListNaans;
 use App\Filament\Resources\Settings\Naans\Pages\CreateNaan;
 use App\Filament\Resources\Settings\Naans\Pages\EditNaan;
-use App\Filament\Resources\Settings\NaanResource\Pages;
 use App\Models\Minter as MinterModel;
 use App\Models\Naan as NaanModel;
 use App\Rules\UniqueShoulder;
@@ -19,8 +18,8 @@ use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
-use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Forms\Components\Checkbox;
 
 class NaanResource extends Resource
 {
@@ -60,6 +59,9 @@ class NaanResource extends Resource
                             ->label(__('ams.naan_resource_minter'))
                             ->options(MinterModel::all()->pluck('name', 'id'))
                             ->required(),
+                        Checkbox::make('spt')
+                            ->label(__('ams.naan_resource_spt'))
+                            ->helperText(__('ams.naan_resource_spt_help')),
                     ]),
                 Section::make(__('ams.naan_resource_shoulders'))
                     ->schema([

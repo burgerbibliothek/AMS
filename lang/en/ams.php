@@ -95,6 +95,9 @@ return [
     'naan_resource_dialog_delete_heading' => 'Are you sure?',
     'naan_resource_dialog_delete_desc' => 'You won\'t be able to generate new ARKs for this NAAN.',
     'naan_resource_dialog_delete_submit' => 'Yes, I\'m sure.',
+    'naan_resource_spt' => 'Suffix Passthrough',
+    'naan_resource_spt_help' => 'When activated the suffix is added to the end of the identifier’s location (target) URL.',
+    
 
     /*
      * Status Resource

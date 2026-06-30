@@ -72,9 +72,13 @@ class Resolver
                 return abort($code, __('errors.message410', ['pid' => $ark->ark]));
             }
 
+
             /** Suffix Passthrough */
-            if (strlen(trim($components['suffixes'])) > 0) {
-                $uri = $uri . '/' . $components['suffixes'];
+            if(NaanModel::spt($components['naan']) === true){
+                if (strlen(trim($components['suffixes'])) > 0) {
+                    $concatChar = substr($components['suffixes'], 0, 1) === '?' ? '' : '/';
+                    $uri = $uri . $concatChar . $components['suffixes'];
+                }
             }
 
             /** Redirect */

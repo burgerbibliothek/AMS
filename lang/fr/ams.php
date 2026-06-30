@@ -83,6 +83,8 @@ return [
     'naan_resource_dialog_delete_heading' => 'Êtes-vous sûr ?',
     'naan_resource_dialog_delete_desc' => 'Vous ne pourrez plus générer de nouveaux ARK pour ce NAAN.',
     'naan_resource_dialog_delete_submit' => 'Oui, je suis sûr.',
+    'naan_resource_spt' => 'Suffix Passthrough',
+    'naan_resource_spt_help' => 'Lorsqu\'il est activé, le suffixe est ajouté à la fin de l\'URL de localisation (cible) de l\'identifiant.',
 
     /*
      * Ressource d'état

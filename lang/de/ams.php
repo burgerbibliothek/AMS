@@ -95,6 +95,8 @@ return [
     'naan_resource_dialog_delete_heading' => 'Sind Sie sicher?',
     'naan_resource_dialog_delete_desc' => 'Sie können keine neuen ARKs für diesen NAAN generieren.',
     'naan_resource_dialog_delete_submit' => 'Ja, ich bin sicher.',
+    'naan_resource_spt' => 'Suffix Passthrough',
+    'naan_resource_spt_help' => 'Wenn diese Option aktiviert ist, wird das Suffix an das Ende der Standort-URL (Ziel-URL) des Identifikators angehängt.',
 
     /*
      * Status Resource

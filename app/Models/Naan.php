@@ -49,4 +49,9 @@ class Naan extends Model
     {
         return self::where('naan', '=', $naan)->whereNotNull('shoulders')->exists();
     }
+
+    public static function spt($naan): bool
+    {
+        return self::select('spt')->where('naan', '=', $naan)->first()->spt;
+    }
 }
