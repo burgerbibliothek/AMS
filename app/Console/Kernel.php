@@ -8,7 +8,10 @@ use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 class Kernel extends ConsoleKernel
 {
     /**
-     * Define the application's command schedule.
+     * Task Scheduler.
+     * Set a cron like this `* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1` 
+     * in order to schedule the queue worker.
+     * @link https://laravel.com/docs/13.x/scheduling
      */
     protected function schedule(Schedule $schedule): void
     {
