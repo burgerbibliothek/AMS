@@ -19,13 +19,13 @@ class Metadata
         if (empty($data)) {
             return null;
         }
-        
+
         $erc = new Erc;
         foreach ($data as $element) {
             $erc->add($element['label'], $element['value']);
         }
 
-        return $erc->record();
+        return $erc->record(decode: false);
     }
 
     /**

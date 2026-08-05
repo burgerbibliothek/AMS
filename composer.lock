@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cbc54865b77ca5d8b62d1b3e0b2b74d5",
+    "content-hash": "152857d49beee6bae779320cd5aaec37",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -287,12 +287,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/burgerbibliothek/ark-management-tools.git",
-                "reference": "d5892fbd2357b48e5192786c3a08f141054b3618"
+                "reference": "8d74324c8f3090d481935165a51e11c0138821bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/burgerbibliothek/ark-management-tools/zipball/d5892fbd2357b48e5192786c3a08f141054b3618",
-                "reference": "d5892fbd2357b48e5192786c3a08f141054b3618",
+                "url": "https://api.github.com/repos/burgerbibliothek/ark-management-tools/zipball/8d74324c8f3090d481935165a51e11c0138821bb",
+                "reference": "8d74324c8f3090d481935165a51e11c0138821bb",
                 "shasum": ""
             },
             "require": {
@@ -332,7 +332,7 @@
                 "issues": "https://github.com/burgerbibliothek/ark-management-tools/issues",
                 "source": "https://github.com/burgerbibliothek/ark-management-tools/tree/main"
             },
-            "time": "2026-08-04T14:16:52+00:00"
+            "time": "2026-08-05T15:04:44+00:00"
         },
         {
             "name": "carbonphp/carbon-doctrine-types",
@@ -2367,16 +2367,16 @@
         },
         {
             "name": "laravel/prompts",
-            "version": "v0.3.21",
+            "version": "v0.3.22",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/prompts.git",
-                "reference": "7753c65c281c2550c7c183f14e18062073b7d821"
+                "reference": "02b89b39e8972a998db4d5d4ad4719239dd4aee4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/prompts/zipball/7753c65c281c2550c7c183f14e18062073b7d821",
-                "reference": "7753c65c281c2550c7c183f14e18062073b7d821",
+                "url": "https://api.github.com/repos/laravel/prompts/zipball/02b89b39e8972a998db4d5d4ad4719239dd4aee4",
+                "reference": "02b89b39e8972a998db4d5d4ad4719239dd4aee4",
                 "shasum": ""
             },
             "require": {
@@ -2420,9 +2420,9 @@
             "description": "Add beautiful and user-friendly forms to your command-line applications.",
             "support": {
                 "issues": "https://github.com/laravel/prompts/issues",
-                "source": "https://github.com/laravel/prompts/tree/v0.3.21"
+                "source": "https://github.com/laravel/prompts/tree/v0.3.22"
             },
-            "time": "2026-06-26T00:11:25+00:00"
+            "time": "2026-08-04T14:50:50+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -8586,16 +8586,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.64.0",
+            "version": "v1.65.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "08cacd3e72d6798df3fa8bd4b5d55d0f7f920625"
+                "reference": "d4b92139858d2a189a6302ca133e494f58afe20b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/08cacd3e72d6798df3fa8bd4b5d55d0f7f920625",
-                "reference": "08cacd3e72d6798df3fa8bd4b5d55d0f7f920625",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/d4b92139858d2a189a6302ca133e494f58afe20b",
+                "reference": "d4b92139858d2a189a6302ca133e494f58afe20b",
                 "shasum": ""
             },
             "require": {
@@ -8645,7 +8645,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2026-07-17T15:09:35+00:00"
+            "time": "2026-08-03T18:00:17+00:00"
         },
         {
             "name": "laravel/sentinel",
@@ -8705,16 +8705,16 @@
         },
         {
             "name": "laravel/telescope",
-            "version": "v5.21.0",
+            "version": "v5.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/telescope.git",
-                "reference": "f00f45a59843329b97aa238f28da594f3b7d4aa7"
+                "reference": "571b08633d86086da3899474378050b16c4c6680"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/telescope/zipball/f00f45a59843329b97aa238f28da594f3b7d4aa7",
-                "reference": "f00f45a59843329b97aa238f28da594f3b7d4aa7",
+                "url": "https://api.github.com/repos/laravel/telescope/zipball/571b08633d86086da3899474378050b16c4c6680",
+                "reference": "571b08633d86086da3899474378050b16c4c6680",
                 "shasum": ""
             },
             "require": {
@@ -8768,9 +8768,9 @@
             ],
             "support": {
                 "issues": "https://github.com/laravel/telescope/issues",
-                "source": "https://github.com/laravel/telescope/tree/v5.21.0"
+                "source": "https://github.com/laravel/telescope/tree/v5.22.0"
             },
-            "time": "2026-07-20T19:44:45+00:00"
+            "time": "2026-07-29T14:10:20+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -9131,11 +9131,11 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "2.2.7",
+            "version": "2.2.8",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/692db47b9dddb0487934e5236e77d48594aef921",
-                "reference": "692db47b9dddb0487934e5236e77d48594aef921",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/e285254e60f33c21902efef4a926ca0987c06804",
+                "reference": "e285254e60f33c21902efef4a926ca0987c06804",
                 "shasum": ""
             },
             "require": {
@@ -9191,7 +9191,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-07-29T17:39:32+00:00"
+            "time": "2026-08-04T22:21:45+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
