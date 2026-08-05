@@ -10,70 +10,51 @@ class Metadata
      * Serialize metadata for saving to Database.
      * Saves metadata into a JSON structure. currently only ERC is supported.
      *
-     * @param  string  $type  Metadata scheme. Currently only "erc".
      * @param  array  $data  Data elements.
      * @return string Returns a JSON encoded string.
      */
-    public static function serialize(string $type, array $data): ?string
+    public static function serialize(array $data): ?string
     {
 
         if (empty($data)) {
             return null;
         }
-
-        $metadata = [];
-
-        if ($type === 'erc') {
-
-            $erc = new Erc;
-
-            foreach ($data as $element) {
-                $erc->addElement($element['label'], $element['value']);
-            }
-
-            $metadata[] = ['type' => 'erc', 'data' => $erc->record(false)];
-
+        
+        $erc = new Erc;
+        foreach ($data as $element) {
+            $erc->add($element['label'], $element['value']);
         }
 
-        return json_encode($metadata);
+        return $erc->record();
     }
 
     /**
      * Deserialize metadata for displaying in backend.
      *
-     * @param  string  $metadata  JSON encoded Metadata.
-     * @param  bool  $raw  If set to TRUE complete ERC record is returned as array.
+     * @param string $metadata ERC Record.
+     * @param bool $raw If set to true complete ERC record is returned as array.
      */
     public static function deserialize(string $metadata, bool $raw = false)
     {
 
         $data = [];
-        $elements = json_decode($metadata, 1);
 
-        /** Check if JSON could be decoded */
-        if ($elements) {
+        $erc = new Erc;
+        $erc->load($metadata);
+        $record = $erc->record;
 
-            /** Iterate elements */
-            foreach ($elements as $element) {
+        if ($raw) {
+            return $record;
+        }
 
-                if (! empty($element['type']) && $element['type'] == 'erc' && ! empty($element['data'])) {
-
-                    $record = Erc::parseRecord($element['data']);
-
-                    if ($raw) {
-                        return $record;
-                    }
-
-                    unset($record['erc']);
-
-                    if ($record) {
-                        foreach ($record as $label => $value) {
-                            $data[] = ['label' => $label, 'value' => Erc::decodeElementValue($value)];
-                        }
-                    }
-                }
+        unset($record['erc']);
+        
+        if ($record) {
+            foreach ($record as $label => $value) {
+                $data[] = ['label' => $label, 'value' => Erc::decodeElementValue($value)];
             }
         }
+
 
         return $data;
     }

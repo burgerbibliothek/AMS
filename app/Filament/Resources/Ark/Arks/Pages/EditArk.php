@@ -2,12 +2,12 @@
 
 namespace App\Filament\Resources\Ark\Arks\Pages;
 
-use Filament\Actions\DeleteAction;
 use App\Ams\Metadata;
 use App\Filament\Resources\Ark\Arks\ArkResource;
 use App\Models\Ark as ArkModel;
 use App\Models\ArkRevision;
 use App\Models\Status as StatusModel;
+use Filament\Actions\DeleteAction;
 use Filament\Resources\Pages\EditRecord;
 
 class EditArk extends EditRecord
@@ -32,24 +32,26 @@ class EditArk extends EditRecord
 
     protected function mutateFormDataBeforeFill(array $data): array
     {
-        /** Deserialize ERC Metadata */
-        if ($data['metadata']) {
+        /** Parse metadata for form */
+        if (empty($data['metadata']) === false) {
             $data['metadata'] = Metadata::deserialize($data['metadata']);
         }
+
+        
 
         return $data;
     }
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
-        $data['metadata'] = Metadata::serialize('erc', $data['metadata']);
+
 
         /** Save current data as revision. */
         $change = ArkModel::hasChanged($this->data['id'], [
             'ark' => $this->data['ark'],
             'uri' => $this->data['uri'],
             'status_id' => $this->data['status_id'],
-            'metadata' => $data['metadata'],
+            'metadata' => $this->data['metadata'],
         ]);
 
         if ($change) {
@@ -68,6 +70,9 @@ class EditArk extends EditRecord
             $revision->revision = json_encode($revisionData);
             $revision->save();
         }
+
+        /** Create ERC record */
+        $data['metadata'] = Metadata::serialize($data['metadata']);
 
         return $data;
     }

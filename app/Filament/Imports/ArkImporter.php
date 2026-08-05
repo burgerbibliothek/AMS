@@ -41,6 +41,14 @@ class ArkImporter extends Importer
                 ->options(fn(Get $get): array => Naan::shoulders($get('naan')))
                 ->visible(fn(Get $get): bool => Naan::hasShoulder($get('naan')))
                 ->live(),
+            Select::make('metadataMergeStrategy')
+                ->label(__('ams.ark_resource_import_mergestrategy'))
+                ->helperText(__('ams.ark_resource_import_mergestrategy_helptext'))
+                ->options([
+                    'keep' => __('ams.ark_resource_import_mergestrategy_keep'), 
+                    'overwrite' => __('ams.ark_resource_import_mergestrategy_overwrite')
+                ])
+                ->default('keep'),
             Checkbox::make('skipExistingUri')
                 ->default('true')
                 ->label(__('ams.ark_resource_import_skip'))
@@ -71,6 +79,10 @@ class ArkImporter extends Importer
                 ->requiredMapping()
                 ->rules(['required', 'url']),
             ImportColumn::make('metadata')
+                ->castStateUsing(function (string $originalState): ?string {
+                    // Default cast removes ending \n\n from erc record.
+                    return $originalState;
+                })
                 ->label('Metadata')
                 ->example('[{"type":"erc","data":"erc:\nwho: Burgerbibliothek%spBern\nwhat: Burgerbibliothek%spBern\nwhere: https%cn%sl%slburgerbib.ch%sl\nwhen: 1951\n\n"}]'),
         ];
@@ -83,23 +95,18 @@ class ArkImporter extends Importer
     public function resolveRecord(): ?ArkModel
     {
 
-        /**
-         * Option: Skip existing URI.
-         * If the option is set, don't update or allocate new ARK.
-         */
-        if ($this->options['skipExistingUri'] ?? false) {
-
-            /** Search for ARK with given URI */
-            $uri = ArkModel::select('ark')->firstWhere('uri', $this->data['uri']);
-
-            /** Throw error if the URI exists for the same naan */
-            if ($uri && (string)Ark::splitIntoComponents($uri->ark)['naan'] === (string)$this->options['naan']) {
-                throw new RowImportFailedException("Option to skip existing URIs has been set and URI already has at least one corresponding ARK: {$uri->ark}.");
-            }
-        }
-
         /** Allocate new ARK if no ARK is provided by import. */
-        if (empty($this->data['ark'])) {
+        if (empty($this->data['ark']) === true) {
+
+            /** If the option for skipping existing URI is set, don't allocate new ARK. */
+            if ($this->options['skipExistingUri'] === true) {
+
+                $uri = ArkModel::select('ark')->firstWhere('uri', $this->data['uri']);
+
+                if ($uri && (string)Ark::splitIntoComponents($uri->ark)['naan'] === (string)$this->options['naan']) {
+                    throw new RowImportFailedException("Option to skip existing URIs has been set and URI already has at least one corresponding ARK: {$uri->ark}.");
+                }
+            }
 
             /** Get minter settings */
             $minterSettings = Naan::select('naan', 'minter_id')
@@ -135,51 +142,30 @@ class ArkImporter extends Importer
 
         $arkComponents = Ark::splitIntoComponents($this->data['ark']);
 
-        /** Validate and preprocess metadata */
-        if (! empty($this->data['metadata'])) {
+        /** Update metadata */
+        if(empty($this->data['metadata']) === false){
 
-            $json = json_decode($this->data['metadata'], 1);
-
-            if ($json) {
-                foreach ($json as $j) {
-                    if ($j['type'] == 'erc' && $j['data']) {
-
-                        $record = Erc::parseRecord($j['data']);
-
-                        if ($record === null) {
-                            throw new RowImportFailedException('Metadata: No valid ERC record found or ERC record contains unallowed labels.');
-                        }
-
-                        unset($record['erc']);
-
-                        $this->data['metadata'] = [];
-
-                        foreach ($record as $label => $value) {
-                            $this->data['metadata'][] = ['label' => $label, 'value' => $value];
-                        }
-
-                        break;
-                    }
-                }
-            } else {
-                throw new RowImportFailedException('Metadata: JSON could not be decoded.');
+            if(Erc::isValidRecord($this->data['metadata']) === false){
+                throw new RowImportFailedException('Provided ERC record is not valid.');
             }
-        }
+            
+            $currentMetadata = ArkModel::firstWhere('ark', $this->data['ark']);
 
-        /** Use empty metadata entries to delete */
-        if (! $this->options['emptyMetadataDelete'] && empty($this->data['metadata'])) {
+            if(empty($currentMetadata->metadata) === false){
+                $this->data['metadata'] = Erc::mergeRecords($currentMetadata->metadata, $this->data['metadata'], $this->options['metadataMergeStrategy']);
+            }
+
+        } else if ($this->options['emptyMetadataDelete'] === true) {
             unset($this->data['metadata']);
         }
-
+        
         /** Add "where" story w/ ARK */
-        if ($this->options['ercWhere']) {
+        if ($this->options['ercWhere'] === true) {
             $nma = Naan::firstWhere('naan', '=', $arkComponents['naan'])->nma;
-            $this->data['metadata'][] = ['label' => 'where', 'value' => $nma . $arkComponents['baseCompactName']];
-        }
-
-        /** Serialize Metadata if present */
-        if (! empty($this->data['metadata'])) {
-            $this->data['metadata'] = Metadata::serialize('erc', $this->data['metadata']);
+            $erc = new Erc;
+            $erc->load($this->data['metadata']);
+            $erc->add('where', $nma . $arkComponents['baseCompactName']);
+            $this->data['metadata'] = $erc->record();
         }
 
         /** Save to record matching with ark field or create a new one */

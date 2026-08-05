@@ -187,9 +187,10 @@ class ArkResource extends Resource
 
     public static function desirializeMetadata($metadata)
     {
-
-        $erc = Erc::parseKernelMetadata($metadata);
-        foreach ($erc as $k => $v) {
+        $erc = new Erc;
+        $erc->load($metadata);
+        $data = [];
+        foreach ($erc->record as $k => $v) {
             $data[$k] = $v;
         }
 

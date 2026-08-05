@@ -55,6 +55,8 @@ return [
     'ark_resource_revision_title' => 'Revisions',
     'ark_resource_revision_data' => 'Data',
     'ark_resource_revision_moddate' => 'Revision date',
+    'ark_resource_import_mergestrategy' => 'Merge Strategy for Metadata',
+    'ark_resource_import_mergestrategy_helptext' => 'Choose how metadata should be merged during the import.',
 
     /*
      * Minter Resource
