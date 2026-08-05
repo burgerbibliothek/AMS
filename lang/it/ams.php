@@ -48,8 +48,6 @@ return [
     'ark_resource_import_shoulder_helptext' => 'Selezione facoltativa di una spalla per l\'assegnazione di nuovi ARK.',
     'ark_resource_import_skip' => 'Salta le voci con URI esistenti.',
     'ark_resource_import_skip_hint' => 'Se questa opzione è selezionata, le voci che hanno già un URI identico vengono saltate.',
-    'ark_resource_import_emptydatadelete' => 'Elimina i dati in caso di riga di metadati vuota.',
-    'ark_resource_import_emptydatadelete_helptext' => 'Se questa opzione è selezionata, le voci di metadati vuote eliminano i metadati presenti.',
     'ark_resource_import_ercwhere' => 'Aggiungi la storia "where" con l\'ARK.',
     'ark_resource_import_ercwhere_helptext' => 'Se questa opzione è selezionata, una storia "where" contenente l\'ARK viene aggiunta al record ERC (incl. Name Mapping Authority).',
     'ark_resource_revision_title' => 'Revisioni',

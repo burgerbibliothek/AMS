@@ -53,9 +53,6 @@ class ArkImporter extends Importer
                 ->default('true')
                 ->label(__('ams.ark_resource_import_skip'))
                 ->helperText(__('ams.ark_resource_import_skip_hint')),
-            Checkbox::make('emptyMetadataDelete')
-                ->label(__('ams.ark_resource_import_emptydatadelete'))
-                ->helperText(__('ams.ark_resource_import_emptydatadelete_helptext')),
             Checkbox::make('ercWhere')
                 ->label(__('ams.ark_resource_import_ercwhere'))
                 ->helperText(__('ams.ark_resource_import_ercwhere_helptext')),
@@ -155,8 +152,6 @@ class ArkImporter extends Importer
                 $this->data['metadata'] = Erc::mergeRecords($currentMetadata->metadata, $this->data['metadata'], $this->options['metadataMergeStrategy']);
             }
 
-        } else if ($this->options['emptyMetadataDelete'] === true) {
-            unset($this->data['metadata']);
         }
         
         /** Add "where" story w/ ARK */
