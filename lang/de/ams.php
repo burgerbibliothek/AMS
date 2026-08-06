@@ -55,8 +55,9 @@ return [
     'ark_resource_revision_moddate' => 'Revisionsdatum',
     'ark_resource_import_mergestrategy' => 'Metadaten Zusammenführungsstrategie',
     'ark_resource_import_mergestrategy_helptext' => 'Wähle die Strategie, welche bei der Zusammenführung von Metadaten verwendet werden soll.',
-    'ark_resource_import_mergestrategy_keep' => 'Behalten: Bestehende Werte erhalten, neue Werte / Felder ergänzen.',
-    'ark_resource_import_mergestrategy_overwrite' => 'Überschreiben: Alle Felder werden überschrieben / gelöscht.',
+    'ark_resource_import_mergestrategy_keep' => 'Behalten: Bestehende Werte werden erhalten / neue ergänzt.',
+    'ark_resource_import_mergestrategy_overwrite' => 'Überschreiben: Bestehende / neue Felder werden überschrieben / hinzugefügt.',
+    'ark_resource_import_mergestrategy_substitute' => 'Ersetzen: Bestehender Datensatz wird komplett ersetzt / gelöscht.',
     /*
      * Minter Resource
      */

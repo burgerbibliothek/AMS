@@ -46,7 +46,8 @@ class ArkImporter extends Importer
                 ->helperText(__('ams.ark_resource_import_mergestrategy_helptext'))
                 ->options([
                     'keep' => __('ams.ark_resource_import_mergestrategy_keep'), 
-                    'overwrite' => __('ams.ark_resource_import_mergestrategy_overwrite')
+                    'overwrite' => __('ams.ark_resource_import_mergestrategy_overwrite'),
+                    'substitute' => __('ams.ark_resource_import_mergestrategy_substitute')
                 ])
                 ->default('keep'),
             Checkbox::make('skipExistingUri')
