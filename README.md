@@ -12,6 +12,8 @@ The ARK Management System (AMS) is an open source web application for minting an
   * Set the HTTP-status for ARKs.
   * Add ERC metadata to an ARK.
   * Mint or update ARKs via CSV-Imports.
+ 
+> See [Wiki](https://github.com/burgerbibliothek/AMS/wiki/QuickStart) for a quickstart.
 
 ## License
 [MIT license](https://opensource.org/licenses/MIT).
