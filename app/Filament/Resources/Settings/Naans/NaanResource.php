@@ -14,6 +14,7 @@ use App\Filament\Resources\Settings\Naans\Pages\EditNaan;
 use App\Models\Minter as MinterModel;
 use App\Models\Naan as NaanModel;
 use App\Rules\UniqueShoulder;
+use App\Rules\ValidNaan;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -47,6 +48,7 @@ class NaanResource extends Resource
                         TextInput::make('naan')
                             ->label(__('ams.naan_resource_naan'))
                             ->unique(ignoreRecord: true)
+                            ->rules([new ValidNaan])
                             ->required(),
                         TextInput::make('nma')
                             ->label(__('ams.naan_resource_nma'))
