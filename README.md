@@ -1,7 +1,7 @@
 # ARK Management System
 > **Please be aware that the software is still being heavily developed, and breaking changes could be introduced!**
 
-The ARK Management System (AMS) is open source web application for minting and managing Archival Resource Keys (ARK). It's developed with using [Laravel Framework](https://laravel.com/) and [Filament](https://filamentphp.com/).
+The ARK Management System (AMS) is open source web application for minting and managing Archival Resource Keys (ARK). It's developed using [Laravel Framework](https://laravel.com/) and [Filament](https://filamentphp.com/).
 
 <img width="1219" height="952" alt="Screenshot AMS." src="https://github.com/user-attachments/assets/243c1a04-ab7c-4257-b3d0-172a6a1dd02b" />
 
