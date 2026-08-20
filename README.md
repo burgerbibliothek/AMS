@@ -27,8 +27,6 @@ git clone https://github.com/burgerbibliothek/AMS /path/to/desired/directory
 ```
 
 ### Configurations
-The following configurations are intended for setting up the application in a productive environment.
-
 1. Make a copy of the .env.example named .env file in the root directory `cp .env.example .env`
 2. Generat the app Key via the command `php artisan key:generate`
 3. Enter the details of your database connection in the .env file. Further possible database configuration options can be found in the official Laravel [documentation](https://laravel.com/docs/11.x/installation#databases-and-migrations).
