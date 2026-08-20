@@ -19,7 +19,7 @@ The ARK Management System (AMS) is open source web application for minting and m
 AMS needs the following to run:
 * PHP >= 8.3
 * Meets the [Laravel Server Requirements](https://laravel.com/docs/12.x/deployment)
-* A relational [database](https://laravel.com/docs/12.x/database)
+* A relational [database](https://laravel.com/docs/12.x/database) supported by Laravel
 
 ### Clone Repository
 ```bash
