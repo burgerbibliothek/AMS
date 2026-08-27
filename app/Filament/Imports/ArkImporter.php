@@ -163,12 +163,15 @@ class ArkImporter extends Importer
             }
             
             $currentMetadata = ArkModel::firstWhere('ark', $this->data['ark']);
-
+        
             if(empty($currentMetadata->metadata) === false){
-                $this->data['metadata'] = Erc::mergeRecords($currentMetadata->metadata, $this->data['metadata'], $this->options['metadataMergeStrategy']);
+                $currentMetadata->metadata = Metadata::deserialize($currentMetadata->metadata, raw: true);
+                $this->data['metadata'] = Erc::mergeRecords(Metadata::deserialize($currentMetadata->metadata, raw: true), $this->data['metadata'], $this->options['metadataMergeStrategy']);
             }
 
         }
+
+
         
         /** Add "where" story w/ ARK */
         if ($this->options['ercWhere'] === true) {

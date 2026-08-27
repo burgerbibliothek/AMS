@@ -32,7 +32,7 @@ class Metadata
      * Deserialize metadata for displaying in backend.
      *
      * @param string $metadata ERC Record.
-     * @param bool $raw If set to true complete ERC record is returned as array.
+     * @param bool $raw If set to true complete ERC record is returned as decoded String.
      */
     public static function deserialize(string $metadata, bool $raw = false)
     {
@@ -44,7 +44,7 @@ class Metadata
         $record = $erc->record;
 
         if ($raw) {
-            return $record;
+            return $erc->record();
         }
 
         unset($record['erc']);
