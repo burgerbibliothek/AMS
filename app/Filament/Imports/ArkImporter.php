@@ -74,11 +74,10 @@ class ArkImporter extends Importer
             ImportColumn::make('uri')
                 ->label('URI')
                 ->example('https://burgerbib.ch')
-                ->requiredMapping()
-                ->rules(['required', 'url']),
+                ->rules(['url']),
             ImportColumn::make('metadata')
                 ->castStateUsing(function (string $originalState): ?string {
-                    // Default cast removes ending \n\n from erc record.
+                    // Return original state because default cast removes \r\n ending from erc record.
                     return $originalState;
                 })
                 ->label('Metadata')
@@ -92,6 +91,22 @@ class ArkImporter extends Importer
      */
     public function resolveRecord(): ?ArkModel
     {
+
+        /** Check if an URI is provided */
+        if (empty($this->data['uri']) === true){
+
+            /** If no ARK and no URI are provided an import is not possible */
+            if(empty($this->data['ark']) === true){
+                throw new RowImportFailedException("URI has to be specified when ARK is missing too.");
+            }
+
+            /** If no URI is provided but an ARK exists, the existing URI is preserved */
+            $record = ArkModel::firstWhere('ark', $this->data['ark']);
+            if($record){
+                $this->data['uri'] = $record->uri;
+            }
+            
+        }
 
         /** Allocate new ARK if no ARK is provided by import. */
         if (empty($this->data['ark']) === true) {
