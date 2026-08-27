@@ -82,7 +82,7 @@ class ArkImporter extends Importer
                     return $originalState;
                 })
                 ->label('Metadata')
-                ->example('[{"type":"erc","data":"erc:\nwho: Burgerbibliothek%spBern\nwhat: Burgerbibliothek%spBern\nwhere: https%cn%sl%slburgerbib.ch%sl\nwhen: 1951\n\n"}]'),
+                ->example('[{"type":"erc","data":"erc:\r\nwho: Burgerbibliothek%spBern\r\nwhat: Burgerbibliothek%spBern\r\nwhere: https%cn%sl%slburgerbib.ch%sl\r\nwhen: 1951\r\n\r\n"}]'),
         ];
     }
 
