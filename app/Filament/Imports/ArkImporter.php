@@ -6,6 +6,7 @@ use App\Models\Ark as ArkModel;
 use App\Models\ArkRevision;
 use App\Models\Naan;
 use App\Models\SuccessfullImportRow;
+use App\Models\Status;
 use App\Rules\NaanInDatabase;
 use Burgerbibliothek\ArkManagementTools\Ark;
 use Burgerbibliothek\ArkManagementTools\Erc;
@@ -82,6 +83,10 @@ class ArkImporter extends Importer
                 })
                 ->label('Metadata')
                 ->example('[{"type":"erc","data":"erc:\r\nwho: Burgerbibliothek%spBern\r\nwhat: Burgerbibliothek%spBern\r\nwhere: https%cn%sl%slburgerbib.ch%sl\r\nwhen: 1951\r\n\r\n"}]'),
+            ImportColumn::make('status_id')
+                ->label('HTTP-Status-Code')
+                ->guess(['status', 'http-code', 'code'])
+                ->example('410')
         ];
     }
 
@@ -170,8 +175,6 @@ class ArkImporter extends Importer
             }
 
         }
-
-
         
         /** Add "where" story w/ ARK */
         if ($this->options['ercWhere'] === true) {
@@ -180,6 +183,20 @@ class ArkImporter extends Importer
             $erc->load($this->data['metadata']);
             $erc->add('where', $nma . $arkComponents['baseCompactName']);
             $this->data['metadata'] = $erc->record();
+        }
+
+         /** Get HTTP-Status Codes */
+        if(empty($this->data['status_id']) === false){
+
+            $code = $this->data['status_id'];
+            $code_id = Status::select('id')->firstWhere('code', $this->data['status_id']);
+            
+            if($code_id){
+                $this->data['status_id'] = $code_id->id;
+            } else {
+                throw new RowImportFailedException("No entry for HTTP-Status-Code {$code} found.");
+            }
+
         }
 
         /** Save to record matching with ark field or create a new one */
@@ -221,4 +238,5 @@ class ArkImporter extends Importer
 
         return $body;
     }
+
 }

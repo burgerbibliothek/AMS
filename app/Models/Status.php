@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Status extends Model
 {
@@ -11,8 +11,8 @@ class Status extends Model
 
     protected $guarded = ['id', 'created_at'];
 
-    public function ark(): BelongsTo
+    public function ark(): BelongsToMany
     {
-        return $this->belongsTo(Ark::class);
+        return $this->BelongsToMany(Ark::class);
     }
 }
