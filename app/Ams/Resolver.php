@@ -43,9 +43,7 @@ class Resolver
                 $lastModified = $ark->updated_at;
 
                 if ($ark->metadata) {
-                    $erc = new Erc;
-                    $erc->record = Metadata::deserialize($ark->metadata, 1);
-                    $metadata = $erc->record();
+                    $metadata = Metadata::deserialize($ark->metadata, true);
                 } else {
                     $metadata = 'erc: (:tba) | (:tba) | (:tba) | (:tba)';
                 }
