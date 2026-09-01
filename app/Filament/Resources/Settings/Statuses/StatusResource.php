@@ -44,7 +44,7 @@ class StatusResource extends Resource
                         TextInput::make('code')
                             ->label(__('ams.status_resource_code'))
                             ->helperText(__('ams.status_resource_code_help'))
-                            ->rules(['Integer', 'min:100', 'max:599'])
+                            ->rules(['Integer', 'min:400', 'max:499'])
                             ->unique()
                             ->required(),
                         TextInput::make('message')
