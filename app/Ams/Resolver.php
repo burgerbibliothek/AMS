@@ -29,13 +29,10 @@ class Resolver
         /** Try to retrieve ARK from database */
         $ark = ArkModel::query()
             ->select('ark', 'uri', 'updated_at', 'metadata', 'status_id')
-            ->where('ark', $components['baseCompactName'])
-            ->first();
+            ->firstWhere('ark', $components['baseCompactName']);
         
         /** If ARK could be retrieved process request */
         if ($ark !== null) {
-
-            $uri = $ark->uri;
             
             /** Return metadata if inflection is present */
             if (in_array($components['inflection'], ['?info', '??']) === true) {
@@ -56,31 +53,24 @@ class Resolver
 
             /** Return status if present */
             if ($ark->status_id) {
-
                 $status = StatusModel::query()
                     ->select('code')
-                    ->where('id', $ark->status_id)
-                    ->first();
-                $code = $status->code;
-                
-                if ($code > 299 && $code < 400) {
-                    return redirect()->away($uri, $code);
-                }
+                    ->firstWhere('id', $ark->status_id);
 
-                return abort($code, __('errors.message410', ['pid' => $ark->ark]));
+                return abort($status->code, __('errors.default_message', ['pid' => $ark->ark]));
             }
 
 
             /** Suffix Passthrough */
-            if(NaanModel::spt($components['naan']) === true){
+            if(NaanModel::suffixPasstrough($components['naan']) === true){
                 if (strlen(trim($components['suffixes'])) > 0) {
                     $concatChar = substr($components['suffixes'], 0, 1) === '?' ? '' : '/';
-                    $uri = $uri . $concatChar . $components['suffixes'];
+                    $ark->uri = $ark->uri . $concatChar . $components['suffixes'];
                 }
             }
 
             /** Redirect */
-            return redirect()->away($uri, 302);
+            return redirect()->away($ark->uri, 302);
 
         }
 
@@ -92,8 +82,7 @@ class Resolver
         /** Check if NAAN is present in database */
         $naan = NaanModel::query()
             ->select('minter_id')
-            ->where('naan', $components['naan'])
-            ->first();
+            ->firstWhere('naan', $components['naan']);
 
         /** If NAAN is present in database but no ARK is found */
         if ($naan) {
