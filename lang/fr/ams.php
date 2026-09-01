@@ -106,7 +106,7 @@ return [
      */
     'status_resource_section' => 'Paramètres de base',
     'status_resource_code' => 'Code de statut',
-    'status_resource_code_help' => 'Codes définis dans la RFC 9110',
+    'status_resource_code_help' => 'Codes définis dans la RFC 9110. Les codes suivants sont acceptés : 400, 403, 410, 451.',
     'status_resource_message' => 'Message',
     'status_resource_message_help' => 'Message affiché sur la page d\'erreur.',
 
