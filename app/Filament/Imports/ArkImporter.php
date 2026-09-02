@@ -10,6 +10,7 @@ use App\Models\Status;
 use App\Rules\NaanInDatabase;
 use Burgerbibliothek\ArkManagementTools\Ark;
 use Burgerbibliothek\ArkManagementTools\Erc;
+use Burgerbibliothek\ArkManagementTools\Validator;
 use Filament\Actions\Imports\Exceptions\RowImportFailedException;
 use Filament\Actions\Imports\ImportColumn;
 use Filament\Actions\Imports\Importer;
@@ -156,9 +157,12 @@ class ArkImporter extends Importer
                     throw new RowImportFailedException('Failed allocating new ARK.');
                 }
             }
+        } else if (empty(Ark::splitIntoComponents($this->data['ark'])['baseCompactName']) === true){
+            throw new RowImportFailedException('ARK field has not a valid base compact name.');
         }
 
         $arkComponents = Ark::splitIntoComponents($this->data['ark']);
+        $this->data['ark'] = $arkComponents['baseCompactName'];
 
         /** Update metadata */
         if(empty($this->data['metadata']) === false){
@@ -175,6 +179,8 @@ class ArkImporter extends Importer
             }
 
         }
+
+        
         
         /** Add "where" story w/ ARK */
         if ($this->options['ercWhere'] === true) {
