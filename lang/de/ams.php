@@ -105,7 +105,7 @@ return [
      */
     'status_resource_section' => 'Grundeinstellungen',
     'status_resource_code' => 'Statuscode',
-    'status_resource_code_help' => 'Codes wie in RFC 9110 definiert. Folgende Codes werden akzeptiert: 400, 403, 410, 451.',
+    'status_resource_code_help' => 'Codes wie in RFC 9110 definiert. Folgende Codes werden akzeptiert: 400, 410, 451.',
     'status_resource_message' => 'Meldung',
     'status_resource_message_help' => 'Meldung, die auf der Fehlerseite angezeigt wird.',
 
