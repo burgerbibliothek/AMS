@@ -84,5 +84,56 @@ class resolverTest extends TestCase
         $this->assertEquals($response->getContent(), 'erc: (:tba) | (:tba) | (:tba) | (:tba)');
     }
 
+    /**
+     * Check redirect of ARK
+     */
+    public function test_known_ark_redirects_to_uri(): void
+    {
+        $minter = Minter::factory()->create([
+            'xdigits' => '0123456789bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ',
+            'ncda' => 0
+        ]);
+
+        Naan::factory()->create([
+            'naan' => '12345',
+            'minter_id' => $minter->id,
+            'spt' => 0
+        ]);
+
+        Ark::factory()->create([
+            'ark' => 'ark:12345/1a2b3c4d',
+            'uri' => 'https://www.burgerbib.ch',
+        ]);
+
+        $response = $this->get('/ark:12345/1a2b3c4d');
+        $response->assertRedirect('https://www.burgerbib.ch');
+    }
+
+    /**
+     * Check redirect wit suffix passtrough
+     */
+    public function test_redirect_with_suffixpasstrough(): void
+    {
+        $minter = Minter::factory()->create([
+            'xdigits' => '0123456789bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ',
+            'ncda' => 0
+        ]);
+
+        Naan::factory()->create([
+            'naan' => '12345',
+            'minter_id' => $minter->id,
+            'spt' => 1
+        ]);
+
+        Ark::factory()->create([
+            'ark' => 'ark:12345/1a2b3c4d',
+            'uri' => 'https://www.burgerbib.ch',
+        ]);
+
+        $response = $this->get('/ark:12345/1a2b3c4d/ueber-uns/publikationen?mtm_campaign=testing&mtm_source=ark-management-system#c421');
+        $response->assertRedirect('https://www.burgerbib.ch/ueber-uns/publikationen?mtm_campaign=testing&mtm_source=ark-management-system');
+    }
+
+
     
 }

@@ -61,12 +61,12 @@ class Resolver
 
             /** Suffix Passthrough */
             if(NaanModel::suffixPasstrough($components['naan']) === true){
-                if (strlen(trim($components['suffixes'])) > 0) {
-                    $concatChar = substr($components['suffixes'], 0, 1) === '?' ? '' : '/';
-                    $ark->uri = $ark->uri . $concatChar . $components['suffixes'];
-                }
-            }
 
+                $suffix = substr($request->fullUrl(), strlen($components['resolverService']) + strlen($components['baseCompactName']));
+                $ark->uri = $ark->uri . $suffix;
+
+            }
+            
             /** Redirect */
             return redirect()->away($ark->uri, 302);
 
