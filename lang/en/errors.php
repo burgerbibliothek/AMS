@@ -12,6 +12,6 @@ return [
     'message451' => 'The record is no longer accessible for legal reasons.<br>For further details, see <a href="?info">?info</a>.',
     'title500' => 'Error 500: Server error',
     'message500' => 'The record is no longer accessible for legal reasons.<br>For further details, see <a href="?info">?info</a>.',
-    'invalidNAAN' => 'Invalid NAAN',
+    'invalidNAAN' => 'Invalid Name Assigning Authority Number (NAAN).',
     'invalidARK' => 'Invalid ARK',
 ];

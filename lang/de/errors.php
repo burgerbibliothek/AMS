@@ -12,6 +12,6 @@ return [
     'message451' => 'Der Datensatz ist aus rechtlichen Gründen nicht mehr erreichbar.<br>Für weitere Angaben siehe <a href="?info">?info</a>.',
     'title500' => 'Fehler 500: Serverfehler',
     'message500' => 'Der Datensatz ist aus rechtlichen Gründen nicht mehr erreichbar.<br>Für weitere Angaben siehe <a href="?info">?info</a>.',
-    'invalidNAAN' => 'Der ARK ist ungültig.',
+    'invalidNAAN' => 'Ungültige Name Assigning Authority Number (NAAN).',
     'invalidARK' => 'Ungültiger ARK',
 ];

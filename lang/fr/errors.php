@@ -12,6 +12,6 @@ return [
     'message451' => 'L’enregistrement n’est plus accessible pour des raisons juridiques.<br>Pour plus d’informations, consultez <a href="?info">?info</a>.',
     'title500' => 'Erreur 500 : Erreur du serveur',
     'message500' => 'L’enregistrement n’est plus accessible pour des raisons juridiques.<br>Pour plus d’informations, consultez <a href="?info">?info</a>.',
-    'invalidNAAN' => 'NAAN invalide',
+    'invalidNAAN' => 'Name Assigning Authority Number (NAAN) invalide.',
     'invalidARK' => 'ARK invalide',
 ];
