@@ -87,18 +87,12 @@ class Resolver
         /** If NAAN is present in database but no ARK is found */
         if ($naan) {
             
-            /** Check ARK for transcription errors */
+            /** If minter calculates NCDA, then check for transcription errors */
             $minter = MinterModel::query()
-                ->select('xdigits')
+                ->select('xdigits', 'ncda')
                 ->firstWhere('id', $naan->minter_id);
-
-            try{
-                $ncda = Ncda::verify($components['checkZone'], $minter->xdigits);
-            } catch (Exception $exception) {
-                $ncda = false;
-            }
-
-            if ($ncda === false) {
+            
+            if($minter->ncda === 1 && Ncda::verify($components['checkZone'], $minter->xdigits) === false){
                 abort(400, __('errors.invalidARK'));
             }
 

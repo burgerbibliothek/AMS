@@ -20,7 +20,7 @@ class resolverTest extends TestCase
      */
     public function test_invalid_naan(): void
     {
-        $response = $this->get('/ark:1A2B/test');
+        $response = $this->get('/ark:1B2C/test');
         $response->assertStatus(400);
     }
 
@@ -33,19 +33,41 @@ class resolverTest extends TestCase
         $response->assertStatus(302);
     }
 
-    /***/
-    public function test_invalid_xdigit(): void
+    /**
+     * Check not found error
+     */
+    public function test_ark_not_found(): void
     {
         $minter = Minter::factory()->create([
-            'xdigits' => '0123456789bcdfghjkmnpqrstvwxz',
+            'xdigits' => '0123456789',
+            'ncda' => 0
         ]);
 
         Naan::factory()->create([
             'naan' => '12345',
-            'minter_id' => $minter->id,
+            'minter_id' => $minter->id
         ]);
 
-        $response = $this->get('/ark:99999/htIafiO1a');
+        $response = $this->get('/ark:12345/12345');
+        $response->assertStatus(404);
+    }
+
+    /**
+     * Check if xdigit is valid 
+     */
+    public function test_invalid_ncda(): void
+    {
+        $minter = Minter::factory()->create([
+            'xdigits' => '0123456789bcdfghjklmnpqrstvwxzBCDFGHJKLMNPQRSTVWXZ',
+            'ncda' => 1
+        ]);
+
+        Naan::factory()->create([
+            'naan' => '12345',
+            'minter_id' => $minter->id
+        ]);
+
+        $response = $this->get('/ark:12345/12345');
         $response->assertStatus(400);
     }
 

@@ -287,12 +287,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/burgerbibliothek/ark-management-tools.git",
-                "reference": "e5b8275076a13e010f3f3f6150a88045505dc85b"
+                "reference": "d77da0e736ea8940162615e0d6296d9296edeabe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/burgerbibliothek/ark-management-tools/zipball/e5b8275076a13e010f3f3f6150a88045505dc85b",
-                "reference": "e5b8275076a13e010f3f3f6150a88045505dc85b",
+                "url": "https://api.github.com/repos/burgerbibliothek/ark-management-tools/zipball/d77da0e736ea8940162615e0d6296d9296edeabe",
+                "reference": "d77da0e736ea8940162615e0d6296d9296edeabe",
                 "shasum": ""
             },
             "require": {
@@ -332,7 +332,7 @@
                 "issues": "https://github.com/burgerbibliothek/ark-management-tools/issues",
                 "source": "https://github.com/burgerbibliothek/ark-management-tools/tree/main"
             },
-            "time": "2026-09-02T12:04:24+00:00"
+            "time": "2026-09-02T13:21:30+00:00"
         },
         {
             "name": "carbonphp/carbon-doctrine-types",
@@ -3493,16 +3493,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "3.10.0",
+            "version": "3.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "b321dd6749f0bf7189444158a3ce785cc16d69b0"
+                "reference": "147f303310f06334f03f409e49d7ad1e275ff05a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/b321dd6749f0bf7189444158a3ce785cc16d69b0",
-                "reference": "b321dd6749f0bf7189444158a3ce785cc16d69b0",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/147f303310f06334f03f409e49d7ad1e275ff05a",
+                "reference": "147f303310f06334f03f409e49d7ad1e275ff05a",
                 "shasum": ""
             },
             "require": {
@@ -3580,7 +3580,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/3.10.0"
+                "source": "https://github.com/Seldaek/monolog/tree/3.11.0"
             },
             "funding": [
                 {
@@ -3592,7 +3592,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2026-01-02T08:56:05+00:00"
+            "time": "2026-09-02T12:39:56+00:00"
         },
         {
             "name": "nesbot/carbon",
