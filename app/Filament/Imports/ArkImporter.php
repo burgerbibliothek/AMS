@@ -10,7 +10,6 @@ use App\Models\Status;
 use App\Rules\NaanInDatabase;
 use Burgerbibliothek\ArkManagementTools\Ark;
 use Burgerbibliothek\ArkManagementTools\Erc;
-use Burgerbibliothek\ArkManagementTools\Validator;
 use Filament\Actions\Imports\Exceptions\RowImportFailedException;
 use Filament\Actions\Imports\ImportColumn;
 use Filament\Actions\Imports\Importer;
