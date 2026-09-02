@@ -5,7 +5,6 @@ namespace Tests\Feature;
 use App\Models\Ark;
 use App\Models\Minter;
 use App\Models\Naan;
-use App\Models\Status;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
@@ -53,7 +52,7 @@ class resolverTest extends TestCase
     }
 
     /**
-     * Check if xdigit is valid 
+     * Check NCDA 
      */
     public function test_invalid_ncda(): void
     {
@@ -69,6 +68,20 @@ class resolverTest extends TestCase
 
         $response = $this->get('/ark:12345/12345');
         $response->assertStatus(400);
+    }
+
+    /**
+     * Check ?info
+     */
+    public function test_info_page(): void
+    {
+        $ark = Ark::factory()->create([
+            'ark' => 'ark:12345/1a2b3c4d'
+        ]);
+
+        $response = $this->get('/ark:12345/1a2b3c4d?info');
+        $response->assertStatus(200);
+        $this->assertEquals($response->getContent(), 'erc: (:tba) | (:tba) | (:tba) | (:tba)');
     }
 
     

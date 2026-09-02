@@ -37,8 +37,6 @@ class Resolver
             /** Return metadata if inflection is present */
             if (in_array($components['inflection'], ['?info', '??']) === true) {
 
-                $lastModified = $ark->updated_at;
-
                 if ($ark->metadata) {
                     $metadata = Metadata::deserialize($ark->metadata, true);
                 } else {
@@ -47,7 +45,7 @@ class Resolver
 
                 return response($metadata)->withHeaders([
                     'Content-Type' => 'text/plain',
-                    'Last-Modified'=> date_format($lastModified, 'r')
+                    'Last-Modified'=> date_format($ark->updated_at, 'r')
                 ]);
             }
 
