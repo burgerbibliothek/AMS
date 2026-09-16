@@ -174,7 +174,7 @@ class ArkImporter extends Importer
         
             if(empty($currentMetadata->metadata) === false){
                 $currentMetadata->metadata = Metadata::deserialize($currentMetadata->metadata, raw: true);
-                $this->data['metadata'] = Erc::mergeRecords(Metadata::deserialize($currentMetadata->metadata, raw: true), $this->data['metadata'], $this->options['metadataMergeStrategy']);
+                $this->data['metadata'] = Erc::mergeRecords($currentMetadata->metadata, $this->data['metadata'], $this->options['metadataMergeStrategy']);
             }
 
         }

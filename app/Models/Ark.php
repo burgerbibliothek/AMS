@@ -14,11 +14,6 @@ class Ark extends Model
 
     protected $guarded = ['id', 'created_at'];
 
-    public function status(): HasOne
-    {
-        return $this->hasOne(Status::class);
-    }
-
     public function ark_revisions(): HasMany
     {
         return $this->hasMany(ArkRevision::class, 'ark_id', 'id');

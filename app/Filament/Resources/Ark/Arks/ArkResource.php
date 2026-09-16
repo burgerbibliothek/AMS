@@ -184,16 +184,4 @@ class ArkResource extends Resource
             ArkRevisionsRelationManager::class,
         ];
     }
-
-    public static function desirializeMetadata($metadata)
-    {
-        $erc = new Erc;
-        $erc->load($metadata);
-        $data = [];
-        foreach ($erc->record as $k => $v) {
-            $data[$k] = $v;
-        }
-
-        return $data;
-    }
 }
