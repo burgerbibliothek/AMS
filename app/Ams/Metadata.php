@@ -1,17 +1,14 @@
 <?php
 
 namespace App\Ams;
-
 use Burgerbibliothek\ArkManagementTools\Erc;
 
 class Metadata
 {
     /**
      * Serialize metadata for saving to Database.
-     * Saves metadata into a JSON structure. currently only ERC is supported.
-     *
+     * 
      * @param  array  $data  Data elements.
-     * @return string Returns a JSON encoded string.
      */
     public static function serialize(array $data): ?string
     {
@@ -43,29 +40,21 @@ class Metadata
         $erc->load($metadata);
         $record = $erc->record;
 
+        /** Return ERC as text record */
         if ($raw) {
             return $erc->record();
         }
 
-        unset($record['erc']);
-        
-        if ($record) {
-            foreach ($record as $label => $value) {
-                $data[] = ['label' => $label, 'value' => Erc::decodeElementValue($value)];
+        /** Remove first entry in array which only contains the "erc" key */
+        unset($record[0]);
+
+        if (empty($record) === false) {
+            foreach ($record as $r) { 
+                $data[] = ['label' => key($r), 'value' => Erc::decodeElementValue($r[key($r)])];
             }
         }
-
 
         return $data;
     }
 
-    public static function erc($metadata)
-    {
-        $elements = json_decode($metadata, 1);
-        foreach ($elements as $element) {
-            if ($element['type'] == 'erc') {
-                return Erc::decodeElementValue($element['data']);
-            }
-        }
-    }
 }
