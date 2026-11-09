@@ -1,0 +1,86 @@
+name: Filament Minor Upgrade
+
+on:
+  schedule:
+    - cron: "0 6 * * *"   # täglich um 06:00 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: PHP einrichten
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"   # an AMS anpassen
+          extensions: mbstring, intl, pdo, pdo_mysql, zip, gd, bcmath, exif
+          tools: composer:v2
+
+      - name: Abhängigkeiten installieren
+        run: composer install --no-interaction --prefer-dist --no-progress
+
+      - name: Aktuelle und neueste Filament-Version ermitteln
+        id: versions
+        run: |
+          CURRENT=$(jq -r '.packages[] | select(.name=="filament/filament") | .version' composer.lock | sed 's/^v//')
+          MAJOR=${CURRENT%%.*}
+
+          # Neueste stabile Version innerhalb derselben Major-Version
+          LATEST=$(composer show filament/filament --all --format=json \
+            | jq -r '.versions[]' \
+            | sed 's/^v//' \
+            | grep -E "^${MAJOR}\.[0-9]+\.[0-9]+$" \
+            | sort -V | tail -1)
+
+          CURRENT_MINOR=$(echo "$CURRENT" | cut -d. -f1,2)
+          LATEST_MINOR=$(echo "$LATEST" | cut -d. -f1,2)
+
+          echo "Aktuell: $CURRENT ($CURRENT_MINOR) | Neueste: $LATEST ($LATEST_MINOR)"
+
+          NEWER=$(printf '%s\n%s\n' "$CURRENT_MINOR" "$LATEST_MINOR" | sort -V | tail -1)
+          if [ "$LATEST_MINOR" != "$CURRENT_MINOR" ] && [ "$NEWER" = "$LATEST_MINOR" ]; then
+            echo "upgrade=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "upgrade=false" >> "$GITHUB_OUTPUT"
+          fi
+          echo "latest_minor=$LATEST_MINOR" >> "$GITHUB_OUTPUT"
+          echo "latest=$LATEST" >> "$GITHUB_OUTPUT"
+
+      - name: Filament upgraden
+        if: steps.versions.outputs.upgrade == 'true'
+        run: |
+          composer require "filament/filament:^${{ steps.versions.outputs.latest_minor }}" \
+            --with-all-dependencies --no-interaction --no-progress
+          php artisan filament:upgrade || true
+
+      - name: Tests ausführen (optional)
+        if: steps.versions.outputs.upgrade == 'true'
+        run: |
+          cp -n .env.example .env || true
+          php artisan key:generate || true
+          php artisan test
+        continue-on-error: true   # PR wird auch bei Fehlern erstellt, damit ihr es prüfen könnt
+
+      - name: Pull Request erstellen
+        if: steps.versions.outputs.upgrade == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          branch: chore/filament-${{ steps.versions.outputs.latest_minor }}
+          base: main
+          commit-message: "chore: Upgrade Filament auf ${{ steps.versions.outputs.latest_minor }}"
+          title: "Upgrade Filament auf ${{ steps.versions.outputs.latest_minor }}"
+          body: |
+            Automatisches Upgrade auf die neue Filament-Minor-Version
+            **${{ steps.versions.outputs.latest }}**.
+
+            Bitte den [Changelog](https://github.com/filamentphp/filament/releases)
+            prüfen und die Tests abwarten.
+          labels: dependencies
+          delete-branch: true
