@@ -27,15 +27,13 @@ class Ark extends Model
     public static function hasChanged(int $id, array $attributes): bool
     {
         $current = self::find($id);
-        $result = [];
 
-        foreach ($attributes as $attr => $value) {
-            $result[] = $value === $current->$attr;
+        /** return true if current and update fields are the same value */
+        if($attributes['ark'] === $current->ark && $attributes['uri'] === $current->uri && $attributes['status_id'] === $current->status_id && $attributes['metadata'] === $current->metadata){
+            return false;
         }
-
-        $result = in_array(false, $result, 1) ? true : false;
-
-        return $result;
+        
+        return true;
 
     }
 }

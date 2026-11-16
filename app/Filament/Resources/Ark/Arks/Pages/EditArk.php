@@ -37,21 +37,18 @@ class EditArk extends EditRecord
             $data['metadata'] = Metadata::deserialize($data['metadata']);
         }
 
-        
-
         return $data;
     }
 
     protected function mutateFormDataBeforeSave(array $data): array
     {
 
-
         /** Save current data as revision. */
         $change = ArkModel::hasChanged($this->data['id'], [
             'ark' => $this->data['ark'],
             'uri' => $this->data['uri'],
             'status_id' => $this->data['status_id'],
-            'metadata' => $this->data['metadata'],
+            'metadata' => Metadata::serialize($this->data['metadata']),
         ]);
 
         if ($change) {
