@@ -41,35 +41,17 @@ class EditArk extends EditRecord
     }
 
     protected function mutateFormDataBeforeSave(array $data): array
-    {
-
-        /** Save current data as revision. */
-        $change = ArkModel::hasChanged($this->data['id'], [
-            'ark' => $this->data['ark'],
-            'uri' => $this->data['uri'],
-            'status_id' => $this->data['status_id'],
-            'metadata' => Metadata::serialize($this->data['metadata']),
-        ]);
-
-        if ($change) {
-
-            $currentData = ArkModel::find($this->data['id']);
-
-            /** Get status label */
-            $currentStatus = null;
-            if ($currentData->status_id) {
-                $currentStatus = StatusModel::find($currentData->status_id)->label;
-            }
-
-            $revisionData = ['uri' => $currentData->uri, 'http-status' => $currentStatus, 'metadata' => $currentData->metadata];
-            $revision = new ArkRevision;
-            $revision->ark_id = $this->data['id'];
-            $revision->revision = json_encode($revisionData);
-            $revision->save();
-        }
-
-        /** Create ERC record */
+    {   
+        /** Convert to ERC text format */
         $data['metadata'] = Metadata::serialize($data['metadata']);
+
+        $ark = $this->record;
+        $ark->fill($data);
+
+        /** Save current as revision if change detected */
+        if ($ark->isDirty(['uri', 'status_id', 'metadata']) === true) {
+            ArkRevision::snapshot($ark);
+        }
 
         return $data;
     }
